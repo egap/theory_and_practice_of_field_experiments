@@ -51,7 +51,7 @@ Below are slides with the core content that we cover in this session.
 
 - [@Asieduetal2021ethics]
 
-- [@Evans2021ethics] [pdf](https://www.cgdev.org/sites/default/files/WP565-Evans-Ethical-issues-and-RCTs.pdf)
+- [@Evans2021ethics] <!--[pdf](https://www.cgdev.org/sites/default/files/WP565-Evans-Ethical-issues-and-RCTs.pdf) -->
 
 ### Papers and Pre-Analysis Plans
 
