@@ -10,7 +10,7 @@ documentclass: book
 bibliography: learningdays-book.bib
 link-citations: yes
 colorlinks: yes
-github-repo: egap/learningdays-book
+github-repo: egap/theory_and_practice_of_field_experiments
 description: "EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design"
 fontsize: 12pt
 geometry: margin=1in
@@ -127,13 +127,13 @@ To gain the most benefit from this book, please have [R](https://cran.r-project.
 
 To get going with R, see the module [Introduction to R and RStudio](introduction-to-r-and-rstudio.html).
 
-You can copy this book or parts thereof (e.g., slides, etc.) either by using the Download button on the front page of <http://github.com/egap/learningdays-book> or by using github directly (by forking this repository).
+You can copy this book or parts thereof (e.g., slides, etc.) either by using the Download button on the front page of <http://github.com/egap/theory_and_practice_of_field_experiments> or by using github directly (by forking this repository).
 
 We are happy for anyone to use the materials as long as EGAP is attributed. See Creative Commons Attribution-ShareAlike 4.0 International License for the precise terms.
 
 ## We would love to hear from you!
 
-If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on [Github](https://github.com/egap/learningdays-book/issues) or contact us via email, admin@egap.org.
+If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on [Github](https://github.com/egap/theory_and_practice_of_field_experiments/issues) or contact us via email, admin@egap.org.
 
 ## Acknowledgments
 
