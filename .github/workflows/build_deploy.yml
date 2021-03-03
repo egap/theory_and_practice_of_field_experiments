@@ -1,0 +1,52 @@
+name: Build and Deploy
+on: ["push", "pull_request"]
+
+jobs: 
+  build_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Install Ubuntu Packages
+        run: sudo apt-get install -y libcurl4-openssl-dev pandoc pandoc-citeproc texlive texlive-xetex biber
+    
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '4.0.4'
+
+      - name: Install renv
+        run: Rscript -e 'if(!requireNamespace("remotes")){install.packages("remotes")} else {remotes::install_github("rstudio/renv")}'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.local/share/renv
+          key: ${{ runner.os }}-renv-v1-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-v1-
+
+      - name: Install packages
+        working-directory: Book
+        run: Rscript -e 'renv::restore()'
+
+      - name: Run bookdown for html and epub
+        run: | 
+          Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
+          Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::epub_book')"
+        working-directory: Book
+        
+      - name: Run bookdown to make pdf
+        run: | 
+          Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"
+        working-directory: Book
+
+      - name: Push to gh-pages
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: Book/_book
