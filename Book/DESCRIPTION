@@ -1,0 +1,6 @@
+Package: placeholder
+Type: Book
+Title: 'The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days'
+Version: 1.0.0
+Imports: bookdown
+Remotes: rstudio/bookdown
