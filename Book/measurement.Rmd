@@ -1,0 +1,73 @@
+# Measurement {.tabset}
+
+To estimate effects and test hypotheses, we often measure an outcome of interest with quantitative data derived from surveys, behavioral games, or administrative records. For causal questions, we typically use data on immediate and final outcomes and core mechanisms.  We use baseline data to identify relevant subgroups, adjust our estimates or help block-randomize our treatment.  Data can be noisy (random error) and/or biased (systematic error).  Measurements should be valid and reliable. 
+
+This module discusses *what to measure* and *how to measure*.  It shows how good measurement is closely linked to your [research design](https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd) and [statistical power](statistical-power-and-design-diagnosands.html). 
+
+## Core content
+
+ - When we represent some attribute of a unit by some number, letter, word, symbol in some systematic way (perhaps in a cell in a simple dataset), we are **measuring**.
+
+ - A **valid** measure of a concept or phenomenon of interest should clearly
+   represent that underlying and often abstract entity. 
+
+ - A **reliable** measure of a concept would provide the same score for the
+   unit of measurement (a person, a village) if conditions were not changed.
+   
+ - We can assess our theories of measurement using multiple approaches to measuring outcomes, covariates, or differences between units implied by different accounts of causal mechanisms. 
+
+ - Invalid measurement can make it hard for your [research design](https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd) to effectively counter
+   alternative explanations for the relationship between treatment and outcome.
+
+ - Unreliable measurement can diminish [statistical power](statistical-power-and-design-diagnosands.html). 
+ 
+ - Difficult measurement may call for a pilot study focused on measurement itself. 
+
+## Slides
+
+Below are slides with the core content that we cover in our lecture on measurement. You can directly use these slides or make your own local copy and edit.
+
+ - [R Markdown Source](https://egap.github.io/learningdays-resources/Slides/measurement-slides.Rmd)
+
+ - [PDF Version](https://egap.github.io/learningdays-resources/Slides/measurement-slides.pdf)
+
+ - [HTML Version](https://egap.github.io/learningdays-resources/Slides/measurement-slides.html)
+
+## Resources
+
+### EGAP Methods Guides
+
+- EGAP Methods Guide [10 Things to Know About Measurement in Experiments](https://egap.org/resource/10-things-to-know-about-measurement-in-experiments/)
+
+- EGAP Methods Guide [10 Things to Know About Survey Design](https://egap.org/resource/10-things-to-know-about-survey-design/)
+
+- EGAP Methods Guide [10 Things to Know About Survey Implementation](https://egap.org/resource/10-things-to-know-about-survey-implementation/)
+
+### Books, Chapters, and Articles
+
+ - [@adcocoll:2001]
+
+ - [@scacco_can_2018]
+ 
+ - [@shadish2002experimental]
+
+ - [@vicente_is_2014]
+
+### EGAP Policy Briefs
+
+*Using survey data at multiple levels*
+
+ - [EGAP Policy Brief 58: Does Bottom-Up Accountability Work?](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/)  
+
+*Using text messages*
+
+ - [EGAP Policy Brief 27: ICT and Politicians in Uganda ](https://egap.org/resource/brief-27-ict-and-politicians-in-uganda/)  
+
+ - [EGAP Policy Brief 56: Reporting Corruption in Nigeria](https://egap.org/resource/reporting-corruption-in-nigeria-testing-the-effects-of-norms-nudges/)  
+
+*Using administrative data*
+
+
+ - [EGAP Policy Brief 16: Spillover Effects of Observers in Ghana](https://egap.org/resource/brief-16-spillover-effects-of-observers-in-ghana/)  
+
+ - [EGAP Policy Brief 67: Electoral Administration in Kenya](https://egap.org/resource/electoral-administration-in-kenya/)   

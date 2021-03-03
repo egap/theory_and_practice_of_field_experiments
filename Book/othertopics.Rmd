@@ -1,0 +1,46 @@
+# Other Topics {.tabset}
+
+Here we provide links to resources to help people learn about topics that cannot be covered in-depth during the workshop but are important for experimental design.
+
+## Core content
+ 
+- Workflow
+  - People have limited memories, we need rules and tools to help us remember and share
+  - Reproducibility relies on efficient and clear coding and archiving
+
+- External validity
+  - A lot of this book deals with internal validity. 
+  - This does not immediately help you extrapolate to other populations. 
+  - What are the trade-offs? How can I extrapolate?
+
+- Randomization Inference and procedures in ri2
+  - Randomization inference is a method for calculating p-values for hypothesis tests
+  - ir2 is an R package that allows you to run the simulation for calculating RI p-values for various estimands
+
+- Reading results
+  - How to understand and interpret regression output? 
+  
+- Integrating qualitative research 
+
+- Adaptive designs
+  - Most designs are static: ie the same procedures for allocating treatments and measuring outcomes are applied throughout the trial. 
+  - Adaptive designs adjust the allocation treatment and control assignment based on interim analysis of the trial’s result.
+
+- Meta analysis
+
+## Slides
+
+## Resources
+
+### EGAP Methods Guides
+
+- [10 Things to Know About Project Workflow](https://egap.org/resource/10-things-to-know-about-project-workflow/)
+- [10 Things to Know About Randomization Inference](https://egap.org/resource/10-things-to-know-about-randomization-inference/)
+- [10 Things to Know About Missing Data](https://egap.org/resource/10-things-to-know-about-missing-data/)
+
+### Books, Chapters, and Articles
+
+ - [How to improve your relationship with your future self] (https://github.com/jwbowers/workflow)
+ - [Berkeley Initiative for Transparency in the Social Sciences] (https://www.bitss.org/)
+ 
+

@@ -1,0 +1,93 @@
+# Causal Inference {.tabset}
+
+Much of social science is about causality.  We might ask questions like whether [voter registration increases political participation](https://egap.org/resource/electoral-administration-in-kenya/), whether [bottom-up accountability can improve health outcomes](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/), or whether [personal narratives of immigrants help reduce prejudicial attitudes towards them](https://egap.org/resource/brief-70-how-personal-narratives-reduce-negative-attitudes-towards-immigrants-in-kenya/).
+
+Over the past decade, social science has become much more serious about how causal claims are made, building on a long history of work on causality dating back to the classic writings of [Fisher and Rubin](#causalinference-classics). We make greater use of experiments, and randomization has become the gold standard for addressing causal questions. 
+
+In this module, we introduce the counterfactual approach to causal inference and how statements with causal claims can be interpreted. We introduce the potential outcome framework and how random assignment helps us make claims about what would have happened in the absence of the policy, action or program we study. We discuss the three core assumptions for causal inference: random assignment of subjects to treatment, non-interference, and excludability. 
+
+## Core content
+
+ - What do we mean when we say **"cause"**? And why does it matter to be clear about the meaning of causal claims?
+
+ - An introduction to **potential outcomes** as a way to think about alternative states of the world.
+
+ - **Randomization** helps us learn about counterfactual causal claims in a particularly useful way.
+
+ - The three key **core assumptions** for causal inference: random assignment of subjects to treatment, non-interference, and excludability.
+
+ - Comparison of randomized studies with observational studies.
+
+ - Randomization brings high internal validity, but it can't promise **external validity**.
+
+ - Your causal question is closely linked so your [research design](the-research-design-process.html).
+
+## Slides
+
+Below are slides with the core content that we cover in our lecture on causality. You can directly use these slides or make your own local copy and edit.
+
+- [R Markdown Source](https://egap.github.io/learningdays-resources/Slides/causalinference-slides.Rmd)
+
+- [PDF Version](https://egap.github.io/learningdays-resources/Slides/causalinference-slides.pdf)
+
+- [HTML Version](https://egap.github.io/learningdays-resources/Slides/causalinference-slides.html)
+
+You can also see the slides used in previous EGAP Learning Days:
+
+ - [The causal inference presentation from EGAP Learning Days at the African School of Economics, Abomey-Calavi, June 2019](https://egap.github.io/learningdays-resources/Slides/Examples/causality-benin.pdf)
+
+ - [The causal inference presentation from EGAP Learning Days at Universidad de Los Andes, Bogotá, April 2019](https://egap.github.io/learningdays-resources/Slides/Examples/causality-bogota.pdf)
+
+ - [The causal inference presentation from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018](https://egap.github.io/learningdays-resources/Slides/Examples/causality-montevideo.pdf)
+
+ - [The causal inference presentation from EGAP Learning Days in Guatemala City, Guatemala, August 2017](https://egap.github.io/learningdays-resources/Slides/Examples/causality-guatemala.pdf)
+
+ - [The introduction to experiments presentation from EGAP Learning Days in Guatemala City, Guatemala, August 2017](https://egap.github.io/learningdays-resources/Slides/Examples/intro_experiments-guatemala.pdf)
+
+ - [The causal inference presentation from EGAP Learning Days in Salima, Malawi, February 2017](https://egap.github.io/learningdays-resources/Slides/Examples/causality-malawi.pdf)
+
+ - [The causal inference presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016](https://egap.github.io/learningdays-resources/Slides/Examples/causality-santiago.pdf)
+
+## Resources
+
+### EGAP Methods Guides
+
+- EGAP Methods Guide [10 Things You Need to Know about Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference/)
+
+- EGAP Methods Guide [10 Strategies for Figuring Out If X Caused Y](https://egap.org/resource/10-strategies-figuring-out-if-x-caused-y/)
+
+- EGAP Methods Guide [10 Things You Need to Know about Mechanisms](https://egap.org/resource/10-things-mechanisms/)
+
+- EGAP Methods Guide [10 Things to Know About External Validity](https://egap.org/resource/10-things-to-know-about-external-validity/)
+
+### Books, Chapters, and Articles {#causalinference-cites}
+
+#### Classics {#causalinference-classics}
+
+- [@fisher_design_1935] Fisher, introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
+
+- [@rubin:1974] Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
+
+#### Contemporary overviews
+
+- [@brady2008causation]
+
+- [@gerber_field_2012, Chapter 1] This book is a great resource for many topics in experimental design.
+
+- [@morgan_counterfactuals_2007, Chapter 1]  This book includes nice examples of thinking through making causal claims from observational data.
+
+- [@glennerster_running_2013]  This is a great introduction to running field experiments and discusses many examples.
+
+### EGAP Policy Briefs
+
+Some examples of causal questions:
+
+- [EGAP Policy Brief 38: Are radio voter education campaigns effective in discouraging voters from voting for parties/candidates that engage in vote-buying?](https://egap.org/resource/brief-38-diminishing-the-effectiveness-of-vote-buying-through-voter-education/)
+
+- [EGAP Policy Brief 51: Can free and anonymous information communication technology strengthen local accountability and improve the delivery of public services?](https://egap.org/resource/does-information-technology-improve-public-service-delivery-lessons-from-uganda/)
+
+- [EGAP Policy Brief 58: Can bottom-up accountability generate improvements in health outcomes?](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/)
+
+- [EGAP Policy Brief 69: Does bottom-up, citizen-based monitoring improve public service delivery?](https://egap.org/resource/brief-69-bottom-up-accountability-and-public-service-provision-in-brazil/)
+
+

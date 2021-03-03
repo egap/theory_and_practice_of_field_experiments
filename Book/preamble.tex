@@ -1,0 +1,23 @@
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+%\usepackage[T1]{fontenc}
+%\usepackage{textcomp}
+%\usepackage{fontspec}
+%\mainfont[Ligatures=TeX]{Lato}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[LE,LO]{\includegraphics[width=2cm]{Images/egap-logo.png}}
+\fancyfoot[RE,RO]{\thepage}
+%\usepackage{libertinus}
+%\usepackage[autocite=plain,style=verbose,citetracker=false]{biblatex}
+\usepackage[autocite=plain,citestyle=verbose]{biblatex}
+\usepackage{caption}
+
+

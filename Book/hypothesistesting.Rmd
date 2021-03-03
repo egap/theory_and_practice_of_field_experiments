@@ -1,0 +1,86 @@
+# Hypothesis Testing {.tabset}
+
+
+We cannot directly observe causal effects because of the *fundamental problem of counterfactual causal inference* ([causal inference module](causal-inference.html)); we cannot observe *both* how a person or a community responds in a treatment condition *and* how it responds in a control condition.  Then how can we learn about these *unobserved causal effects* using what we observe?  In a randomized experiment, we can assess *guesses* or *hypotheses* about the unobserved causal effects by comparing what we observe in a given experiment to what we would observe if we were able to repeat the experimental manipulation and the guess or hypothesis were true.
+
+In this module we introduce hypothesis testing, how it relates to causal inference, $p$-values, and what to do when we have multiple hypotheses to test.
+
+
+## Core content
+
+- What is a **good hypothesis**?
+
+- The relationship between hypothesis testing and causal inference.
+
+- **Hypothesis tests**.
+
+     - Null hypotheses.
+
+     - Estimators versus test statistics.
+
+     - In an experiment, a reference distribution for a hypothesis test comes from the experimental design and the randomization.
+
+     - $p$-values and how to interpret the results of hypothesis tests.
+
+- A good hypothesis test should (1) cast doubt on the truth rarely (i.e., has a controlled and low false positive rate), and (2) easily distinguish signal from noise (i.e., casts doubt on falsehoods often; has high statistical power).
+
+- How would we know when our hypothesis test is doing a good job? ([Power analysis](statistical-power-and-design-diagnosands.html) is its own module).
+
+    - False positive rates.  
+    
+    - Correct coverage of a confidence interval.
+
+    - Assessing the false positive rate of a hypothesis test for a given design and choice of test statistic; the case of cluster-randomized trials and robust cluster standard errors.
+
+- Be careful when testing **many hypotheses** (for example, if you have more than two treatment arms or if you are assessing the effects of a treatment on multiple outcomes).  We should be careful to **adjust the $p$-values or confidence intervals** to reflect the number of tests/intervals produced.
+
+## Slides
+
+Below are slides with the core content that we cover in our lecture on hypothesis testing. You can directly use these slides or make your own local copy and edit.
+
+ - [R Markdown Source](https://egap.github.io/learningdays-resources/Slides/hypothesistesting-slides.Rmd)
+
+ - [PDF Version](https://egap.github.io/learningdays-resources/Slides/hypothesistesting-slides.pdf)
+
+ - [HTML Version](https://egap.github.io/learningdays-resources/Slides/hypothesistesting-slides.html)
+
+You can also see the slides used in previous EGAP Learning Days:
+
+ - [The hypothesis testing presentation from EGAP Learning Days at the African School of Economics, Abomey-Calavi, June 2019](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-benin.pdf)
+
+ - [The hypothesis testing presentation from EGAP Learning Days at Universidad de Los Andes, Bogotá, April 2019](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-bogota.pdf)
+
+ - [The hypothesis testing presentation from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-montevideo.pdf)
+
+ - [The hypothesis testing presentation from EGAP Learning Days in Guatemala City, Guatemala, August 2017](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-guatemala.pdf)
+
+ - [The hypothesis testing presentation from EGAP Learning Days in Salima, Malawi, February 2017](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-malawi.pdf)
+
+ - [The hypothesis testing presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016](https://egap.github.io/learningdays-resources/Slides/Examples/hypothesistesting-santiago.pdf)
+
+
+## Resources
+
+### EGAP Methods Guides
+
+  - EGAP Methods Guide [10 Things to Know About Hypothesis Testing](https://egap.org/resource/10-things-to-know-about-hypothesis-testing/)
+
+  - EGAP Methods Guide [10 Things You Need to Know about Multiple Comparisons](https://egap.org/resource/10-things-to-know-about-multiple-comparisons/)
+
+### Books, Chapters, and Articles
+
+ - [@gerber_field_2012, Chapter 3: Sampling Distributions, Statistical Inference, and Hypothesis Testing]
+ 
+ - [@rosenbaum2010design, Chapter 2: Causal Inference in Randomized Experiments]
+
+ - [@rosenbaum2017observation, Part I: Randomized Experiments]
+
+<!--  ### EGAP Policy Briefs -->
+
+<!-- ### Tools
+
+ - [Exercises on hypothesis testing](https://egap.github.io/learningdays-resources/Exercises/exercise-hypothesistesting.Rmd)
+
+ - [Exercise on hypothesis testing using R](https://egap.github.io/learningdays-resources/Exercises/r-exercise-hypothesistesting.Rmd)
+
+-->

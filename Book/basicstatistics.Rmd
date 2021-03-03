@@ -1,0 +1,8 @@
+# Statistical Preliminaries {.tabset}
+
+## Core content
+
+- Sampling Distribution
+- Variance
+- Standard Deviation
+- Standard Error

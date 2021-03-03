@@ -1,0 +1,62 @@
+# Ethical Considerations {.tabset}
+
+*A randomized experiment involves one group of humans changing the lives of another group humans.*  When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced.  Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people.  Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how the intervention might change the lives of those exposed to it, as well as those not exposed.
+
+This module discusses the core topics on research ethics, such as privacy and autonomy; the basic principles relating to respect for persons, beneficence and justice; and how informed consent helps communicate these principles to study participants.  
+
+
+## Core content
+
+ - Research must weigh the **potential benefits** of the knowledge to be gained from the research against the **potential harms** to human subjects.
+   
+ - How would you feel if you were a research subject in your study? In the control group? In the treatment group? A relatively high-status member of the community? A relatively low-status member of the community?
+
+ - Key tenets: **privacy** and **autonomy**.
+
+ - Basic principles in the Belmont Report: **respect for persons, beneficence, justice**.
+
+ - **Informed consent**: Can you ensure that research subjects have the freedom to refuse to participate and/or drop out of the study if they want to?
+
+ - Challenges for social science experimental research in general:
+
+    - many more people may benefit (or suffer from) your intervention than directly participate in your study.
+
+    - changing election results or corruption can produce large societal changes. Is this beyond the remit of research?
+
+## Slides
+
+Below are slides with the core content that we cover in this session.
+
+ - [R Markdown Source](https://egap.github.io/learningdays-resources/Slides/ethics-slides.Rmd)
+
+ - [PDF Version](https://egap.github.io/learningdays-resources/Slides/ethics-slides.pdf)
+
+ - [HTML Version](https://egap.github.io/learningdays-resources/Slides/ethics-slides.html)
+
+## Resources
+
+- [EGAP Research Principles and Work on Ethics](https://egap.org/ethics/)
+
+- [Belmont Report](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html)
+
+- [Institutional Review Boards in the US](https://www.youtube.com/watch?v=U8fme1boEbE)
+
+- [Example: Research Ethics at Oxford University in the UK](https://researchsupport.admin.ox.ac.uk/governance/ethics)
+
+- [Example: Ethics for Researchers in the EU](https://ec.europa.eu/research/participants/data/ref/fp7/89888/ethics-for-researchers_en.pdf)
+
+- [Example: Research Ethics at the Universidad Catolica de Chile](http://eticayseguridad.uc.cl/)
+
+### Books, Chapters, and Articles
+
+- [@Asieduetal2021ethics]
+
+- [@Evans2021ethics] [pdf](https://www.cgdev.org/sites/default/files/WP565-Evans-Ethical-issues-and-RCTs.pdf)
+
+### Papers and Pre-Analysis Plans
+
+Examples of PAPs and papers that discuss ethical issues:
+
+- [Pre Analysis Plan: The Effects of Non-Food Item Vouchers in a Humanitarian Context The Case of the Rapid Response to Movements of Population Program in Congo](https://osf.io/eutx7/)
+
+- [Paper: Appendix E.1 in Countering violence against women by encouraging disclosure: A mass media experiment in rural Uganda](http://jasper-cooper.com/papers/Green_et_al.pdf)
