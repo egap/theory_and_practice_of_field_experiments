@@ -1,5 +1,11 @@
 # EGAP Learning Days Book Repository
 
+```
+Caramba y zamba la cosa
+que vivan los experimentos! 
+-from 'Me Gustan Los Estudiantes' by Violeta Parra
+```
+
 ![Build and Deploy](https://github.com/egap/theory_and_practice_of_field_experiments/workflows/Build%20and%20Deploy/badge.svg)
 
 This is the repository for the online EGAP Learning Days book which includes a materials to help researchers learn how to design and analyze data from randomized field experiments.
