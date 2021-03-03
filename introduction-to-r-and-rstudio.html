@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 12 Introduction to R and RStudio | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</title>
+  <meta name="description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 12 Introduction to R and RStudio | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="github-repo" content="egap/theory_and_practice_of_field_experiments" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 12 Introduction to R and RStudio | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  
+  <meta name="twitter:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  
+
+<meta name="author" content="Jake Bowers, Maarten Voors, and Nahomi Ichino" />
+
+
+<meta name="date" content="2021-03-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="glossary-of-terms.html"/>
+<link rel="next" href="references.html"/>
+<script src="book_assets/jquery/jquery.min.js"></script>
+<link href="book_assets/gitbook/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+        <script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+        <script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>EGAP Learning Days</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-the-book"><i class="fa fa-check"></i><b>1.1</b> How to use the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#we-would-love-to-hear-from-you"><i class="fa fa-check"></i><b>1.2</b> We would love to hear from you!</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-research-design-process.html"><a href="the-research-design-process.html"><i class="fa fa-check"></i><b>2</b> The Research Design Process</a><ul>
+<li class="chapter" data-level="2.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#core-content"><i class="fa fa-check"></i><b>2.1</b> Core Content</a></li>
+<li class="chapter" data-level="2.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#slides"><i class="fa fa-check"></i><b>2.2</b> Slides</a></li>
+<li class="chapter" data-level="2.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#design-form-and-pre-registration"><i class="fa fa-check"></i><b>2.3</b> Design Form and Pre-Registration</a></li>
+<li class="chapter" data-level="2.4" data-path="the-research-design-process.html"><a href="the-research-design-process.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#egap-methods-guides"><i class="fa fa-check"></i><b>2.4.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#books-chapters-and-articles"><i class="fa fa-check"></i><b>2.4.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="2.4.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#tools"><i class="fa fa-check"></i><b>2.4.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>3</b> Causal Inference</a><ul>
+<li class="chapter" data-level="3.1" data-path="causal-inference.html"><a href="causal-inference.html#core-content-1"><i class="fa fa-check"></i><b>3.1</b> Core content</a></li>
+<li class="chapter" data-level="3.2" data-path="causal-inference.html"><a href="causal-inference.html#slides-1"><i class="fa fa-check"></i><b>3.2</b> Slides</a></li>
+<li class="chapter" data-level="3.3" data-path="causal-inference.html"><a href="causal-inference.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="causal-inference.html"><a href="causal-inference.html#egap-methods-guides-1"><i class="fa fa-check"></i><b>3.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="3.3.2" data-path="causal-inference.html"><a href="causal-inference.html#causalinference-cites"><i class="fa fa-check"></i><b>3.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="3.3.3" data-path="causal-inference.html"><a href="causal-inference.html#egap-policy-briefs"><i class="fa fa-check"></i><b>3.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="randomization.html"><a href="randomization.html"><i class="fa fa-check"></i><b>4</b> Randomization</a><ul>
+<li class="chapter" data-level="4.1" data-path="randomization.html"><a href="randomization.html#core-content-2"><i class="fa fa-check"></i><b>4.1</b> Core content</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization.html"><a href="randomization.html#slides-2"><i class="fa fa-check"></i><b>4.2</b> Slides</a></li>
+<li class="chapter" data-level="4.3" data-path="randomization.html"><a href="randomization.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="randomization.html"><a href="randomization.html#egap-methods-guides-2"><i class="fa fa-check"></i><b>4.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="4.3.2" data-path="randomization.html"><a href="randomization.html#books-chapters-and-articles-1"><i class="fa fa-check"></i><b>4.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="4.3.3" data-path="randomization.html"><a href="randomization.html#egap-policy-briefs-1"><i class="fa fa-check"></i><b>4.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#core-content-3"><i class="fa fa-check"></i><b>5.1</b> Core content</a></li>
+<li class="chapter" data-level="5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#slides-3"><i class="fa fa-check"></i><b>5.2</b> Slides</a></li>
+<li class="chapter" data-level="5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#egap-methods-guides-3"><i class="fa fa-check"></i><b>5.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="5.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#books-chapters-and-articles-2"><i class="fa fa-check"></i><b>5.3.2</b> Books, Chapters, and Articles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html"><i class="fa fa-check"></i><b>6</b> Estimands and Estimators</a><ul>
+<li class="chapter" data-level="6.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#core-content-4"><i class="fa fa-check"></i><b>6.1</b> Core content</a></li>
+<li class="chapter" data-level="6.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#slides-4"><i class="fa fa-check"></i><b>6.2</b> Slides</a></li>
+<li class="chapter" data-level="6.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#egap-methods-guides-4"><i class="fa fa-check"></i><b>6.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="6.3.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#books-chapters-and-articles-3"><i class="fa fa-check"></i><b>6.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="6.3.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#tools-1"><i class="fa fa-check"></i><b>6.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html"><i class="fa fa-check"></i><b>7</b> Statistical Power and Design Diagnosands</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#core-content-5"><i class="fa fa-check"></i><b>7.1</b> Core Content</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#slides-5"><i class="fa fa-check"></i><b>7.2</b> Slides</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-methods-guides-5"><i class="fa fa-check"></i><b>7.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-policy-briefs-and-paps"><i class="fa fa-check"></i><b>7.3.2</b> EGAP Policy Briefs and PAPs</a></li>
+<li class="chapter" data-level="7.3.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#tools-2"><i class="fa fa-check"></i><b>7.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measurement.html"><a href="measurement.html#core-content-6"><i class="fa fa-check"></i><b>8.1</b> Core content</a></li>
+<li class="chapter" data-level="8.2" data-path="measurement.html"><a href="measurement.html#slides-6"><i class="fa fa-check"></i><b>8.2</b> Slides</a></li>
+<li class="chapter" data-level="8.3" data-path="measurement.html"><a href="measurement.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="measurement.html"><a href="measurement.html#egap-methods-guides-6"><i class="fa fa-check"></i><b>8.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="8.3.2" data-path="measurement.html"><a href="measurement.html#books-chapters-and-articles-4"><i class="fa fa-check"></i><b>8.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="8.3.3" data-path="measurement.html"><a href="measurement.html#egap-policy-briefs-2"><i class="fa fa-check"></i><b>8.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html"><i class="fa fa-check"></i><b>9</b> Threats to the Internal Validity of Randomized Experiments</a><ul>
+<li class="chapter" data-level="9.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#core-content-7"><i class="fa fa-check"></i><b>9.1</b> Core content</a></li>
+<li class="chapter" data-level="9.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#slides-7"><i class="fa fa-check"></i><b>9.2</b> Slides</a></li>
+<li class="chapter" data-level="9.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-methods-guide"><i class="fa fa-check"></i><b>9.3.1</b> EGAP Methods Guide</a></li>
+<li class="chapter" data-level="9.3.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#books-chapters-and-articles-5"><i class="fa fa-check"></i><b>9.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="9.3.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-policy-briefs-3"><i class="fa fa-check"></i><b>9.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>10</b> Ethical Considerations</a><ul>
+<li class="chapter" data-level="10.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#core-content-8"><i class="fa fa-check"></i><b>10.1</b> Core content</a></li>
+<li class="chapter" data-level="10.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#slides-8"><i class="fa fa-check"></i><b>10.2</b> Slides</a></li>
+<li class="chapter" data-level="10.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#books-chapters-and-articles-6"><i class="fa fa-check"></i><b>10.3.1</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="10.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#papers-and-pre-analysis-plans"><i class="fa fa-check"></i><b>10.3.2</b> Papers and Pre-Analysis Plans</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html"><i class="fa fa-check"></i><b>11</b> Glossary of Terms</a><ul>
+<li class="chapter" data-level="11.1" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#key-concepts"><i class="fa fa-check"></i><b>11.1</b> Key Concepts</a></li>
+<li class="chapter" data-level="11.2" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#statistical-inference"><i class="fa fa-check"></i><b>11.2</b> Statistical Inference</a></li>
+<li class="chapter" data-level="11.3" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#randomization-strategies"><i class="fa fa-check"></i><b>11.3</b> Randomization Strategies</a></li>
+<li class="chapter" data-level="11.4" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#factorial-designs"><i class="fa fa-check"></i><b>11.4</b> Factorial Designs</a></li>
+<li class="chapter" data-level="11.5" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#threats"><i class="fa fa-check"></i><b>11.5</b> Threats</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>12</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="12.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-and-rstudio"><i class="fa fa-check"></i><b>12.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="12.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r-and-rstudio"><i class="fa fa-check"></i><b>12.2</b> Downloading R and RStudio</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r"><i class="fa fa-check"></i><b>12.2.1</b> Downloading R</a></li>
+<li class="chapter" data-level="12.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-rstudio"><i class="fa fa-check"></i><b>12.2.2</b> Downloading RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#rstudio-interface"><i class="fa fa-check"></i><b>12.3</b> RStudio Interface</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#console"><i class="fa fa-check"></i><b>12.3.1</b> Console</a></li>
+<li class="chapter" data-level="12.3.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#editor"><i class="fa fa-check"></i><b>12.3.2</b> Editor</a></li>
+<li class="chapter" data-level="12.3.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#accounting"><i class="fa fa-check"></i><b>12.3.3</b> Accounting</a></li>
+<li class="chapter" data-level="12.3.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#miscellaneous"><i class="fa fa-check"></i><b>12.3.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#learning-to-use-r"><i class="fa fa-check"></i><b>12.4</b> Learning to Use R</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#online-resources"><i class="fa fa-check"></i><b>12.4.1</b> Online Resources</a></li>
+<li class="chapter" data-level="12.4.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#basic-practice"><i class="fa fa-check"></i><b>12.4.2</b> Basic Practice</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="http://egap.org" target="blank"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>Published by EGAP</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-r-and-rstudio" class="section level1 tabset">
+<h1><span class="header-section-number">Module 12</span> Introduction to R and RStudio</h1>
+<p>Throughout the book we include R code for estimation, simulation, and creating examples. We used RStudio to create the slides. To personalize them for your own purpose, we assume you will use R Markdown. Below, we include guides to setting up R and RStudio on your machine, as well as some basic commands that are frequently used.</p>
+<div id="r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">12.1</span> R and RStudio</h2>
+<p>R is a free software environment most commonly used for statistical analysis and computation. Because Learning Days participants arrive with different statistical backgrounds and preferred statistical software, we use R to ensure that everyone is on the same page. We advocate the use of R more generally for its flexibility, wealth of applications, and comprehensive support mostly through online fora.</p>
+<p>RStudio is a free, open source integrated development environment with a user interface that makes R much more user-friendly. R Markdown, a feature of RStudio, enables the easy output of code, results, and text in a .pdf, .html, or .doc format.</p>
+</div>
+<div id="downloading-r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">12.2</span> Downloading R and RStudio</h2>
+<div id="downloading-r" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Downloading R</h3>
+<p>R can be freely downloaded from CRAN at the link corresponding to your operating system:</p>
+<ul>
+<li>For <strong>Windows</strong>: <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a></li>
+<li>For <strong>Mac OS X</strong>: <a href="https://cran.r-project.org/bin/macosx/">https://cran.r-project.org/bin/macosx/</a>.
+<ul>
+<li>Select <code>R-4.0.4.pkg</code> for OS X 10.13 and higher.</li>
+<li>Select <code>R-3.6.3.nnpkg</code> for OS X 10.11-10.12.</li>
+<li>Select <code>R-3.3.3.nnpkg</code> for OS X 10.19-10.10.</li>
+<li>Select <code>R-3.2.1-snowleopard.pkg</code> for OS X 10.6-10.8.</li>
+</ul></li>
+</ul>
+</div>
+<div id="downloading-rstudio" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Downloading RStudio</h3>
+<p>RStudio can be freely downloaded from the RStudio website, <a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a>. In the table, click the blue <code>Download</code> button at the top of the left column, “RStudio Desktop Open Source License” as depicted below in Figure 1. Once you select this button, the page will jump to a list of download options as depicted in Figure 2.</p>
+<ul>
+<li>For <strong>Windows</strong>, select <code>Windows 10/8/7</code>.</li>
+<li>For <strong>Mac OS X</strong>, select <code>Mac OS X 10.13+</code>.</li>
+</ul>
+<div class="figure"><span id="fig:rstudiopng"></span>
+<img src="Images/new_rstudio.png" alt="Select **Download** in the &quot;RStudio Desktop Open Source License&quot; column." width="80%" />
+<p class="caption">
+Figure 12.1: Select <strong>Download</strong> in the “RStudio Desktop Open Source License” column.
+</p>
+</div>
+<div class="figure"><span id="fig:rstudiodownload"></span>
+<img src="Images/rstudio_download.png" alt="Select the Windows 10/8/7 link for Windows or the Mac OS X 10.13+ link for Mac." width="80%" />
+<p class="caption">
+Figure 12.2: Select the Windows 10/8/7 link for Windows or the Mac OS X 10.13+ link for Mac.
+</p>
+</div>
+</div>
+</div>
+<div id="rstudio-interface" class="section level2">
+<h2><span class="header-section-number">12.3</span> RStudio Interface</h2>
+<p>When you open RStudio for the first time, there should be three panels visible, as depicted in Figure 3 below.</p>
+<ul>
+<li>Console (left panel)</li>
+<li>Accounting (upper right panel): includes Environment and History tabs</li>
+<li>Miscellaneous (lower right panel)</li>
+</ul>
+<div class="figure"><span id="fig:rstudiointro"></span>
+<img src="Images/rstudio_intro.png" alt="When you open RStudio, there are three panels visible: the Console (left), Accounting (upper right), and Miscellaneous (lower right)." width="80%" />
+<p class="caption">
+Figure 12.3: When you open RStudio, there are three panels visible: the Console (left), Accounting (upper right), and Miscellaneous (lower right).
+</p>
+</div>
+<div id="console" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> Console</h3>
+<p>You can execute all operations in the console. For example if you enter <code>4 + 4</code> and hit the Enter/Return key, the Console will return <code>[1] 8</code>.</p>
+<p>To make sure everyone is prepared to use R at Learning Days, we ask participants to run one line of code in the Console to download several R packages. Packages are fragments of reproducible code that allow for more efficient analysis in R. To run these lines, copy the following code into the Console and hit your <code>Return</code>/<code>Enter</code> key. You must be connected to the internet to download packages.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;AER&quot;</span>, <span class="st">&quot;arm&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;sandwich&quot;</span>, </a>
+<a class="sourceLine" id="cb1-2" title="2">                   <span class="st">&quot;lmtest&quot;</span>, <span class="st">&quot;estimatr&quot;</span>,<span class="st">&quot;coin&quot;</span>,<span class="st">&quot;randomizr&quot;</span>, <span class="st">&quot;DeclareDesign&quot;</span>))</a></code></pre></div>
+If successfully downloaded, your Console will resemble Figure 4, except that the urls will differ depending on your location.
+<div class="figure"><span id="fig:console2"></span>
+<img src="Images/console2a.png" alt="An image of the Console after executing the three lines of code listed above." width="40%" />
+<p class="caption">
+Figure 12.4: An image of the Console after executing the three lines of code listed above.
+</p>
+</div>
+</div>
+<div id="editor" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> Editor</h3>
+<p>In order to write and save reproducible code, we will open a fourth panel, the Editor, by clicking on the icon with a white page with a plus sign on the upper-left corner of the RStudio interface and selecting <code>R Script</code>, as depicted in Figure 5.</p>
+<div class="figure"><span id="fig:newscript"></span>
+<img src="Images/new_script.png" alt="Create a new R script and open the editor panel by selecting `R Script` from the dropdown menu." width="60%" />
+<p class="caption">
+Figure 12.5: Create a new R script and open the editor panel by selecting <code>R Script</code> from the dropdown menu.
+</p>
+</div>
+<p>Once the R script is opened, there should be four panels within the RStudio interface, now with the addition of the Editor panel. We can execute simple arithmetic by entering a formula in the editor and pressing <code>Control + Enter</code> (Windows) or <code>Command + Enter</code> (Mac). The formula and the “answer” will appear in the Console, as depicted in Figure 6, with red boxes added for emphasis.</p>
+<div class="figure"><span id="fig:firstaddition"></span>
+<img src="Images/first_addition.png" alt="An arithmetic expression is entered in the editor and evaluated in the console. The red boxes are added for emphasis." width="60%" />
+<p class="caption">
+Figure 12.6: An arithmetic expression is entered in the editor and evaluated in the console. The red boxes are added for emphasis.
+</p>
+</div>
+<p>R can be used for any arithmetic operation, including but not limited to addition (<code>+</code>), subtraction (<code>-</code>), scalar multiplication (<code>*</code>), division (<code>/</code>), and exponentiation (<code>^</code>).</p>
+</div>
+<div id="accounting" class="section level3">
+<h3><span class="header-section-number">12.3.3</span> Accounting</h3>
+<p>Beyond basic functions, we can also store values, data, and functions in the global environment. To assign a value to a variable, use the <code>&lt;-</code> operator. All stored values, functions, and data will appear in the environment tab in the Accounting panel. In Figure 7, we define the variable <code>t</code> to take the value <span class="math inline">\(3 \times \frac{6}{14}\)</span>, and can see that it is stored under Values.</p>
+<p>We also load a dataset. Here, “ChickWeight” is a dataset built into R; most datasets will be loaded from the web or other files on your computer through an alternate method. We can see that ChickWeight contains 578 observations of 4 variables and is stored in the Environment. By clicking on the name ChickWeight a tab will enter with the dataset in your Editor window.</p>
+<div class="figure"><span id="fig:savedata"></span>
+<img src="Images/save_data.png" alt="The value 3 * (6/14) is assigned to the variable t (red) and the dataset ChickWeight is added to the global environment (blue). The boxes are added for emphasis." width="60%" />
+<p class="caption">
+Figure 12.7: The value 3 * (6/14) is assigned to the variable t (red) and the dataset ChickWeight is added to the global environment (blue). The boxes are added for emphasis.
+</p>
+</div>
+<p>The Learning Days workshops use many tools in R to analyze and view data. For now, we can learn some basic tools to examine the data. The function <code>head()</code> allows us to see the first six rows of the dataset. <code>summary()</code> summarizes each of the columns of the dataset and <code>dim()</code> provides the dimensions of the dataset with first the number of rows and then columns.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">head</span>(ChickWeight) <span class="co"># First 6 observations in dataset</span></a></code></pre></div>
+<pre><code>  weight Time Chick Diet
+1     42    0     1    1
+2     51    2     1    1
+3     59    4     1    1
+4     64    6     1    1
+5     76    8     1    1
+6     93   10     1    1</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">summary</span>(ChickWeight) <span class="co"># Summary of all variables</span></a></code></pre></div>
+<pre><code>     weight         Time          Chick     Diet   
+ Min.   : 35   Min.   : 0.0   13     : 12   1:220  
+ 1st Qu.: 63   1st Qu.: 4.0   9      : 12   2:120  
+ Median :103   Median :10.0   20     : 12   3:120  
+ Mean   :122   Mean   :10.7   10     : 12   4:118  
+ 3rd Qu.:164   3rd Qu.:16.0   17     : 12          
+ Max.   :373   Max.   :21.0   19     : 12          
+                              (Other):506          </code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">dim</span>(ChickWeight) <span class="co"># Dimensions of the dataset in the order rows, columns</span></a></code></pre></div>
+<pre><code>[1] 578   4</code></pre>
+<p>Unlike other statistical software, R allows users to store multiple datasets, possibly of different dimensions, simultaneously. This feature makes R quite flexible for analysis using multiple methods.</p>
+</div>
+<div id="miscellaneous" class="section level3">
+<h3><span class="header-section-number">12.3.4</span> Miscellaneous</h3>
+<p>R provides a suite of tools, ranging from built-in plot functions to packages to graph data, models, estimates, etc. The final Miscellaneous panel allows for the quick viewing of graphs in RStudio. Figure 8 shows a plot in this panel. Leaning Days will discuss how to plot data; for now, don’t worry about the graphing the code in the Editor.</p>
+<div class="figure"><span id="fig:graph"></span>
+<img src="Images/graph.png" alt="An example plot of the `ChickWeight` data made in R." width="60%" />
+<p class="caption">
+Figure 12.8: An example plot of the <code>ChickWeight</code> data made in R.
+</p>
+</div>
+</div>
+</div>
+<div id="learning-to-use-r" class="section level2">
+<h2><span class="header-section-number">12.4</span> Learning to Use R</h2>
+<div id="online-resources" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Online Resources</h3>
+<p>There are many helpful online resources to help you start learning R. We recommend two sources:</p>
+<ul>
+<li>Code School, which runs entirely through your browser <a href="https://www.codeschool.com/courses/try-r">https://www.codeschool.com/courses/try-r</a>.</li>
+<li>Coursera, via an online R Programming course organized by Johns Hopkins University:
+<ol style="list-style-type: lower-roman">
+<li>Go to <a href="https://www.coursera.org">https://www.coursera.org</a></li>
+<li>Create an account (this is free!)</li>
+<li>Sign up for R Programming at Johns Hopkins University (instructor: Roger Peng) under the “Courses” tab</li>
+<li>Read the materials and watch the videos from the first week. The videos from the first week are about 2.5 hours long total.</li>
+</ol></li>
+</ul>
+</div>
+<div id="basic-practice" class="section level3">
+<h3><span class="header-section-number">12.4.2</span> Basic Practice</h3>
+<p>Here we provide some fragments of code to familiarize you with some basic practices in R. We recommend that you practice by typing the code fragments into your Editor and then evaluating them.</p>
+<div id="setting-up-an-r-session" class="section level4">
+<h4><span class="header-section-number">12.4.2.1</span> Setting up an R Session</h4>
+<p>In general, we read other files such as data or functions into R and output results like graphs or tables into files not contained within an R session. To do this, we must give R an “address” at which it can locate such files. It may be most efficient to do this by setting a working directory, a file path at which relevant files are stored. We can identify the current working directory using <code>getwd()</code> and set a new one using <code>setwd()</code>. Note that the syntax of these filepaths varies by operating system.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;~TaraLyn/Dropbox/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/&quot;</span>)   </a></code></pre></div>
+<p>You may need to install packages beyond those listed above to execute certain functions. To install packages we use <code>install.packages("")</code>, filling in the package name between the "" marks, as follows. You need only install packages once.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;randomizr&quot;</span>)  </a></code></pre></div>
+<p>Once a package is installed, it can be loaded and accessed using <code>library()</code> where the package name is inserted between the parentheses (no "" marks).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(randomizr)</a></code></pre></div>
+<p>To clear R’s memory of the stored data, functions, or values that appear in the accounting tab, use <code>rm(list = ls())</code>. It may be useful to set a random number seed to ensure that replication is possible in a different R session, particularly when we work with simulation-based methods.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())                                   </a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw">set.seed</span>(<span class="dv">2018</span>)  <span class="co"># Optional: Set a seed to make output replicable</span></a></code></pre></div>
+</div>
+<div id="r-basics" class="section level4">
+<h4><span class="header-section-number">12.4.2.2</span> R Basics</h4>
+<p>We now explore some basic commands. In order to assign a scalar (single element) to a variable, we use the <code>&lt;-</code> command as discussed previously:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">(a &lt;-<span class="st"> </span><span class="dv">5</span>)     <span class="co"># &quot;&lt;-&quot;  is the assignment command; it is used to</span></a></code></pre></div>
+<pre><code>[1] 5</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">             <span class="co"># define things. eg:</span></a></code></pre></div>
+<p>We may also want to assign a vector of elements to a variable. Here we use the same <code>&lt;-</code> command, but focus on how to create the vector.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">(b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)              <span class="co"># &quot;:&quot;  is used to define a string of integers</span></a></code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">(v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, pi))   <span class="co"># use c() to make a vector with anything in it</span></a></code></pre></div>
+<pre><code>[1] 1.000 3.000 2.000 4.000 3.142</code></pre>
+<p>We can then refer to elements of a vector by denoting their position in a vector inside hard brackets <code>[]</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Extract elements of a vector:</span></a>
+<a class="sourceLine" id="cb20-2" title="2">b[<span class="dv">1</span>]                   <span class="co"># Returns position 1</span></a></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">b[<span class="dv">5</span><span class="op">:</span><span class="dv">4</span>]                 <span class="co"># Returns positions 5 and 4, in that order</span></a></code></pre></div>
+<pre><code>[1] 5 4</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">b[<span class="op">-</span><span class="dv">1</span>]                  <span class="co"># Returns all but the first number  </span></a></code></pre></div>
+<pre><code>[1]  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Returns all numbers indicated as &quot;TRUE&quot;</span></a>
+<a class="sourceLine" id="cb26-2" title="2">b[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)]  </a></code></pre></div>
+<pre><code>[1] 1 3 6 7</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Assign new values to particular elements of a vector</span></a>
+<a class="sourceLine" id="cb28-2" title="2">b[<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<p>There are a set of built-in functions that can be applied to vectors like <code>b</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sum</span>(b)      <span class="co"># Sum of all elements</span></a></code></pre></div>
+<pre><code>[1] 50</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">mean</span>(b)     <span class="co"># Mean of all elements</span></a></code></pre></div>
+<pre><code>[1] 5</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">max</span>(b)      <span class="co"># Maximum of all elements</span></a></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">min</span>(b)      <span class="co"># Minimum of all elements</span></a></code></pre></div>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">sd</span>(b)       <span class="co"># Standard deviation of all elements</span></a></code></pre></div>
+<pre><code>[1] 3.496</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">var</span>(b)      <span class="co"># Variance of all elements</span></a></code></pre></div>
+<pre><code>[1] 12.22</code></pre>
+<p>We can also apply arithmetic transformations to all elements of a vector:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">b<span class="op">^</span><span class="dv">2</span>               <span class="co"># Square the variable</span></a></code></pre></div>
+<pre><code> [1]   1   4   9  16   0  36  49  64  81 100</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">b<span class="op">^</span>.<span class="dv">5</span>              <span class="co"># Square root of the variable</span></a></code></pre></div>
+<pre><code> [1] 1.000 1.414 1.732 2.000 0.000 2.449 2.646 2.828 3.000 3.162</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">log</span>(b)            <span class="co"># Log of variable</span></a></code></pre></div>
+<pre><code> [1] 0.0000 0.6931 1.0986 1.3863   -Inf 1.7918 1.9459 2.0794 2.1972 2.3026</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">exp</span>(b)            <span class="co"># e to the b</span></a></code></pre></div>
+<pre><code> [1]     2.718     7.389    20.086    54.598     1.000   403.429  1096.633  2980.958  8103.084 22026.466</code></pre>
+<p>Finally, we can evaluate logical statements (i.e. ``is condition X true?’’) on all elements of a vector:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">b <span class="op">==</span><span class="st"> </span><span class="dv">2</span>                     <span class="co"># Is equal to</span></a></code></pre></div>
+<pre><code> [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">b <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>                      <span class="co"># Less than</span></a></code></pre></div>
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">b <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>                     <span class="co"># Greater than or equal to </span></a></code></pre></div>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">b <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">|</span><span class="st"> </span>b <span class="op">/</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span>        <span class="co"># | means OR</span></a></code></pre></div>
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">b<span class="op">&gt;</span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>b<span class="op">&lt;</span><span class="dv">9</span>                  <span class="co"># &amp; means AND</span></a></code></pre></div>
+<pre><code> [1] FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw">is.na</span>(b)                   <span class="co"># Indicates if data is missing</span></a></code></pre></div>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">which</span>(b<span class="op">&lt;</span><span class="dv">5</span>)                 <span class="co"># Gives indices of values meeting logical requirement</span></a></code></pre></div>
+<pre><code>[1] 1 2 3 4 5</code></pre>
+<p>The basic logic of these commands applies to data structures much more complex than scalars and vectors. Understanding of these basic features will help facilitate your understanding of more advanced topics during Learning Days.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="glossary-of-terms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook/js/app.min.js"></script>
+<script src="book_assets/gitbook/js/lunr.js"></script>
+<script src="book_assets/gitbook/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook/js/plugin-search.js"></script>
+<script src="book_assets/gitbook/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/egap/learningdays-book/edit/master/Book/intro_to_r.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["theory_and_practice_of_field_experiments.pdf", "theory_and_practice_of_field_experiments.epub"],
+"toc": {
+"collapse": "section",
+"sharing": {
+"facebook": true,
+"github": true,
+"twitter": true,
+"linkedin": true,
+"weibo": true,
+"instapaper": true,
+"vk": false,
+"all": ["facebook", "github", "twitter", "linkedin", "weibo", "instapaper"]
+}
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

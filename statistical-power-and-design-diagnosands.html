@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 7 Statistical Power and Design Diagnosands | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</title>
+  <meta name="description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 7 Statistical Power and Design Diagnosands | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="github-repo" content="egap/theory_and_practice_of_field_experiments" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 7 Statistical Power and Design Diagnosands | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  
+  <meta name="twitter:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  
+
+<meta name="author" content="Jake Bowers, Maarten Voors, and Nahomi Ichino" />
+
+
+<meta name="date" content="2021-03-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimands-and-estimators.html"/>
+<link rel="next" href="measurement.html"/>
+<script src="book_assets/jquery/jquery.min.js"></script>
+<link href="book_assets/gitbook/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+        <script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+        <script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>EGAP Learning Days</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-the-book"><i class="fa fa-check"></i><b>1.1</b> How to use the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#we-would-love-to-hear-from-you"><i class="fa fa-check"></i><b>1.2</b> We would love to hear from you!</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-research-design-process.html"><a href="the-research-design-process.html"><i class="fa fa-check"></i><b>2</b> The Research Design Process</a><ul>
+<li class="chapter" data-level="2.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#core-content"><i class="fa fa-check"></i><b>2.1</b> Core Content</a></li>
+<li class="chapter" data-level="2.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#slides"><i class="fa fa-check"></i><b>2.2</b> Slides</a></li>
+<li class="chapter" data-level="2.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#design-form-and-pre-registration"><i class="fa fa-check"></i><b>2.3</b> Design Form and Pre-Registration</a></li>
+<li class="chapter" data-level="2.4" data-path="the-research-design-process.html"><a href="the-research-design-process.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#egap-methods-guides"><i class="fa fa-check"></i><b>2.4.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#books-chapters-and-articles"><i class="fa fa-check"></i><b>2.4.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="2.4.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#tools"><i class="fa fa-check"></i><b>2.4.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>3</b> Causal Inference</a><ul>
+<li class="chapter" data-level="3.1" data-path="causal-inference.html"><a href="causal-inference.html#core-content-1"><i class="fa fa-check"></i><b>3.1</b> Core content</a></li>
+<li class="chapter" data-level="3.2" data-path="causal-inference.html"><a href="causal-inference.html#slides-1"><i class="fa fa-check"></i><b>3.2</b> Slides</a></li>
+<li class="chapter" data-level="3.3" data-path="causal-inference.html"><a href="causal-inference.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="causal-inference.html"><a href="causal-inference.html#egap-methods-guides-1"><i class="fa fa-check"></i><b>3.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="3.3.2" data-path="causal-inference.html"><a href="causal-inference.html#causalinference-cites"><i class="fa fa-check"></i><b>3.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="3.3.3" data-path="causal-inference.html"><a href="causal-inference.html#egap-policy-briefs"><i class="fa fa-check"></i><b>3.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="randomization.html"><a href="randomization.html"><i class="fa fa-check"></i><b>4</b> Randomization</a><ul>
+<li class="chapter" data-level="4.1" data-path="randomization.html"><a href="randomization.html#core-content-2"><i class="fa fa-check"></i><b>4.1</b> Core content</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization.html"><a href="randomization.html#slides-2"><i class="fa fa-check"></i><b>4.2</b> Slides</a></li>
+<li class="chapter" data-level="4.3" data-path="randomization.html"><a href="randomization.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="randomization.html"><a href="randomization.html#egap-methods-guides-2"><i class="fa fa-check"></i><b>4.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="4.3.2" data-path="randomization.html"><a href="randomization.html#books-chapters-and-articles-1"><i class="fa fa-check"></i><b>4.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="4.3.3" data-path="randomization.html"><a href="randomization.html#egap-policy-briefs-1"><i class="fa fa-check"></i><b>4.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#core-content-3"><i class="fa fa-check"></i><b>5.1</b> Core content</a></li>
+<li class="chapter" data-level="5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#slides-3"><i class="fa fa-check"></i><b>5.2</b> Slides</a></li>
+<li class="chapter" data-level="5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#egap-methods-guides-3"><i class="fa fa-check"></i><b>5.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="5.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#books-chapters-and-articles-2"><i class="fa fa-check"></i><b>5.3.2</b> Books, Chapters, and Articles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html"><i class="fa fa-check"></i><b>6</b> Estimands and Estimators</a><ul>
+<li class="chapter" data-level="6.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#core-content-4"><i class="fa fa-check"></i><b>6.1</b> Core content</a></li>
+<li class="chapter" data-level="6.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#slides-4"><i class="fa fa-check"></i><b>6.2</b> Slides</a></li>
+<li class="chapter" data-level="6.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#egap-methods-guides-4"><i class="fa fa-check"></i><b>6.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="6.3.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#books-chapters-and-articles-3"><i class="fa fa-check"></i><b>6.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="6.3.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#tools-1"><i class="fa fa-check"></i><b>6.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html"><i class="fa fa-check"></i><b>7</b> Statistical Power and Design Diagnosands</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#core-content-5"><i class="fa fa-check"></i><b>7.1</b> Core Content</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#slides-5"><i class="fa fa-check"></i><b>7.2</b> Slides</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-methods-guides-5"><i class="fa fa-check"></i><b>7.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-policy-briefs-and-paps"><i class="fa fa-check"></i><b>7.3.2</b> EGAP Policy Briefs and PAPs</a></li>
+<li class="chapter" data-level="7.3.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#tools-2"><i class="fa fa-check"></i><b>7.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measurement.html"><a href="measurement.html#core-content-6"><i class="fa fa-check"></i><b>8.1</b> Core content</a></li>
+<li class="chapter" data-level="8.2" data-path="measurement.html"><a href="measurement.html#slides-6"><i class="fa fa-check"></i><b>8.2</b> Slides</a></li>
+<li class="chapter" data-level="8.3" data-path="measurement.html"><a href="measurement.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="measurement.html"><a href="measurement.html#egap-methods-guides-6"><i class="fa fa-check"></i><b>8.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="8.3.2" data-path="measurement.html"><a href="measurement.html#books-chapters-and-articles-4"><i class="fa fa-check"></i><b>8.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="8.3.3" data-path="measurement.html"><a href="measurement.html#egap-policy-briefs-2"><i class="fa fa-check"></i><b>8.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html"><i class="fa fa-check"></i><b>9</b> Threats to the Internal Validity of Randomized Experiments</a><ul>
+<li class="chapter" data-level="9.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#core-content-7"><i class="fa fa-check"></i><b>9.1</b> Core content</a></li>
+<li class="chapter" data-level="9.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#slides-7"><i class="fa fa-check"></i><b>9.2</b> Slides</a></li>
+<li class="chapter" data-level="9.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-methods-guide"><i class="fa fa-check"></i><b>9.3.1</b> EGAP Methods Guide</a></li>
+<li class="chapter" data-level="9.3.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#books-chapters-and-articles-5"><i class="fa fa-check"></i><b>9.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="9.3.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-policy-briefs-3"><i class="fa fa-check"></i><b>9.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>10</b> Ethical Considerations</a><ul>
+<li class="chapter" data-level="10.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#core-content-8"><i class="fa fa-check"></i><b>10.1</b> Core content</a></li>
+<li class="chapter" data-level="10.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#slides-8"><i class="fa fa-check"></i><b>10.2</b> Slides</a></li>
+<li class="chapter" data-level="10.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#books-chapters-and-articles-6"><i class="fa fa-check"></i><b>10.3.1</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="10.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#papers-and-pre-analysis-plans"><i class="fa fa-check"></i><b>10.3.2</b> Papers and Pre-Analysis Plans</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html"><i class="fa fa-check"></i><b>11</b> Glossary of Terms</a><ul>
+<li class="chapter" data-level="11.1" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#key-concepts"><i class="fa fa-check"></i><b>11.1</b> Key Concepts</a></li>
+<li class="chapter" data-level="11.2" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#statistical-inference"><i class="fa fa-check"></i><b>11.2</b> Statistical Inference</a></li>
+<li class="chapter" data-level="11.3" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#randomization-strategies"><i class="fa fa-check"></i><b>11.3</b> Randomization Strategies</a></li>
+<li class="chapter" data-level="11.4" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#factorial-designs"><i class="fa fa-check"></i><b>11.4</b> Factorial Designs</a></li>
+<li class="chapter" data-level="11.5" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#threats"><i class="fa fa-check"></i><b>11.5</b> Threats</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>12</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="12.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-and-rstudio"><i class="fa fa-check"></i><b>12.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="12.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r-and-rstudio"><i class="fa fa-check"></i><b>12.2</b> Downloading R and RStudio</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r"><i class="fa fa-check"></i><b>12.2.1</b> Downloading R</a></li>
+<li class="chapter" data-level="12.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-rstudio"><i class="fa fa-check"></i><b>12.2.2</b> Downloading RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#rstudio-interface"><i class="fa fa-check"></i><b>12.3</b> RStudio Interface</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#console"><i class="fa fa-check"></i><b>12.3.1</b> Console</a></li>
+<li class="chapter" data-level="12.3.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#editor"><i class="fa fa-check"></i><b>12.3.2</b> Editor</a></li>
+<li class="chapter" data-level="12.3.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#accounting"><i class="fa fa-check"></i><b>12.3.3</b> Accounting</a></li>
+<li class="chapter" data-level="12.3.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#miscellaneous"><i class="fa fa-check"></i><b>12.3.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#learning-to-use-r"><i class="fa fa-check"></i><b>12.4</b> Learning to Use R</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#online-resources"><i class="fa fa-check"></i><b>12.4.1</b> Online Resources</a></li>
+<li class="chapter" data-level="12.4.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#basic-practice"><i class="fa fa-check"></i><b>12.4.2</b> Basic Practice</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="http://egap.org" target="blank"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>Published by EGAP</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-power-and-design-diagnosands" class="section level1 tabset">
+<h1><span class="header-section-number">Module 7</span> Statistical Power and Design Diagnosands</h1>
+<p>Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists. It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there is no effect or just that we failed to detect a non-zero effect that exists. A power analysis can help you improve your design and reallocate your resources; it may even help you decide against conducting the study.</p>
+<p>In this module, we introduce statistical power, core approaches to calculating power through analytical calculations or through simulation, and how design features such as blocking, covariate adjustment, and clustering impact power.</p>
+<div id="core-content-5" class="section level2">
+<h2><span class="header-section-number">7.1</span> Core Content</h2>
+<ul>
+<li><p><strong>Statistical power</strong> is the ability of a study to detect an effect given that it exists.</p></li>
+<li><p><strong>Power analysis</strong> is something we do before a study. It helps you figure out the sample you need or what effects you can detect. It is an essential step in research design and helps you communicate your design.</p></li>
+<li><p>Common approaches to power calculation:</p>
+<ul>
+<li><p><strong>Analytical</strong> power calculations (using a formula)</p></li>
+<li><p><strong>Simulations</strong> (for example, using DeclareDesign)</p></li>
+</ul></li>
+<li><p><strong>Covariate adjustment</strong> and <strong>blocking</strong> can increase power.</p></li>
+<li><p>For <strong>clustered designs</strong> you need to take account of the intra-cluster correlation (the within cluster variance relative to the overall variance).</p></li>
+<li><p>Power is closely liked to <a href="the-research-design-process.html">study design</a>, <a href="hypothesis-testing.html">hypothesis testing</a> and <a href="estimands-and-estimators.html">estimation</a>.</p></li>
+</ul>
+</div>
+<div id="slides-5" class="section level2">
+<h2><span class="header-section-number">7.2</span> Slides</h2>
+<p>Below are slides with the core content that we cover in our lecture on power. You can directly use these slides or make your local copy and edit.</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/power-slides.Rmd">R Markdown Source</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/power-slides.pdf">PDF version</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/power-slides.html">HTML version</a></p></li>
+</ul>
+<p>You can also see the slides used in previous EGAP Learning Days:</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-benin.pdf">The power presentation from EGAP Learning Days at the African School of Economics, Abomey-Calavi, June 2019</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-bogota.pdf">The power presentation from EGAP Learning Days at Universidad de Los Andes, Bogotá, April 2019</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-montevideo.pdf">The power presentation from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-guatemala.html">The power presentation from EGAP Learning Days in Guatemala City, Guatemala, August 2017</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-malawi.pdf">The power presentation from EGAP Learning Days in Salima, Malawi, February 2017</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/power-santiago.pdf">The power presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
+</ul>
+</div>
+<div id="resources-5" class="section level2">
+<h2><span class="header-section-number">7.3</span> Resources</h2>
+<div id="egap-methods-guides-5" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> EGAP Methods Guides</h3>
+<ul>
+<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-you-need-know-about-statistical-power/">10 Things to Know about Statistical Power</a></p></li>
+<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-to-know-about-covariate-adjustment/">10 Things to Know about Covariate Adjustment</a></p></li>
+<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-your-null-result-might-mean/">10 Things Your Null Results Might Mean</a></p></li>
+</ul>
+</div>
+<div id="egap-policy-briefs-and-paps" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> EGAP Policy Briefs and PAPs</h3>
+<p>Some examples of power analysis in designs:</p>
+<ul>
+<li><p><a href="https://osf.io/qxwmu/">Pre-Analysis Plan. Accountability Can Transform (ACT) Health: A Replication and Extension of Bjorkman and Svensson (2009)</a></p></li>
+<li><p><a href="https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/">EGAP Policy Brief 58: Can bottom-up accountability generate improvements in health outcomes?</a></p></li>
+</ul>
+</div>
+<div id="tools-2" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Tools</h3>
+<ul>
+<li><p>Interactive power analysis</p>
+<ul>
+<li><p><a href="https://egap.shinyapps.io/power-app/">EGAP Power Calculator</a></p></li>
+<li><p><a href="https://rpsychologist.com/d3/NHST/">rpsychologist</a></p></li>
+</ul></li>
+<li><p>R packages for power analysis</p>
+<ul>
+<li><p><a href="https://cran.r-project.org/web/packages/pwr/index.html">pwr</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/DeclareDesign/index.html">DeclareDesign</a>, see also <a href="https://declaredesign.org/" class="uri">https://declaredesign.org/</a></p></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimands-and-estimators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="measurement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook/js/app.min.js"></script>
+<script src="book_assets/gitbook/js/lunr.js"></script>
+<script src="book_assets/gitbook/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook/js/plugin-search.js"></script>
+<script src="book_assets/gitbook/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/egap/learningdays-book/edit/master/Book/statisticalpower.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["theory_and_practice_of_field_experiments.pdf", "theory_and_practice_of_field_experiments.epub"],
+"toc": {
+"collapse": "section",
+"sharing": {
+"facebook": true,
+"github": true,
+"twitter": true,
+"linkedin": true,
+"weibo": true,
+"instapaper": true,
+"vk": false,
+"all": ["facebook", "github", "twitter", "linkedin", "weibo", "instapaper"]
+}
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

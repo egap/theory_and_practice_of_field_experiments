@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 11 Glossary of Terms | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</title>
+  <meta name="description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 11 Glossary of Terms | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  <meta name="github-repo" content="egap/theory_and_practice_of_field_experiments" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 11 Glossary of Terms | The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days" />
+  
+  <meta name="twitter:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
+  
+
+<meta name="author" content="Jake Bowers, Maarten Voors, and Nahomi Ichino" />
+
+
+<meta name="date" content="2021-03-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ethical-considerations.html"/>
+<link rel="next" href="introduction-to-r-and-rstudio.html"/>
+<script src="book_assets/jquery/jquery.min.js"></script>
+<link href="book_assets/gitbook/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+        <script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+        <script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>EGAP Learning Days</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-the-book"><i class="fa fa-check"></i><b>1.1</b> How to use the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#we-would-love-to-hear-from-you"><i class="fa fa-check"></i><b>1.2</b> We would love to hear from you!</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-research-design-process.html"><a href="the-research-design-process.html"><i class="fa fa-check"></i><b>2</b> The Research Design Process</a><ul>
+<li class="chapter" data-level="2.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#core-content"><i class="fa fa-check"></i><b>2.1</b> Core Content</a></li>
+<li class="chapter" data-level="2.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#slides"><i class="fa fa-check"></i><b>2.2</b> Slides</a></li>
+<li class="chapter" data-level="2.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#design-form-and-pre-registration"><i class="fa fa-check"></i><b>2.3</b> Design Form and Pre-Registration</a></li>
+<li class="chapter" data-level="2.4" data-path="the-research-design-process.html"><a href="the-research-design-process.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#egap-methods-guides"><i class="fa fa-check"></i><b>2.4.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#books-chapters-and-articles"><i class="fa fa-check"></i><b>2.4.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="2.4.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#tools"><i class="fa fa-check"></i><b>2.4.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>3</b> Causal Inference</a><ul>
+<li class="chapter" data-level="3.1" data-path="causal-inference.html"><a href="causal-inference.html#core-content-1"><i class="fa fa-check"></i><b>3.1</b> Core content</a></li>
+<li class="chapter" data-level="3.2" data-path="causal-inference.html"><a href="causal-inference.html#slides-1"><i class="fa fa-check"></i><b>3.2</b> Slides</a></li>
+<li class="chapter" data-level="3.3" data-path="causal-inference.html"><a href="causal-inference.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="causal-inference.html"><a href="causal-inference.html#egap-methods-guides-1"><i class="fa fa-check"></i><b>3.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="3.3.2" data-path="causal-inference.html"><a href="causal-inference.html#causalinference-cites"><i class="fa fa-check"></i><b>3.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="3.3.3" data-path="causal-inference.html"><a href="causal-inference.html#egap-policy-briefs"><i class="fa fa-check"></i><b>3.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="randomization.html"><a href="randomization.html"><i class="fa fa-check"></i><b>4</b> Randomization</a><ul>
+<li class="chapter" data-level="4.1" data-path="randomization.html"><a href="randomization.html#core-content-2"><i class="fa fa-check"></i><b>4.1</b> Core content</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization.html"><a href="randomization.html#slides-2"><i class="fa fa-check"></i><b>4.2</b> Slides</a></li>
+<li class="chapter" data-level="4.3" data-path="randomization.html"><a href="randomization.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="randomization.html"><a href="randomization.html#egap-methods-guides-2"><i class="fa fa-check"></i><b>4.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="4.3.2" data-path="randomization.html"><a href="randomization.html#books-chapters-and-articles-1"><i class="fa fa-check"></i><b>4.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="4.3.3" data-path="randomization.html"><a href="randomization.html#egap-policy-briefs-1"><i class="fa fa-check"></i><b>4.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#core-content-3"><i class="fa fa-check"></i><b>5.1</b> Core content</a></li>
+<li class="chapter" data-level="5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#slides-3"><i class="fa fa-check"></i><b>5.2</b> Slides</a></li>
+<li class="chapter" data-level="5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#egap-methods-guides-3"><i class="fa fa-check"></i><b>5.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="5.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#books-chapters-and-articles-2"><i class="fa fa-check"></i><b>5.3.2</b> Books, Chapters, and Articles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html"><i class="fa fa-check"></i><b>6</b> Estimands and Estimators</a><ul>
+<li class="chapter" data-level="6.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#core-content-4"><i class="fa fa-check"></i><b>6.1</b> Core content</a></li>
+<li class="chapter" data-level="6.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#slides-4"><i class="fa fa-check"></i><b>6.2</b> Slides</a></li>
+<li class="chapter" data-level="6.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#egap-methods-guides-4"><i class="fa fa-check"></i><b>6.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="6.3.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#books-chapters-and-articles-3"><i class="fa fa-check"></i><b>6.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="6.3.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#tools-1"><i class="fa fa-check"></i><b>6.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html"><i class="fa fa-check"></i><b>7</b> Statistical Power and Design Diagnosands</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#core-content-5"><i class="fa fa-check"></i><b>7.1</b> Core Content</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#slides-5"><i class="fa fa-check"></i><b>7.2</b> Slides</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-methods-guides-5"><i class="fa fa-check"></i><b>7.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-policy-briefs-and-paps"><i class="fa fa-check"></i><b>7.3.2</b> EGAP Policy Briefs and PAPs</a></li>
+<li class="chapter" data-level="7.3.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#tools-2"><i class="fa fa-check"></i><b>7.3.3</b> Tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measurement.html"><a href="measurement.html#core-content-6"><i class="fa fa-check"></i><b>8.1</b> Core content</a></li>
+<li class="chapter" data-level="8.2" data-path="measurement.html"><a href="measurement.html#slides-6"><i class="fa fa-check"></i><b>8.2</b> Slides</a></li>
+<li class="chapter" data-level="8.3" data-path="measurement.html"><a href="measurement.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="measurement.html"><a href="measurement.html#egap-methods-guides-6"><i class="fa fa-check"></i><b>8.3.1</b> EGAP Methods Guides</a></li>
+<li class="chapter" data-level="8.3.2" data-path="measurement.html"><a href="measurement.html#books-chapters-and-articles-4"><i class="fa fa-check"></i><b>8.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="8.3.3" data-path="measurement.html"><a href="measurement.html#egap-policy-briefs-2"><i class="fa fa-check"></i><b>8.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html"><i class="fa fa-check"></i><b>9</b> Threats to the Internal Validity of Randomized Experiments</a><ul>
+<li class="chapter" data-level="9.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#core-content-7"><i class="fa fa-check"></i><b>9.1</b> Core content</a></li>
+<li class="chapter" data-level="9.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#slides-7"><i class="fa fa-check"></i><b>9.2</b> Slides</a></li>
+<li class="chapter" data-level="9.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-methods-guide"><i class="fa fa-check"></i><b>9.3.1</b> EGAP Methods Guide</a></li>
+<li class="chapter" data-level="9.3.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#books-chapters-and-articles-5"><i class="fa fa-check"></i><b>9.3.2</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="9.3.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-policy-briefs-3"><i class="fa fa-check"></i><b>9.3.3</b> EGAP Policy Briefs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>10</b> Ethical Considerations</a><ul>
+<li class="chapter" data-level="10.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#core-content-8"><i class="fa fa-check"></i><b>10.1</b> Core content</a></li>
+<li class="chapter" data-level="10.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#slides-8"><i class="fa fa-check"></i><b>10.2</b> Slides</a></li>
+<li class="chapter" data-level="10.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#books-chapters-and-articles-6"><i class="fa fa-check"></i><b>10.3.1</b> Books, Chapters, and Articles</a></li>
+<li class="chapter" data-level="10.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#papers-and-pre-analysis-plans"><i class="fa fa-check"></i><b>10.3.2</b> Papers and Pre-Analysis Plans</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html"><i class="fa fa-check"></i><b>11</b> Glossary of Terms</a><ul>
+<li class="chapter" data-level="11.1" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#key-concepts"><i class="fa fa-check"></i><b>11.1</b> Key Concepts</a></li>
+<li class="chapter" data-level="11.2" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#statistical-inference"><i class="fa fa-check"></i><b>11.2</b> Statistical Inference</a></li>
+<li class="chapter" data-level="11.3" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#randomization-strategies"><i class="fa fa-check"></i><b>11.3</b> Randomization Strategies</a></li>
+<li class="chapter" data-level="11.4" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#factorial-designs"><i class="fa fa-check"></i><b>11.4</b> Factorial Designs</a></li>
+<li class="chapter" data-level="11.5" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#threats"><i class="fa fa-check"></i><b>11.5</b> Threats</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>12</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="12.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-and-rstudio"><i class="fa fa-check"></i><b>12.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="12.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r-and-rstudio"><i class="fa fa-check"></i><b>12.2</b> Downloading R and RStudio</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r"><i class="fa fa-check"></i><b>12.2.1</b> Downloading R</a></li>
+<li class="chapter" data-level="12.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-rstudio"><i class="fa fa-check"></i><b>12.2.2</b> Downloading RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#rstudio-interface"><i class="fa fa-check"></i><b>12.3</b> RStudio Interface</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#console"><i class="fa fa-check"></i><b>12.3.1</b> Console</a></li>
+<li class="chapter" data-level="12.3.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#editor"><i class="fa fa-check"></i><b>12.3.2</b> Editor</a></li>
+<li class="chapter" data-level="12.3.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#accounting"><i class="fa fa-check"></i><b>12.3.3</b> Accounting</a></li>
+<li class="chapter" data-level="12.3.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#miscellaneous"><i class="fa fa-check"></i><b>12.3.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#learning-to-use-r"><i class="fa fa-check"></i><b>12.4</b> Learning to Use R</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#online-resources"><i class="fa fa-check"></i><b>12.4.1</b> Online Resources</a></li>
+<li class="chapter" data-level="12.4.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#basic-practice"><i class="fa fa-check"></i><b>12.4.2</b> Basic Practice</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="http://egap.org" target="blank"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>Published by EGAP</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="glossary-of-terms" class="section level1 tabset">
+<h1><span class="header-section-number">Module 11</span> Glossary of Terms</h1>
+<p>Below are some core terms frequently used throughout the book and more broadly in discussions of randomized field experiments.</p>
+<div id="key-concepts" class="section level2">
+<h2><span class="header-section-number">11.1</span> Key Concepts</h2>
+<p>See the module on <a href="causal-inference.html">causal inference</a>, <a href="estimands-and-estimators.html">estimands and estimators</a>.</p>
+<ul>
+<li><strong>Potential outcome <span class="math inline">\(Y_i(T)\)</span></strong> What outcome <span class="math inline">\(Y\)</span> that unit <span class="math inline">\(i\)</span> <em>would</em>
+have under treatment condition <span class="math inline">\(T\)</span>. We think of these as fixed quantities for a specific point in time. <span class="math inline">\(T\)</span> can be 0 for control or 1 for treatment, if there is only one type of treatment. See the module on <a href="causal-inference.html">causal inference</a>.</li>
+<li><strong>Treatment effect <span class="math inline">\(\tau_i\)</span> for unit <span class="math inline">\(i\)</span></strong> The contrast between potential
+outcomes under treatment and control, <span class="math inline">\(Y_i(1)-Y_i(0)\)</span>, for unit <span class="math inline">\(i\)</span>. See the module on <a href="causal-inference.html">causal inference</a>.</li>
+<li><strong>Fundamental problem of causal inference</strong> in the counterfactual framework. We can’t observe both <span class="math inline">\(Y_i(1)\)</span> and <span class="math inline">\(Y_i(0)\)</span> for a given unit, so we can’t get <span class="math inline">\(\tau_i\)</span> directly. See the module on <a href="causal-inference.html">causal inference</a>.</li>
+<li><strong>Estimand</strong> The thing you want to estimate. An example of an estimand is the average treatment effect. In counterfactual causal inference, this is a function of potential outcomes, not fully observed outcomes. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+<li><strong>Estimator</strong> How you make a guess about the value of your estimand from the
+data you have. An example of an estimator is the difference-in-means. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.
+<ul>
+<li><strong>Average treatment effect, ATE</strong> The average of the treatment effect for all individuals in your subject pool. This is a type of <strong>estimand</strong>. <span class="math inline">\(\overline{Y_i(1)-Y_i(0)}\)</span>, which is also equivalent to <span class="math inline">\(\overline{{Y}_i(1)}-\overline{{Y}_i(0)}\)</span>. Notice that we do not use the <span class="math inline">\(E[Y_i (1)]\)</span> style of notation here because <span class="math inline">\(E[]\)</span> means “average over repeated operations”, but <span class="math inline">\(\overline{Y}\)</span> means “average over a set of observations”. See the module on <a href="causal-inference.html">causal inference</a> and the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+</ul></li>
+<li><strong>Random sampling</strong> Selecting subjects from a population with known
+probabilities strictly between 0 and 1.</li>
+<li><strong><span class="math inline">\(k\)</span>-arm experiment</strong> An experiment that has <span class="math inline">\(k\)</span> treatment conditions
+(including control). See the module on <a href="randomization.html">randomization</a>.</li>
+<li><strong>Random assignment</strong> Assigning subjects with known probability strictly between 0 and 1 to experimental conditions. This is the same as random sampling without replacement from the potential outcomes. There are several strategies for random assignment: simple, complete, cluster, block, blocked-cluster. See the module on <a href="randomization.html">randomization</a>.</li>
+<li><strong>External validity</strong> Findings from your study teach you about contexts
+outside of your sample — in other locations or for other interventions.</li>
+</ul>
+</div>
+<div id="statistical-inference" class="section level2">
+<h2><span class="header-section-number">11.2</span> Statistical Inference</h2>
+<p>See modules on <a href="hypothesis-testing.html">hypothesis testing</a> and <a href="statistical-power-and-design-diagnosands.html">statistical power</a>.</p>
+<ul>
+<li><strong>Hypothesis</strong> A simple, clear, falsifiable claim about the world. In
+counterfactual causal inference, this is a statement about a relationship
+among potential outcomes, like <span class="math inline">\(H_0: Y_i(T_i=0) = Y_i(T_i=1) + \tau_i\)</span> for
+the hypothesis that the potential outcome to treatment is produced from the
+potential outcome to control plus some effect for each unit <span class="math inline">\(i\)</span>. See the
+module on <a href="hypothesis-testing.html">hypothesis testing</a>.</li>
+<li><strong>Null hypothesis</strong> A conjecture about the world that you may reject after
+seeing the data. See the module on <a href="hypothesis-testing.html">hypothesis testing</a>.</li>
+<li><strong>Sharp null hypothesis of no effect</strong> The null hypothesis that there is no
+treatment effect for any subject. This means <span class="math inline">\(Y_i(1)=Y_i(0)\)</span> for all <span class="math inline">\(i\)</span>. We
+might write this, <span class="math inline">\(H_0: Y_i(T_i=0) = Y_i(T_i=1)\)</span>. See the module on
+<a href="hypothesis-testing.html">hypothesis testing</a>.</li>
+<li><strong><span class="math inline">\(p\)</span>-value</strong> The probability of seeing a test statistic as large (in absolute value) as or larger than the test statistic calculated from observed data (for example, the difference in means). See the module on <a href="hypothesis-testing.html">hypothesis testing</a>.</li>
+<li><strong>One-sided vs. two-sided test</strong> When you have a strong expectation that the
+effect is either positive or negative, you can conduct a one-sided test.
+When you do not have such a strong expectation, conduct a two-sided test. A
+one-sided test has more power than a two-sided test for the same experiment.
+See the module on <a href="hypothesis-testing.html">hypothesis testing</a>.</li>
+<li><strong>Standard deviation</strong> Square root of the mean-square deviation from the average of a variable. It is a measure of the dispersion or spread of a statistic.
+<span class="math inline">\(SD_x=\sqrt{\frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^2}\)</span></li>
+<li><strong>False Positive Rate/Type I Error of a Test</strong> A well-operating hypothesis
+test rejects a hypothesis about a true causal effect no more than <span class="math inline">\(\alpha\)</span> %
+of the time. The false positive rate is the rate at which a test will cast
+doubt on a true hypothesis. It is the rate at which the test will encourage the analyst to say “statistically significant” when, in fact, there is no causal relationship. See the module on <a href="hypothesis-testing.html">hypothesis testing</a>.
+<ul>
+<li><strong>Sampling distribution</strong> The distribution of estimates (e.g., estimates of
+the ATE) for all possible treatment assignments. In design-based
+statistical inference for randomized experiments, the distribution of
+estimates from an estimator is generated from randomizations. Many call
+this a “sampling distribution” because textbooks often use the idea of
+repeated samples from a population rather than repeated randomizations to
+describe this kind of variation.</li>
+<li><strong>Standard error</strong> The standard deviation of the sampling distribution. A
+bigger standard error means that our estimates are more susceptible to
+sampling variation. See the module on <a href="estimands-and-estimators.html">estimands and
+estimators</a>.</li>
+</ul></li>
+<li><strong>Coverage of a confidence interval</strong> A well-operating confidence interval
+contains the true causal effect <span class="math inline">\(100 ( 1 - \alpha)\)</span> % of the time. A
+confidence interval has <em>incorrect coverage</em> when it excludes the true
+parameter less than <span class="math inline">\(100 (1 - \alpha)\)</span>% of the time. For example, a 95%
+confidence interval is supposed to only exclude the true parameter less than
+5% of the time.</li>
+<li><strong>Statistical power of a test</strong> Probability that a test of causal effects
+will detect a statistically significant treatment effect if the effect
+exists. See the module on <a href="statistical-power-and-design-diagnosands.html">statistical power</a>. This depends on:
+<ul>
+<li>The number of observations in each arm of the experiment</li>
+<li>Effect size (usually measured in standardized units)</li>
+<li>Noisiness of the outcome variable</li>
+<li>Significance level (<span class="math inline">\(\alpha\)</span>, which is fixed by convention)</li>
+<li>Other factors including what proportion of your units are assigned to
+different treatment conditions.</li>
+</ul></li>
+<li><strong>Intra-cluster correlation</strong> How correlated the potential outcomes of units
+are within clusters compared to across clusters. Higher intra-cluster
+correlation hurts power.</li>
+<li><strong>Unbiased</strong> An estimator is unbiased if you <em>expect</em> that it will return the
+right outcome. That means that if you were to run the experiment many times,
+the estimate might be too high or to low sometimes but it will be right on
+average. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+<li><strong>Bias</strong> Bias is the difference between the average value of the estimator
+across its sampling distribution and the single, fixed value of the estimand. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+<li><strong>Consistency of an estimator</strong> An estimator that produces answers that
+become ever nearer the true value of the estimand as the sample size increases is a <em>consistent estimator</em> of that estimand. A consistent estimator may or may not be unbiased. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+<li><strong>Precision/Efficiency of an estimator</strong> The variation in or width of the
+sampling distribution of an estimator. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
+</ul>
+</div>
+<div id="randomization-strategies" class="section level2">
+<h2><span class="header-section-number">11.3</span> Randomization Strategies</h2>
+<p>See the module on <a href="randomization.html">randomization</a>.</p>
+<ul>
+<li><strong>Simple</strong> An independent coin flip for each unit. You are not guaranteed
+that your experiment will have a specific number of treated units.</li>
+<li><strong>Complete</strong> Assign <span class="math inline">\(m\)</span> out of <span class="math inline">\(N\)</span> units to treatment. You know how
+many units will be treated in your experiment and each unit has a <span class="math inline">\(m/N\)</span>
+probability of being treated. The number of ways treatment can be assigned
+(number of permutations of treatment assignment) is <span class="math inline">\(\frac{N!}{m!(N-m)!}\)</span>.</li>
+<li><strong>Block</strong> First divide the sample into blocks, then do complete randomization separately in each block. A block is a set of units within which you conduct random assignment.</li>
+<li><strong>Cluster</strong> Clusters of units are randomly assigned to treatment conditions.
+A cluster is a set of units that will always be assigned to the same
+treatment status.</li>
+<li><strong>Blocked-Cluster</strong> First form blocks of clusters. Then in each block,
+randomly assign the clusters to treatment conditions using complete
+randomization.</li>
+</ul>
+</div>
+<div id="factorial-designs" class="section level2">
+<h2><span class="header-section-number">11.4</span> Factorial Designs</h2>
+<p>See the module on <a href="randomization.html">randomization</a>.</p>
+<ul>
+<li><strong>Factorial design</strong> A design with more than one treatment, with each
+treatment assigned independently. The simplest factorial design is a 2 by 2.</li>
+<li><strong>Conditional marginal effect</strong> The effect of one treatment, conditional on
+the other being held at a fixed value. For example:
+<span class="math inline">\(Y_i(T_1=1|T_2=0)-Y_i(T_1=0|T_2=0)\)</span> is the marginal effect of <span class="math inline">\(T_1\)</span>
+conditional on <span class="math inline">\(T_2=0\)</span>.</li>
+<li><strong>Average marginal effect</strong> Main effect of each treatment in a factorial
+design. It is the average of the conditional marginal effects for all the
+conditions of the other treatment, weighted by the proportion of the sample
+that was assigned to each condition.</li>
+<li><strong>Interaction effect</strong> In a factorial design, we may also estimate
+interaction effects.
+<ul>
+<li>No interaction effect: one treatment does not amplify or reduce the
+effect of the other treatment.</li>
+<li>Multiplicative interaction effect: the effect of one treatment depends on which condition a unit was assigned for the other treatment. This means one treatment <em>does</em> amplify or reduce the effect of the other. The effect of two treatments together is <em>not</em> the sum of the effect of each treatment.</li>
+</ul></li>
+</ul>
+</div>
+<div id="threats" class="section level2">
+<h2><span class="header-section-number">11.5</span> Threats</h2>
+<p>See the module on <a href="threats-to-internal-validity-of-randomized-experiments.html">threats</a>.</p>
+<ul>
+<li><strong>Hawthorne effect</strong> When a subject responds to being observed.</li>
+<li><strong>Spillover</strong> When a subject responds to another subject’s treatment status.
+Example: my health depends on whether my neighbor is vaccinated, as well as
+whether I am vaccinated.</li>
+<li><strong>Attrition</strong> When outcomes for some subjects are not measured. Example:
+people migrate, refuse to respond to endline surveys, or die. This is especially problematic for inference when it is correlated with treatment status.</li>
+<li><strong>Compliance</strong> A unit’s treatment status matches its assigned treatment
+condition. Example of non-compliance: a unit assigned to treatment doesn’t
+take it. Example of compliance: a unit assigned to control does not take
+treatment.</li>
+<li><strong>Compliance types</strong> There are four types of units in terms of compliance:
+<ul>
+<li><strong>Compliers</strong> Units that would take treatment if assigned to treatment and would be untreated if assigned to control.</li>
+<li><strong>Always-takers</strong> Units that would take treatment if assigned to treatment and if assigned to control.</li>
+<li><strong>Never-takers</strong> Units that would be untreated if assigned to treatment and if assigned to control.</li>
+<li><strong>Defiers</strong> Units that would be untreated if assigned to treatment and
+would take treatment if assigned to control.</li>
+</ul></li>
+<li><strong>One-sided non-compliance</strong> The experiment has only compliers and
+<em>either</em> always-takers or never-takers. Usually, we think of
+one-sided non-compliance as having only never-takers and compliers, meaning
+that that local average treatment effect is the effect of treatment on the
+treated.</li>
+<li><strong>Two-sided non-compliance</strong> The experiment may have all four latent groups.</li>
+<li><strong>Encouragement design</strong> An experiment that randomizes <span class="math inline">\(Z\)</span> (treatment
+assignment), and we measure <span class="math inline">\(D\)</span> (whether the unit takes treatment) and <span class="math inline">\(Y\)</span>
+(outcome). We can estimate the ITT and the LATE (local average treatment
+effect, aka CACE—complier average causal effect). It requires three
+assumptions.
+<ul>
+<li><strong>Monotonicity</strong> Assumption of either no defiers or no compliers. Usually we assume no defiers which means that the effect of assignment on take up of treatment is either positive or zero but not negative.</li>
+<li><strong>First stage</strong> Assumption that there is an effect of <span class="math inline">\(T\)</span> on <span class="math inline">\(D\)</span>.</li>
+<li><strong>Exclusion restriction</strong> Assumption that <span class="math inline">\(T\)</span> affects <span class="math inline">\(Y\)</span> only through <span class="math inline">\(D\)</span>. This is usually the most problematic assumption.</li>
+</ul></li>
+<li><strong>Intention-to-treat effect (ITT)</strong> The effect of <span class="math inline">\(T\)</span> (treatment assignment) on <span class="math inline">\(Y\)</span>.</li>
+<li><strong>Local average treatment effect (LATE)</strong> The effect of <span class="math inline">\(D\)</span> (taking
+treatment) on <span class="math inline">\(Y\)</span> for compliers. Also known as the complier average causal
+effect (CACE). Under the exclusion restriction and monotonicity, the LATE is
+equal to ITT divided by the proportion of your sample who are compliers.</li>
+<li><strong>Downstream experiment</strong> An encouragement design study that takes advantage
+of the randomization of <span class="math inline">\(T\)</span> by a previous study. The outcome from that
+previous study is the <span class="math inline">\(D\)</span> in the downstream experiment.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ethical-considerations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-r-and-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook/js/app.min.js"></script>
+<script src="book_assets/gitbook/js/lunr.js"></script>
+<script src="book_assets/gitbook/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook/js/plugin-search.js"></script>
+<script src="book_assets/gitbook/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/egap/learningdays-book/edit/master/Book/glossary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["theory_and_practice_of_field_experiments.pdf", "theory_and_practice_of_field_experiments.epub"],
+"toc": {
+"collapse": "section",
+"sharing": {
+"facebook": true,
+"github": true,
+"twitter": true,
+"linkedin": true,
+"weibo": true,
+"instapaper": true,
+"vk": false,
+"all": ["facebook", "github", "twitter", "linkedin", "weibo", "instapaper"]
+}
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
