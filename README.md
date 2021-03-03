@@ -22,17 +22,19 @@ If you want help making tables, you can try the following online tool <https://t
 
 ### R packages
 
-We are also using the [renv](https://rstudio.github.io/renv/index.html) package to keep our libraries portable. So, before you start collaborating but after you clone this repository you will want to do the following:
+We are also using the [renv](https://rstudio.github.io/renv/index.html) package to keep our libraries portable. So, before you start collaborating you will need to do the following:
 
 ```
 install.packages("renv")
 ```
 
-To install all of the packages we use in this book, then, you should start R in the book/ directory and do:
+After you clone this repository you will want to do the following from within the `Book` working directory (for example opening the `learningday-book.Rproj` file in RStudio) to install all of the packages we use in this book do:
 
 ```
 renv::restore()
 ```
+
+Then you will need to restart R so that it begins work in the new R environment that we have created.
 
 That command will read the `renv.lock` file 
 
