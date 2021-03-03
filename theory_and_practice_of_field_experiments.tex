@@ -31,7 +31,6 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \hypersetup{
-            pdftitle={The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days},
             pdfauthor={Jake Bowers, Maarten Voors, and Nahomi Ichino},
             colorlinks=true,
             linkcolor=Maroon,
@@ -136,9 +135,10 @@
 \usepackage[]{biblatex}
 \addbibresource{learningdays-book.bib}
 
-\title{The Theory and Practice of Field Experiments: An Introduction from the EGAP Learning Days}
-\author{Jake Bowers\footnote{\url{https://jakebowers.org}}, Maarten Voors\footnote{\url{https://sites.google.com/site/maartenvoors/}}, and Nahomi Ichino\footnote{\url{https://nahomi.github.io/}}}
-\date{March 03, 2021}
+\title{The Theory and Practice of Field Experiments:\\
+An Introduction from the EGAP Learning Days}
+\author{Jake Bowers,\footnote{Author order randomized. \url{https://jakebowers.org}} Maarten Voors,\footnote{\url{https://sites.google.com/site/maartenvoors/}} and Nahomi Ichino\footnote{\url{https://www.nahomiichino.com/}}}
+\date{March 3, 2021}
 
 \begin{document}
 \maketitle
@@ -154,15 +154,15 @@
 \hypertarget{introduction}{%
 \chapter{Introduction}\label{introduction}}
 
-Over the past decade, \href{http://egap.org/}{Evidence in Governance and Politics (EGAP)} has organized \href{https://egap.org/learning-days/}{Learning Days} workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) -- both researchers and practitioners -- in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nuture researcher networks around the world and to create strong, productive connections between EGAP members and these researchers.
+Over the past decade, \href{http://egap.org/}{Evidence in Governance and Politics (EGAP)} has organized \href{https://egap.org/learning-days/}{Learning Days} workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) -- both researchers and practitioners -- in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members.
 
 The Leaning Days workshops are a combination of design clinics, research presentations, guided work with statistical software, and topical lectures by a small group of instructors, largely professors and PhD students from the EGAP network. The workshops focus on methods for the design and analysis of randomized experiments in the field rather than on randomized experiments in the lab or non-randomized studies.
 
-\textbf{This book} grew out of a desire to share the materials we developed for the Learning Days. The current version is written primarily for \textbf{instructors and organizers} of similar workshops and courses aimed at PIs --- i.e., professors, post-doctoral fellows, PhD students, and NGO/government agency evaluators --- who implement randomized studies of programs related to institutions, governance, and development. Much of the material will also be useful as a refresher for past participants of the Learning Days workshops.
+\textbf{This book} grew out of a desire to share the materials we developed for the Learning Days. The current version is written primarily for \textbf{instructors and organizers} of similar workshops and courses aimed at PIs --- i.e., professors, post-doctoral fellows, PhD students, and NGO/government agency evaluators --- who will implement randomized studies of programs related to institutions, governance, and development. Much of the material will also be useful as a refresher for past participants of the Learning Days workshops.
 
 This book is a comprehensive overview of causal inference methods for researchers developing an experimental research design. It is organized in \textbf{modules} and covers topics such causal inference, randomization, hypothesis testing, estimands, estimators, statistical power, measurement, threats to internal validity, and the ethics of experimentation. The modules appear in the order the Learning Days instructors have found most useful. However, the modules are linked to one another and can be reordered to suit your needs as an instructor. In the appendix, we include some course preliminaries including a \href{glossary-of-terms.html}{glossary of terms} and an \href{introduction-to-r-and-rstudio.html}{introduction to R and RStudio}.
 
-The book includes \textbf{slides} on the core content, the \href{researchdesignform.html}{EGAP research design form}, and \textbf{references} to research examples and slides used in previous Learning Days. This material builds significantly on and links to EGAP's work on methodology, summarized in the \href{https://egap.org/methods-guides/}{EGAP Methods Guides}. We have also expanded on the material that is usually covered during the Learning Days workshops, with new modules on the research design process, measurement, and ethical considerations, and significant extensions to the materials on hypothesis testing, estimation, and statistical power. The slides and modules presented here contain too much information to be covered in a single week. We have chosen to present more rather than less information, however, to aid instructors tailoring their course for their specific audiences.
+The book includes \textbf{slides} on the core content, the \href{researchdesignform.html}{EGAP Research Design Form}, and \textbf{references} to research examples and slides used in previous Learning Days. This material builds significantly on and links to EGAP's work on methodology, summarized in the \href{https://egap.org/methods-guides/}{EGAP Methods Guides}. We have made significant extensions to the past Learning Days' materials on hypothesis testing, estimation, and statistical power and added new modules on the research design process, measurement, and ethical considerations. The slides and modules presented here contain too much information to be covered in a single week, the usual length of a Learning Days workshop. We have chosen to present more rather than less information, however, to help instructors tailor their courses to their specific audiences.
 
 \hypertarget{how-to-use-the-book}{%
 \section{How to use the book}\label{how-to-use-the-book}}
@@ -171,26 +171,26 @@ To gain the most benefit from this book, please have \href{https://cran.r-projec
 
 To get going with R, see the module \href{introduction-to-r-and-rstudio.html}{Introduction to R and RStudio}.
 
-You can copy this book or parts thereof (e.g., slides, etc.) either by using the Download button on the front page of \url{http://github.com/egap/theory_and_practice_of_field_experiments} or by using github directly (by forking this repository).
+You can copy this book or parts thereof (e.g., slides, etc.) either by using the Download button on the front page of \url{http://github.com/egap/learningdays-book} or by using github directly (by forking this repository).
 
 We are happy for anyone to use the materials as long as EGAP is attributed. See Creative Commons Attribution-ShareAlike 4.0 International License for the precise terms.
 
 \hypertarget{we-would-love-to-hear-from-you}{%
 \section{We would love to hear from you!}\label{we-would-love-to-hear-from-you}}
 
-If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on \href{https://github.com/egap/theory_and_practice_of_field_experiments/issues}{Github} or contact us via email, \href{mailto:admin@egap.org}{\nolinkurl{admin@egap.org}}.
+If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on \href{https://github.com/egap/learningdays-book/issues}{Github} or contact us via email, \href{mailto:admin@egap.org}{\nolinkurl{admin@egap.org}}.
 
 \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
 
-The materials included in this book have been developed over the past years by various Learning Days instructors. These include (in alphabetical order) Jake Bowers, Jasper Cooper, Ana De la O, Lindsay Dolan, Natalia Garbiras Díaz, Macartan Humphreys, Nahomi Ichino, Salif Jaiteh, Gareth Nellis, Dan Nielson, Rafael Piñeiro, Fernando Rosenblatt, Tara Slough, Peter van der Windt and Maarten Voors. We thank Natalia Garbiras Díaz, Macartan Humphreys, and Tara Slough in particular for comments on an early draft of the book.
+The materials included in this book have been developed over the past years by various Learning Days instructors. These include (in alphabetical order) Jake Bowers, Jasper Cooper, Ana De la O, Lindsay Dolan, Natalia Garbiras Díaz, Macartan Humphreys, Nahomi Ichino, Salif Jaiteh, Gareth Nellis, Dan Nielson, Rafael Piñeiro, Fernando Rosenblatt, Tara Slough, Peter van der Windt and Maarten Voors. We thank Natalia Garbiras Díaz, Macartan Humphreys, Anghella Brigeth Rosero Rodriguez, and Tara Slough in particular for comments on an early draft of the book.
 
-At EGAP, tremendous support has been provided by Matt Lisiecki, Ingrid Lee, Goldie Negelev, Max Mendez-Back and others. Learning Days have been generously funded by the Hewlett Foundation and supported by institutions around the world including African School of Economics (Benin), Universidad Diego Portales (Chile), Universidad de los Andes (Colombia), Ghana Center for Democratic Development (Ghana), Mercy Corps (Guatemala), Invest in Knowledge (Malawi), NYU Abu Dhabi (UAE), Universidad Católica del Uruguay (Uruguay).
+At EGAP, Matt Lisiecki, Ingrid Lee, Goldie Negelev, Max Mendez-Back and others have provided wonderful support. Learning Days have been generously funded by the Hewlett Foundation and supported by institutions around the world including the African School of Economics (Benin), Universidad Diego Portales (Chile), Universidad de los Andes (Colombia), Ghana Center for Democratic Development (Ghana), Mercy Corps (Guatemala), Invest in Knowledge (Malawi), NYU Abu Dhabi (UAE), Universidad Católica del Uruguay (Uruguay).
 
 \hypertarget{the-research-design-process}{%
 \chapter{The Research Design Process}\label{the-research-design-process}}
 
-This book aims to help you understand and design randomized field experiments. But before we dive into the details of research design, we need a good research question -- a question that will advance knowledge or help make a policy decision or both. There is no simple recipe for finding or developing a good scientific or policy question, but our theories play an important role in articulating good questions that underlie to impactful research. After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.
+This book aims to help you understand and design randomized field experiments. But before we dive into the details of research design, we need a good research question -- a question that will advance knowledge or help make a policy decision or both. There is no simple recipe for finding or developing a good scientific or policy question, but our theories are important for articulating good questions that underlie impactful research. After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.
 
 This module introduces the \href{https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd}{EGAP Research Design
 Form}, a checklist to guide you through the many stages of the research process. The Learning Days workshops are organized around the Research Design Form. We also point you towards the \href{http://declaredesign.org}{DeclareDesign} software package to explore the implications of different choices we could make for our research designs. Finally, this module discusses pre-analysis plans and pre-registration. When plan our analyses and make these plans public, we improve our chances of persuading others with our results.
@@ -200,13 +200,13 @@ Form}, a checklist to guide you through the many stages of the research process.
 
 \begin{itemize}
 \item
-  What makes a \textbf{good research question}? A good research question advances science and/or is a question the answer to which will change a policy decision.
+  A \textbf{good research question} advances science and/or is a question the answer to which will inform a policy decision.
 \item
   Certain \textbf{research designs} are better able to address certain questions. We want to choose the design that best answers our key questions within our constraints.
 \item
-  The questions we ask arise, often implicitly, from our values and from our understanding about how the world works. These \textbf{theories} structure our questions --- make the questions relevant. And the experiments that we execute teach us about the theory --- we hope that the evidence and data arising from these research designs improves our understanding.
+  The questions we ask arise --- often implicitly --- from our values and from our understanding about how the world works. These \textbf{theories} make our questions relevant. And the experiments that we execute teach us about the theory. That is, we hope that the evidence and data arising from these research designs improve our understanding.
 \item
-  What are the \textbf{core components of a research design}?
+  Core components of a research design
 \item
   Introduce core components of the \href{https://egap.github.io/learningdays-resources/Exercises/design-form.html}{EGAP Research Design Form}.
 \item
@@ -214,7 +214,7 @@ Form}, a checklist to guide you through the many stages of the research process.
 \item
   The move in social science towards the \textbf{review of designs, rather than outcomes}.
 \item
-  \textbf{Pre-registration}: what is it? why should we do it? how should we do it?
+  \textbf{Pre-registration} -- what it is, and why and how we should do it.
 \end{itemize}
 
 \hypertarget{slides}{%
@@ -246,7 +246,7 @@ You can also see slides for Design Talks in previous EGAP Learning Days, where p
 
 \begin{itemize}
 \item
-  \href{https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-benin.pdf}{Design Talk from EGAP Learning Days at African School of Economics, Benin, March 2018}
+  \href{https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-benin.pdf}{Design Talk from EGAP Learning Days at the African School of Economics, Benin, March 2018}
 \item
   \href{https://egap.github.io/learningdays-resources/Slides/Examples/research_design_1-montevideo.pdf}{Design Talk 1 from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018}
 \item
@@ -264,7 +264,7 @@ You can also see slides for Design Talks in previous EGAP Learning Days, where p
 \end{itemize}
 
 \hypertarget{design-form-and-pre-registration}{%
-\section{Design Form and Pre-Registration}\label{design-form-and-pre-registration}}
+\section{Design Form and Pre-registration}\label{design-form-and-pre-registration}}
 
 \begin{itemize}
 \item
@@ -318,11 +318,11 @@ You can also see slides for Design Talks in previous EGAP Learning Days, where p
 
 \begin{itemize}
 \item
-  \href{https://oes.gsa.gov/assets/files/preregistration-as-a-tool-in-federal-evaluation.pdf}{Preregistration as a Tool for Strengthening Federal Evaluation} A white paper from the US Government's Office of Evaluation Sciences. You can also see examples of their pre-analysis plans on all of \href{https://oes.gsa.gov/work/}{their field experiment pages}.
+  \href{https://oes.gsa.gov/assets/files/preregistration-as-a-tool-in-federal-evaluation.pdf}{Preregistration as a Tool for Strengthening Federal Evaluation}. A white paper from the US Government's Office of Evaluation Sciences. You can also see examples of their pre-analysis plans on all of \href{https://oes.gsa.gov/work/}{their field experiment pages}.
 \item
-  \autocite{christensen_transparent_2019} The book summarizes new approaches in social science research on transparency and reproducibility.
+  \autocite{christensen_transparent_2019}. The book summarizes new approaches in social science research on transparency and reproducibility.
 \item
-  \autocite[Chapter 12]{gerber_field_2012} Includes some examples of experimental research designs.
+  \autocite{gerber_field_2012}. Chapter 12 includes some examples of experimental research designs.
 \end{itemize}
 
 \hypertarget{tools}{%
@@ -344,7 +344,7 @@ Over the past decade, social science has become much more serious about how caus
 In this module, we introduce the counterfactual approach to causal inference and how statements with causal claims can be interpreted. We introduce the potential outcome framework and how random assignment helps us make claims about what would have happened in the absence of the policy, action or program we study. We discuss the three core assumptions for causal inference: random assignment of subjects to treatment, non-interference, and excludability.
 
 \hypertarget{core-content-1}{%
-\section{Core content}\label{core-content-1}}
+\section{Core Content}\label{core-content-1}}
 
 \begin{itemize}
 \item
@@ -421,23 +421,23 @@ You can also see the slides used in previous EGAP Learning Days:
 
 \begin{itemize}
 \item
-  \autocite{fisher_design_1935} Fisher, introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
+  \autocite{fisher_design_1935}. Fisher introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
 \item
-  \autocite{rubin:1974} Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
+  \autocite{rubin:1974}. Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
 \end{itemize}
 
 \hypertarget{contemporary-overviews}{%
-\subsubsection{Contemporary overviews}\label{contemporary-overviews}}
+\subsubsection{Contemporary Overviews}\label{contemporary-overviews}}
 
 \begin{itemize}
 \item
-  \autocite{brady2008causation}
+  \autocite{brady2008causation}.
 \item
-  \autocite[Chapter 1]{gerber_field_2012} This book is a great resource for many topics in experimental design.
+  \autocite[Chapter 1]{gerber_field_2012}. This book is a great resource for many topics in experimental design.
 \item
-  \autocite[Chapter 1]{morgan_counterfactuals_2007} This book includes nice examples of thinking through making causal claims from observational data.
+  \autocite[Chapter 1]{morgan_counterfactuals_2007}. This book includes nice examples of thinking through making causal claims from observational data.
 \item
-  \autocite{glennerster_running_2013} This is a great introduction to running field experiments and discusses many examples.
+  \autocite{glennerster_running_2013}. This is a great introduction to running field experiments and discusses many examples.
 \end{itemize}
 
 \hypertarget{egap-policy-briefs}{%
@@ -464,7 +464,7 @@ The module on \href{causal-inference.html}{causal inference} discussed the cruci
 We introduce four common ways to randomize treatment -- simple, complete, block, and clustered -- and when these different types of randomization may be available and appropriate. We also cover several popular designs including factorial designs and encouragement designs. The module provides some guidance on implementation, including best practices for checking for balance and ensuring replicability.
 
 \hypertarget{core-content-2}{%
-\section{Core content}\label{core-content-2}}
+\section{Core Content}\label{core-content-2}}
 
 \begin{itemize}
 \item
@@ -478,9 +478,9 @@ We introduce four common ways to randomize treatment -- simple, complete, block,
   \item
     \textbf{Complete}: within a list of eligible units, a assign a fixed number to receive a treatment (like drawing from a urn).
   \item
-    \textbf{Block (or stratified)}: assign treatment within specific strata or blocks (as if you are running an experiment within each block).
+    \textbf{Block (or stratified)}: assign treatment within specific strata or blocks, as if you are running an experiment within each block.
   \item
-    \textbf{Cluster}: assign groups or clusters of observations to the same treatment condition.
+    \textbf{Cluster}: assign groups (clusters) of observations to the same treatment condition.
   \end{itemize}
 \item
   Some popular designs:
@@ -554,9 +554,9 @@ You can also see the slides used in previous EGAP Learning Days:
 \item
   \href{https://github.com/acoppock/Green-Lab-SOP}{Standard operating procedures for Don Green's lab at Columbia University}. A comprehensive set of procedures and rules of thumb for conducting experimental studies.
 \item
-  \autocite[Chapter 2 on randomization]{glennerster_running_2013}
+  \autocite{glennerster_running_2013}. Chapter 2 on randomization.
 \item
-  \autocite[Chapter 2: Causal Inference and Experimentation]{gerber_field_2012}
+  \autocite{gerber_field_2012}. Chapter 2: Causal Inference and Experimentation
 \end{itemize}
 
 \hypertarget{egap-policy-briefs-1}{%
@@ -605,15 +605,24 @@ You can also see the slides used in previous EGAP Learning Days:
   \href{https://egap.org/resource/reporting-corruption-in-nigeria-testing-the-effects-of-norms-nudges/}{EGAP Policy Brief 56: Reporting Corruption}
 \end{itemize}
 
+\hypertarget{tools-1}{%
+\subsection{Tools}\label{tools-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/web/packages/RItools/index.html}{RItools}, a set of tools for randomization-based inference including balance testing.
+\end{itemize}
+
 \hypertarget{hypothesis-testing}{%
 \chapter{Hypothesis Testing}\label{hypothesis-testing}}
 
-We cannot directly observe causal effects because of the \emph{fundamental problem of counterfactual causal inference} (\href{causal-inference.html}{causal inference module}); we cannot observe \emph{both} how a person or a community responds in a treatment condition \emph{and} how it responds in a control condition. Then how can we learn about these \emph{unobserved causal effects} using what we observe? In a randomized experiment, we can assess \emph{guesses} or \emph{hypotheses} about the unobserved causal effects by comparing what we observe in a given experiment to what we would observe if we were able to repeat the experimental manipulation and the guess or hypothesis were true.
+We cannot directly observe causal effects because of the \emph{fundamental problem of counterfactual causal inference} (\href{causal-inference.html}{causal inference module}). So how can we learn about these \emph{unobserved causal effects} using what we do observe? In a randomized experiment, we can assess \emph{guesses} or \emph{hypotheses} about the unobserved causal effects by comparing what we observe in a given experiment to what we would observe if we were able to repeat the experimental manipulation and the guess or hypothesis were true.
 
 In this module we introduce hypothesis testing, how it relates to causal inference, \(p\)-values, and what to do when we have multiple hypotheses to test.
 
 \hypertarget{core-content-3}{%
-\section{Core content}\label{core-content-3}}
+\section{Core Content}\label{core-content-3}}
 
 \begin{itemize}
 \item
@@ -634,7 +643,7 @@ In this module we introduce hypothesis testing, how it relates to causal inferen
     \(p\)-values and how to interpret the results of hypothesis tests.
   \end{itemize}
 \item
-  A good hypothesis test should (1) cast doubt on the truth rarely (i.e., has a controlled and low false positive rate), and (2) easily distinguish signal from noise (i.e., casts doubt on falsehoods often; has high statistical power).
+  A good hypothesis test should (1) cast doubt on the truth rarely (i.e., have a controlled and low false positive rate), and (2) easily distinguish signal from noise (i.e., cast doubt on falsehoods often; have high statistical power).
 \item
   How would we know when our hypothesis test is doing a good job? (\href{statistical-power-and-design-diagnosands.html}{Power analysis} is its own module).
 
@@ -647,7 +656,7 @@ In this module we introduce hypothesis testing, how it relates to causal inferen
     Assessing the false positive rate of a hypothesis test for a given design and choice of test statistic; the case of cluster-randomized trials and robust cluster standard errors.
   \end{itemize}
 \item
-  Be careful when testing \textbf{many hypotheses} (for example, if you have more than two treatment arms or if you are assessing the effects of a treatment on multiple outcomes). We should be careful to \textbf{adjust the \(p\)-values or confidence intervals} to reflect the number of tests/intervals produced.
+  Be careful when testing \textbf{many hypotheses}, such as when you have more than two treatment arms or you are assessing the effects of a treatment on multiple outcomes. We should be careful to \textbf{adjust the \(p\)-values or confidence intervals} to reflect the number of tests/intervals produced.
 \end{itemize}
 
 \hypertarget{slides-3}{%
@@ -689,7 +698,7 @@ You can also see the slides used in previous EGAP Learning Days:
 
 \begin{itemize}
 \item
-  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-hypothesis-testing/}{10 Things to Know About Hypothesis Testing}
+  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-hypothesis-testing/}{10 Things to Know about Hypothesis Testing}
 \item
   EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-multiple-comparisons/}{10 Things You Need to Know about Multiple Comparisons}
 \end{itemize}
@@ -699,11 +708,11 @@ You can also see the slides used in previous EGAP Learning Days:
 
 \begin{itemize}
 \item
-  \autocite[Chapter 3: Sampling Distributions, Statistical Inference, and Hypothesis Testing]{gerber_field_2012}
+  \autocite{gerber_field_2012}. Chapter 3: Sampling Distributions, Statistical Inference, and Hypothesis Testing.
 \item
-  \autocite[Chapter 2: Causal Inference in Randomized Experiments]{rosenbaum2010design}
+  \autocite{rosenbaum2010design}. Chapter 2: Causal Inference in Randomized Experiments.
 \item
-  \autocite[Part I: Randomized Experiments]{rosenbaum2017observation}
+  \autocite{rosenbaum2017observation}. Part I: Randomized Experiments.
 \end{itemize}
 
 \hypertarget{estimands-and-estimators}{%
@@ -711,10 +720,10 @@ You can also see the slides used in previous EGAP Learning Days:
 
 Randomized experiments generate good guesses about the average outcome under treatment and the average outcome under control. This allows us to write down unbiased estimators of average treatment effects. We can also use the randomization to describe how estimates generated by an estimator can vary from experiment to experiment in the form of standard errors and confidence intervals.
 
-In this module, we introduce several types of estimands, the target quantity to be estimated. The choice of estimand is a scientific decision -- what quantity is useful for us to learn about? And as part of the research design, we want to select an appropriate estimator for this estimand. We discuss how estimators are applied to data to generate an estimate of our estimand and how to characterize the variability of this estimate.
+In this module, we introduce several types of estimands, the target quantity to be estimated. The choice of estimand is a scientific and policy-informed decision -- what quantity is useful for us to learn about? In addition, we want to select an appropriate estimator for this estimand as part of the research design. We discuss how estimators are applied to data to generate an estimate of our estimand and how to characterize the variability of this estimate.
 
 \hypertarget{core-content-4}{%
-\section{Core content}\label{core-content-4}}
+\section{Core Content}\label{core-content-4}}
 
 \begin{itemize}
 \item
@@ -724,7 +733,7 @@ In this module, we introduce several types of estimands, the target quantity to 
 \item
   Many focus on the \textbf{average treatment effect (ATE)}, \(\bar{\tau}=\sum_{i=1}^n  \tau_{i}\), in part, because it allows for easy \textbf{estimation}.
 \item
-  An \textbf{estimator} is a recipe for calculating a guess about the value of an estimand. For example, the difference between means of observed outcomes for \(m\) treated units and for \(N-m\) untreated units is one estimator of \(\bar{\tau}\).
+  An \textbf{estimator} is a recipe for calculating a guess about the value of an estimand. For example, the difference between the mean of observed outcomes for \(m\) treated units and the mean of observed outcomes for \(N-m\) untreated units is one estimator of \(\bar{\tau}\).
 \item
   Different randomizations will produce different values of the same estimator targeting the same estimand. A \textbf{standard error} summarizes this variability in an estimator.
 \item
@@ -732,7 +741,7 @@ In this module, we introduce several types of estimands, the target quantity to 
 \item
   Estimators should (1) avoid systematic error in their guessing of the estimand (be unbiased); (2) vary little in their guesses from experiment to experiment (be precise or efficient); and perhaps ideally (3) converge to the estimand as they use more and more information (be consistent).
 \item
-  \textbf{Analyze as you randomize} in the context of estimation means that (1) our standard errors should measure variability from randomization and (2) our estimators should target estimands defined in terms of potential outcomes.
+  \textbf{Analyze as you randomize} in the context of estimation means that (1) our standard errors should measure the variability from randomization and (2) our estimators should target estimands defined in terms of potential outcomes.
 \item
   We do not \textbf{control for} background covariates when we analyze data from randomized experiments. But covariates can make our estimation more \textbf{precise}. This is called \textbf{covariance adjustment}. Covariance adjustment in randomized experiments differs from controlling for variables in observational studies.
 \item
@@ -768,9 +777,7 @@ You can also see the slides used in previous EGAP Learning Days:
   \href{https://egap.github.io/learningdays-resources/Slides/Examples/estimation-santiago.pdf}{The estimation presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016}
 \end{itemize}
 
-You can also discussion of the problems of estimating the effect of the active
-dose of a treatment in these slides (as well as discussion of the problems that
-missing data on outcomes cause for estimation of average causal effects):
+You can also see discussion of the problems of estimating the effect of the active dose of a treatment in these slides (as well as discussion of the problems that missing data on outcomes cause for estimation of average causal effects):
 
 \begin{itemize}
 \item
@@ -809,13 +816,13 @@ missing data on outcomes cause for estimation of average causal effects):
 
 \begin{itemize}
 \item
-  \autocite{gerber_field_2012} Chapter 2.7 on excludability and non-interference, Chapter 3, Chapter 5 on one-sided noncompliance, Chapter 6 on two-sided noncompliance, Chapter 7 on attrition, Chapter 8 on interference between experimental units.
+  \autocite{gerber_field_2012}. Chapter 2.7 on excludability and non-interference, Chapter 3, Chapter 5 on one-sided noncompliance, Chapter 6 on two-sided noncompliance, Chapter 7 on attrition, Chapter 8 on interference between experimental units.
 \item
-  \autocite{bowers2020causality}
+  \autocite{bowers2020causality}.
 \end{itemize}
 
-\hypertarget{tools-1}{%
-\subsection{Tools}\label{tools-1}}
+\hypertarget{tools-2}{%
+\subsection{Tools}\label{tools-2}}
 
 \begin{itemize}
 \item
@@ -827,9 +834,9 @@ missing data on outcomes cause for estimation of average causal effects):
 \hypertarget{statistical-power-and-design-diagnosands}{%
 \chapter{Statistical Power and Design Diagnosands}\label{statistical-power-and-design-diagnosands}}
 
-Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists. It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there is no effect or just that we failed to detect a non-zero effect that exists. A power analysis can help you improve your design and reallocate your resources; it may even help you decide against conducting the study.
+Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists. It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there was no effect or just that we failed to detect a non-zero effect that exists. A power analysis can help you improve your design and allocate your resources better; it may even help you decide against conducting the study.
 
-In this module, we introduce statistical power, core approaches to calculating power through analytical calculations or through simulation, and how design features such as blocking, covariate adjustment, and clustering impact power.
+In this module, we introduce statistical power, core approaches to calculating power through analytical calculations and through simulation, and how design features such as blocking, covariate adjustment, and clustering impact power.
 
 \hypertarget{core-content-5}{%
 \section{Core Content}\label{core-content-5}}
@@ -851,7 +858,7 @@ In this module, we introduce statistical power, core approaches to calculating p
 \item
   \textbf{Covariate adjustment} and \textbf{blocking} can increase power.
 \item
-  For \textbf{clustered designs} you need to take account of the intra-cluster correlation (the within cluster variance relative to the overall variance).
+  For \textbf{clustered designs} you need to take account of the intra-cluster correlation (the within-cluster variance relative to the overall variance).
 \item
   Power is closely liked to \href{the-research-design-process.html}{study design}, \href{hypothesis-testing.html}{hypothesis testing} and \href{estimands-and-estimators.html}{estimation}.
 \end{itemize}
@@ -914,8 +921,8 @@ Some examples of power analysis in designs:
   \href{https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/}{EGAP Policy Brief 58: Can bottom-up accountability generate improvements in health outcomes?}
 \end{itemize}
 
-\hypertarget{tools-2}{%
-\subsection{Tools}\label{tools-2}}
+\hypertarget{tools-3}{%
+\subsection{Tools}\label{tools-3}}
 
 \begin{itemize}
 \item
@@ -941,27 +948,26 @@ Some examples of power analysis in designs:
 \hypertarget{measurement}{%
 \chapter{Measurement}\label{measurement}}
 
-To estimate effects and test hypotheses, we often measure an outcome of interest with quantitative data derived from surveys, behavioral games, or administrative records. For causal questions, we typically use data on immediate and final outcomes and core mechanisms. We use baseline data to identify relevant subgroups, adjust our estimates or help block-randomize our treatment. Data can be noisy (random error) and/or biased (systematic error). Measurements should be valid and reliable.
+To estimate effects and test hypotheses, we often use an outcome of interest measured with quantitative data from surveys, behavioral games, or administrative records. For causal questions, we typically use data on immediate and final outcomes and core mechanisms. We use baseline data to identify relevant subgroups, adjust our estimates, or help block-randomize our treatment. Measurements should be valid and reliable. Be aware that data can be noisy (random error) and/or biased (systematic error).
 
 This module discusses \emph{what to measure} and \emph{how to measure}. It shows how good measurement is closely linked to your \href{https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd}{research design} and \href{statistical-power-and-design-diagnosands.html}{statistical power}.
 
 \hypertarget{core-content-6}{%
-\section{Core content}\label{core-content-6}}
+\section{Core Content}\label{core-content-6}}
 
 \begin{itemize}
 \item
-  When we represent some attribute of a unit by some number, letter, word, symbol in some systematic way (perhaps in a cell in a simple dataset), we are \textbf{measuring}.
+  When we represent some attribute of a unit by some number, letter, word, or symbol in some systematic way (perhaps in a cell in a simple dataset), we are \textbf{measuring}.
 \item
   A \textbf{valid} measure of a concept or phenomenon of interest should clearly
   represent that underlying and often abstract entity.
 \item
   A \textbf{reliable} measure of a concept would provide the same score for the
-  unit of measurement (a person, a village) if conditions were not changed.
+  unit of measurement (for example, a person or a village) if conditions were not changed.
 \item
   We can assess our theories of measurement using multiple approaches to measuring outcomes, covariates, or differences between units implied by different accounts of causal mechanisms.
 \item
-  Invalid measurement can make it hard for your \href{https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd}{research design} to effectively counter
-  alternative explanations for the relationship between treatment and outcome.
+  Invalid measurement can make it hard for your \href{https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd}{research design} to effectively distinguish between alternative explanations for the relationship between treatment and outcome.
 \item
   Unreliable measurement can diminish \href{statistical-power-and-design-diagnosands.html}{statistical power}.
 \item
@@ -990,11 +996,11 @@ Below are slides with the core content that we cover in our lecture on measureme
 
 \begin{itemize}
 \item
-  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-measurement-in-experiments/}{10 Things to Know About Measurement in Experiments}
+  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-measurement-in-experiments/}{10 Things to Know about Measurement in Experiments}
 \item
-  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-survey-design/}{10 Things to Know About Survey Design}
+  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-survey-design/}{10 Things to Know about Survey Design}
 \item
-  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-survey-implementation/}{10 Things to Know About Survey Implementation}
+  EGAP Methods Guide \href{https://egap.org/resource/10-things-to-know-about-survey-implementation/}{10 Things to Know about Survey Implementation}
 \end{itemize}
 
 \hypertarget{books-chapters-and-articles-4}{%
@@ -1048,15 +1054,15 @@ Randomized experiments can run into issues that undermine their ability to demon
 In this module, we cover some common threats and some best practices to avoid or work around them.
 
 \hypertarget{core-content-7}{%
-\section{Core content}\label{core-content-7}}
+\section{Core Content}\label{core-content-7}}
 
 \begin{itemize}
 \item
   Review the three core assumptions discussed in the \href{causal-inference.html}{causal inference} module.
 \item
-  We have said ``Analyze as you randomize'' elsewhere (\href{estimands-and-estimators.html}{estimands and estimators}). Remember that you randomized treatment \textbf{assignment}, not whether the treatment is received or whether a unit participates in data collection.
+  We have said ``Analyze as you randomize'' in the module on \href{estimands-and-estimators.html}{estimands and estimators}. Remember that you randomized treatment \textbf{assignment}, not whether the treatment is received or whether a unit participates in data collection.
 \item
-  \textbf{Missing data on the outcome (attrition)} is especially a problem if the patterns of missingness are caused by the treatment itself. This is the most common problem.
+  \textbf{Missing data on the outcome (attrition)} is especially a problem if the patterns of missingness are caused by the treatment itself. This is a very common problem.
 
   \begin{itemize}
   \item
@@ -1065,13 +1071,13 @@ In this module, we cover some common threats and some best practices to avoid or
     You may be able to \textbf{bound} estimates of treatment effects.
   \end{itemize}
 \item
-  \textbf{Non-compliance}. The effect of treatment assignment is not the same as the effect of receiving the treatment. Sometimes units will not comply with their assigned treatment status, but not all hope is lost.
+  \textbf{Non-compliance}. The effect of treatment assignment is not the same as the effect of receiving the treatment. Sometimes units will not comply with their assigned treatment status.
 
   \begin{itemize}
   \item
     One-sided compliance occurs when some units assigned to treatment fail to take the treatment, but all units assigned to control do not take the treatment.
   \item
-    The local average treatment effect (LATE, also known as the complier average causal effect, CACE) is the average effect for the units that take the treatment when assigned, but not otherwise. If the monotonicity assumption and the exclusion restriction hold, we may be able to estimate LATE.
+    The local average treatment effect (LATE, also known as the complier average causal effect, CACE) is the average effect for the units that take the treatment when assigned, but not otherwise. If the monotonicity assumption and the exclusion restriction hold, we may be able to estimate LATE when we have non-compliance.
   \end{itemize}
 \item
   \textbf{``Spillover effects'' or interference between units} is a violation of one of the core assumptions for causal inference (\href{causalinference.html}{causal inference}).
@@ -1139,7 +1145,7 @@ You can also see the slides used in previous EGAP Learning Days:
 \item
   \href{https://github.com/acoppock/Green-Lab-SOP}{Standard operating procedures for Don Green's lab at Columbia University}. A comprehensive set of procedures and rules of thumb for conducting experimental studies.
 \item
-  \autocite[Chapters 5--8]{gerber_field_2012} These chapters address non-compliance, attrition, and interference.
+  \autocite{gerber_field_2012}. Chapters 5--8 address non-compliance, attrition, and interference.
 \end{itemize}
 
 \hypertarget{egap-policy-briefs-3}{%
@@ -1155,16 +1161,16 @@ You can also see the slides used in previous EGAP Learning Days:
 \hypertarget{ethical-considerations}{%
 \chapter{Ethical Considerations}\label{ethical-considerations}}
 
-\emph{A randomized experiment involves one group of humans changing the lives of another group humans.} When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced. Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people. Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how the intervention might change the lives of those exposed to it, as well as those not exposed.
+\emph{A randomized experiment involves one group of humans changing the lives of another group humans.} Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people. Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how their research might change the lives of those exposed to the intervention, as well as those not exposed. When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced.
 
-This module discusses the core topics on research ethics, such as privacy and autonomy; the basic principles relating to respect for persons, beneficence and justice; and how informed consent helps communicate these principles to study participants.
+This module discusses the core topics on research ethics, such as privacy and autonomy; the basic principles relating to respect for persons, beneficence, and justice; and how informed consent helps communicate these principles to study participants.
 
 \hypertarget{core-content-8}{%
 \section{Core content}\label{core-content-8}}
 
 \begin{itemize}
 \item
-  Research must weigh the \textbf{potential benefits} of the knowledge to be gained from the research against the \textbf{potential harms} to human subjects.
+  Research must weigh the \textbf{potential benefits} of the knowledge to be gained from the research against the \textbf{potential harms} it may do to human subjects.
 \item
   How would you feel if you were a research subject in your study? In the control group? In the treatment group? A relatively high-status member of the community? A relatively low-status member of the community?
 \item
@@ -1172,15 +1178,15 @@ This module discusses the core topics on research ethics, such as privacy and au
 \item
   Basic principles in the Belmont Report: \textbf{respect for persons, beneficence, justice}.
 \item
-  \textbf{Informed consent}: Can you ensure that research subjects have the freedom to refuse to participate and/or drop out of the study if they want to?
+  \textbf{Informed consent}: Can you ensure that research subjects have the freedom to refuse to participate and/or drop out of the study if they want to? Can you ensure that research subjects can report problems that might arise?
 \item
   Challenges for social science experimental research in general:
 
   \begin{itemize}
   \item
-    many more people may benefit (or suffer from) your intervention than directly participate in your study.
+    Many more people may benefit (or suffer from) your intervention than directly participate in your study.
   \item
-    changing election results or corruption can produce large societal changes. Is this beyond the remit of research?
+    Changing election results or corruption can produce large societal changes. Is this beyond the remit of research?
   \end{itemize}
 \end{itemize}
 
@@ -1238,6 +1244,12 @@ Examples of PAPs and papers that discuss ethical issues:
   \href{http://jasper-cooper.com/papers/Green_et_al.pdf}{Paper: Appendix E.1 in Countering violence against women by encouraging disclosure: A mass media experiment in rural Uganda}
 \end{itemize}
 
+\cleardoublepage
+
+\hypertarget{appendix-appendix}{%
+\appendix}
+
+
 \hypertarget{glossary-of-terms}{%
 \chapter{Glossary of Terms}\label{glossary-of-terms}}
 
@@ -1251,23 +1263,23 @@ See the module on \href{causal-inference.html}{causal inference}, \href{estimand
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Potential outcome \(Y_i(T)\)} What outcome \(Y\) that unit \(i\) \emph{would}
-  have under treatment condition \(T\). We think of these as fixed quantities for a specific point in time. \(T\) can be 0 for control or 1 for treatment, if there is only one type of treatment. See the module on \href{causal-inference.html}{causal inference}.
+  \textbf{Potential outcome \(Y_i(T)\)} The outcome \(Y\) that unit \(i\) \emph{would}
+  have under treatment condition \(T\). We think of these as fixed quantities for a specific point in time. \(T\) can be 0 for control or 1 for treatment if there is only one type of treatment. See the module on \href{causal-inference.html}{causal inference}.
 \item
   \textbf{Treatment effect \(\tau_i\) for unit \(i\)} The contrast between potential
-  outcomes under treatment and control, \(Y_i(1)-Y_i(0)\), for unit \(i\). See the module on \href{causal-inference.html}{causal inference}.
+  outcomes under two treatment conditions for unit \(i\). We typically define the treatment effect as the difference in potential outcomes under treatment and control, \(Y_i(1)-Y_i(0)\). See the module on \href{causal-inference.html}{causal inference}.
 \item
   \textbf{Fundamental problem of causal inference} in the counterfactual framework. We can't observe both \(Y_i(1)\) and \(Y_i(0)\) for a given unit, so we can't get \(\tau_i\) directly. See the module on \href{causal-inference.html}{causal inference}.
 \item
   \textbf{Estimand} The thing you want to estimate. An example of an estimand is the average treatment effect. In counterfactual causal inference, this is a function of potential outcomes, not fully observed outcomes. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
 \item
   \textbf{Estimator} How you make a guess about the value of your estimand from the
-  data you have. An example of an estimator is the difference-in-means. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
+  data you have (i.e., observed). An example of an estimator is the difference-in-means. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
 
   \begin{itemize}
   \tightlist
   \item
-    \textbf{Average treatment effect, ATE} The average of the treatment effect for all individuals in your subject pool. This is a type of \textbf{estimand}. \(\overline{Y_i(1)-Y_i(0)}\), which is also equivalent to \(\overline{{Y}_i(1)}-\overline{{Y}_i(0)}\). Notice that we do not use the \(E[Y_i (1)]\) style of notation here because \(E[]\) means ``average over repeated operations'', but \(\overline{Y}\) means ``average over a set of observations''. See the module on \href{causal-inference.html}{causal inference} and the module on \href{estimands-and-estimators.html}{estimands and estimators}.
+    \textbf{Average treatment effect, ATE} The average of the treatment effect for all individuals in your subject pool. This is a type of \textbf{estimand}. If we define \(\tau_i\) to be \(Y_i(1)-Y_i(0)\), then the ATE is \(\overline{Y_i(1)-Y_i(0)}\), which is also equivalent to \(\overline{{Y}_i(1)}-\overline{{Y}_i(0)}\). Notice that we do not use the \(E[Y_i (1)]\) style of notation here because \(E[]\) means ``average over repeated operations,'' but \(\overline{Y}\) means ``average over a set of observations''. See the module on \href{causal-inference.html}{causal inference} and the module on \href{estimands-and-estimators.html}{estimands and estimators}.
   \end{itemize}
 \item
   \textbf{Random sampling} Selecting subjects from a population with known
@@ -1276,10 +1288,9 @@ See the module on \href{causal-inference.html}{causal inference}, \href{estimand
   \textbf{\(k\)-arm experiment} An experiment that has \(k\) treatment conditions
   (including control). See the module on \href{randomization.html}{randomization}.
 \item
-  \textbf{Random assignment} Assigning subjects with known probability strictly between 0 and 1 to experimental conditions. This is the same as random sampling without replacement from the potential outcomes. There are several strategies for random assignment: simple, complete, cluster, block, blocked-cluster. See the module on \href{randomization.html}{randomization}.
+  \textbf{Random assignment} Assigning subjects to experimental conditions with known probabilities strictly between 0 and 1. This is equivalent to random sampling without replacement from the potential outcomes. There are several strategies for random assignment: simple, complete, cluster, block, blocked-cluster. See the module on \href{randomization.html}{randomization}.
 \item
-  \textbf{External validity} Findings from your study teach you about contexts
-  outside of your sample --- in other locations or for other interventions.
+  \textbf{External validity} Findings from your study teach you about contexts outside of your sample --- in other locations or for other interventions.
 \end{itemize}
 
 \hypertarget{statistical-inference}{%
@@ -1293,8 +1304,8 @@ See modules on \href{hypothesis-testing.html}{hypothesis testing} and \href{stat
   \textbf{Hypothesis} A simple, clear, falsifiable claim about the world. In
   counterfactual causal inference, this is a statement about a relationship
   among potential outcomes, like \(H_0: Y_i(T_i=0) = Y_i(T_i=1) + \tau_i\) for
-  the hypothesis that the potential outcome to treatment is produced from the
-  potential outcome to control plus some effect for each unit \(i\). See the
+  the hypothesis that the potential outcome under treatment is the
+  potential outcome under control plus some effect for each unit \(i\). See the
   module on \href{hypothesis-testing.html}{hypothesis testing}.
 \item
   \textbf{Null hypothesis} A conjecture about the world that you may reject after
@@ -1302,10 +1313,10 @@ See modules on \href{hypothesis-testing.html}{hypothesis testing} and \href{stat
 \item
   \textbf{Sharp null hypothesis of no effect} The null hypothesis that there is no
   treatment effect for any subject. This means \(Y_i(1)=Y_i(0)\) for all \(i\). We
-  might write this, \(H_0: Y_i(T_i=0) = Y_i(T_i=1)\). See the module on
+  might write this as \(H_0: Y_i(T_i=0) = Y_i(T_i=1)\). See the module on
   \href{hypothesis-testing.html}{hypothesis testing}.
 \item
-  \textbf{\(p\)-value} The probability of seeing a test statistic as large (in absolute value) as or larger than the test statistic calculated from observed data (for example, the difference in means). See the module on \href{hypothesis-testing.html}{hypothesis testing}.
+  \textbf{\(p\)-value} The probability of seeing a test statistic as large (in absolute value) as or larger than the test statistic calculated from observed data. See the module on \href{hypothesis-testing.html}{hypothesis testing}.
 \item
   \textbf{One-sided vs.~two-sided test} When you have a strong expectation that the
   effect is either positive or negative, you can conduct a one-sided test.
@@ -1320,23 +1331,10 @@ See modules on \href{hypothesis-testing.html}{hypothesis testing} and \href{stat
   test rejects a hypothesis about a true causal effect no more than \(\alpha\) \%
   of the time. The false positive rate is the rate at which a test will cast
   doubt on a true hypothesis. It is the rate at which the test will encourage the analyst to say ``statistically significant'' when, in fact, there is no causal relationship. See the module on \href{hypothesis-testing.html}{hypothesis testing}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \textbf{Sampling distribution} The distribution of estimates (e.g., estimates of
-    the ATE) for all possible treatment assignments. In design-based
-    statistical inference for randomized experiments, the distribution of
-    estimates from an estimator is generated from randomizations. Many call
-    this a ``sampling distribution'' because textbooks often use the idea of
-    repeated samples from a population rather than repeated randomizations to
-    describe this kind of variation.
-  \item
-    \textbf{Standard error} The standard deviation of the sampling distribution. A
-    bigger standard error means that our estimates are more susceptible to
-    sampling variation. See the module on \href{estimands-and-estimators.html}{estimands and
-    estimators}.
-  \end{itemize}
+\item
+  \textbf{Sampling distribution} The distribution of estimates (e.g., estimates of the ATE) for all possible treatment assignments. In design-based statistical inference for randomized experiments, the distribution of estimates from an estimator is generated from randomizations. Many call this a ``sampling distribution'' because textbooks often use the idea of repeated samples from a population rather than repeated randomizations to describe this kind of variation.
+\item
+  \textbf{Standard error} The standard deviation of the sampling distribution. A bigger standard error means that our estimates are more susceptible to sampling variation. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
 \item
   \textbf{Coverage of a confidence interval} A well-operating confidence interval
   contains the true causal effect \(100 ( 1 - \alpha)\) \% of the time. A
@@ -1377,7 +1375,7 @@ See modules on \href{hypothesis-testing.html}{hypothesis testing} and \href{stat
   across its sampling distribution and the single, fixed value of the estimand. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
 \item
   \textbf{Consistency of an estimator} An estimator that produces answers that
-  become ever nearer the true value of the estimand as the sample size increases is a \emph{consistent estimator} of that estimand. A consistent estimator may or may not be unbiased. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
+  become ever nearer to the true value of the estimand as the sample size increases is a \emph{consistent estimator} of that estimand. A consistent estimator may or may not be unbiased. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
 \item
   \textbf{Precision/Efficiency of an estimator} The variation in or width of the
   sampling distribution of an estimator. See the module on \href{estimands-and-estimators.html}{estimands and estimators}.
@@ -1458,8 +1456,7 @@ See the module on \href{threats-to-internal-validity-of-randomized-experiments.h
   Example: my health depends on whether my neighbor is vaccinated, as well as
   whether I am vaccinated.
 \item
-  \textbf{Attrition} When outcomes for some subjects are not measured. Example:
-  people migrate, refuse to respond to endline surveys, or die. This is especially problematic for inference when it is correlated with treatment status.
+  \textbf{Attrition} When outcomes for some subjects are not measured. This might be caused, for example, by people migrating, refusing to respond to endline surveys, or dying. This is especially problematic for inference when it is correlated with treatment status.
 \item
   \textbf{Compliance} A unit's treatment status matches its assigned treatment
   condition. Example of non-compliance: a unit assigned to treatment doesn't
@@ -1489,7 +1486,7 @@ See the module on \href{threats-to-internal-validity-of-randomized-experiments.h
 \item
   \textbf{Two-sided non-compliance} The experiment may have all four latent groups.
 \item
-  \textbf{Encouragement design} An experiment that randomizes \(Z\) (treatment
+  \textbf{Encouragement design} An experiment that randomizes \(T\) (treatment
   assignment), and we measure \(D\) (whether the unit takes treatment) and \(Y\)
   (outcome). We can estimate the ITT and the LATE (local average treatment
   effect, aka CACE---complier average causal effect). It requires three
@@ -1560,7 +1557,7 @@ R can be freely downloaded from CRAN at the link corresponding to your operating
 \hypertarget{downloading-rstudio}{%
 \subsection{Downloading RStudio}\label{downloading-rstudio}}
 
-RStudio can be freely downloaded from the RStudio website, \url{https://www.rstudio.com/products/rstudio/download/}. In the table, click the blue \texttt{Download} button at the top of the left column, ``RStudio Desktop Open Source License'' as depicted below in Figure 1. Once you select this button, the page will jump to a list of download options as depicted in Figure 2.
+RStudio can be freely downloaded from the RStudio website, \url{https://www.rstudio.com/products/rstudio/download/}. In the table, click the blue \texttt{Download} button at the top of the left column, ``RStudio Desktop Open Source License'' as depicted below in Figure B.1. Once you select this button, the page will jump to a list of download options as depicted in Figure B.2.
 
 \begin{itemize}
 \tightlist
@@ -1571,7 +1568,7 @@ RStudio can be freely downloaded from the RStudio website, \url{https://www.rstu
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{/home/runner/work/theory_and_practice_of_field_experiments/theory_and_practice_of_field_experiments/Book/Images/new_rstudio} \caption{Select **Download** in the "RStudio Desktop Open Source License" column.}\label{fig:rstudiopng}
+\includegraphics[width=0.8\linewidth]{/home/runner/work/theory_and_practice_of_field_experiments/theory_and_practice_of_field_experiments/Book/Images/new_rstudio} \caption{Select Download in the "RStudio Desktop Open Source License" column.}\label{fig:rstudiopng}
 \end{figure}
 
 \begin{figure}
@@ -1581,7 +1578,7 @@ RStudio can be freely downloaded from the RStudio website, \url{https://www.rstu
 \hypertarget{rstudio-interface}{%
 \section{RStudio Interface}\label{rstudio-interface}}
 
-When you open RStudio for the first time, there should be three panels visible, as depicted in Figure 3 below.
+When you open RStudio for the first time, there should be three panels visible, as depicted in Figure B.3 below.
 
 \begin{itemize}
 \tightlist
@@ -1611,7 +1608,7 @@ To make sure everyone is prepared to use R at Learning Days, we ask participants
 \end{Highlighting}
 \end{Shaded}
 
-If successfully downloaded, your Console will resemble Figure 4, except that the urls will differ depending on your location.
+If successfully downloaded, your Console will resemble Figure B.4, except that the urls will differ depending on your location.
 
 \begin{figure}
 \includegraphics[width=0.4\linewidth]{Images/console2a} \caption{An image of the Console after executing the three lines of code listed above.}\label{fig:console2}
@@ -1620,24 +1617,24 @@ If successfully downloaded, your Console will resemble Figure 4, except that the
 \hypertarget{editor}{%
 \subsection{Editor}\label{editor}}
 
-In order to write and save reproducible code, we will open a fourth panel, the Editor, by clicking on the icon with a white page with a plus sign on the upper-left corner of the RStudio interface and selecting \texttt{R\ Script}, as depicted in Figure 5.
+In order to write and save reproducible code, we will open a fourth panel, the Editor, by clicking on the icon with a white page with a plus sign on the upper-left corner of the RStudio interface and selecting \texttt{R\ Script}, as depicted in Figure B.5.
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{Images/new_script} \caption{Create a new R script and open the editor panel by selecting `R Script` from the dropdown menu.}\label{fig:newscript}
 \end{figure}
 
-Once the R script is opened, there should be four panels within the RStudio interface, now with the addition of the Editor panel. We can execute simple arithmetic by entering a formula in the editor and pressing \texttt{Control\ +\ Enter} (Windows) or \texttt{Command\ +\ Enter} (Mac). The formula and the ``answer'' will appear in the Console, as depicted in Figure 6, with red boxes added for emphasis.
+Once the R script is opened, there should be four panels within the RStudio interface, now with the addition of the Editor panel. We can execute simple arithmetic by entering a formula in the editor and pressing \texttt{Control\ +\ Enter} (Windows) or \texttt{Command\ +\ Enter} (Mac). The formula and the ``answer'' will appear in the Console, as depicted in Figure B.6, with red boxes added for emphasis.
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{Images/first_addition} \caption{An arithmetic expression is entered in the editor and evaluated in the console. The red boxes are added for emphasis.}\label{fig:firstaddition}
 \end{figure}
 
-R can be used for any arithmetic operation, including but not limited to addition (\texttt{+}), subtraction (\texttt{-}), scalar multiplication (\texttt{*}), division (\texttt{/}), and exponentiation (\texttt{\^{}}).
+R can be used for any arithmetic operation including, but not limited to, addition (\texttt{+}), subtraction (\texttt{-}), scalar multiplication (\texttt{*}), division (\texttt{/}), and exponentiation (\texttt{\^{}}).
 
 \hypertarget{accounting}{%
 \subsection{Accounting}\label{accounting}}
 
-Beyond basic functions, we can also store values, data, and functions in the global environment. To assign a value to a variable, use the \texttt{\textless{}-} operator. All stored values, functions, and data will appear in the environment tab in the Accounting panel. In Figure 7, we define the variable \texttt{t} to take the value \(3 \times \frac{6}{14}\), and can see that it is stored under Values.
+Beyond basic functions, we can also store values, data, and functions in the global environment. To assign a value to a variable, use the \texttt{\textless{}-} operator. All stored values, functions, and data will appear in the Environment tab in the Accounting panel. In Figure B.7, we define the variable \texttt{t} to take the value \(3 \times \frac{6}{14}\), and can see that it is stored under Values.
 
 We also load a dataset. Here, ``ChickWeight'' is a dataset built into R; most datasets will be loaded from the web or other files on your computer through an alternate method. We can see that ChickWeight contains 578 observations of 4 variables and is stored in the Environment. By clicking on the name ChickWeight a tab will enter with the dataset in your Editor window.
 
@@ -1695,7 +1692,7 @@ Unlike other statistical software, R allows users to store multiple datasets, po
 \hypertarget{miscellaneous}{%
 \subsection{Miscellaneous}\label{miscellaneous}}
 
-R provides a suite of tools, ranging from built-in plot functions to packages to graph data, models, estimates, etc. The final Miscellaneous panel allows for the quick viewing of graphs in RStudio. Figure 8 shows a plot in this panel. Leaning Days will discuss how to plot data; for now, don't worry about the graphing the code in the Editor.
+R provides a suite of tools, ranging from built-in plot functions to packages to graph data, models, estimates, etc. The final Miscellaneous panel allows for the quick viewing of graphs in RStudio. Figure B.8 shows a plot in this panel. Leaning Days will discuss how to plot data; for now, don't worry about the graphing the code in the Editor.
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{Images/graph} \caption{An example plot of the `ChickWeight` data made in R.}\label{fig:graph}
@@ -1748,7 +1745,7 @@ In general, we read other files such as data or functions into R and output resu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"~TaraLyn/Dropbox/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/"}\NormalTok{)   }
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~TaraLyn/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/"}\NormalTok{)   }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1784,19 +1781,14 @@ We now explore some basic commands. In order to assign a scalar (single element)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(a <-}\StringTok{ }\DecValTok{5}\NormalTok{)     }\CommentTok{# "<-"  is the assignment command; it is used to}
+\CommentTok{# "<-"  is the assignment command; it is used to define things. eg:}
+\NormalTok{(a <-}\StringTok{ }\DecValTok{5}\NormalTok{)     }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 [1] 5
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-             \CommentTok{# define things. eg:}
-\end{Highlighting}
-\end{Shaded}
 
 We may also want to assign a vector of elements to a variable. Here we use the same \texttt{\textless{}-} command, but focus on how to create the vector.
 
@@ -2039,7 +2031,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{which}\NormalTok{(b}\OperatorTok{<}\DecValTok{5}\NormalTok{)                 }\CommentTok{# Gives indices of values meeting logical requirement}
+\KeywordTok{which}\NormalTok{(b}\OperatorTok{<}\DecValTok{5}\NormalTok{)       }\CommentTok{# Gives indices of values meeting logical requirement}
 \end{Highlighting}
 \end{Shaded}
 
