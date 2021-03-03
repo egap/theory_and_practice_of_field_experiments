@@ -6,7 +6,7 @@ Over the past decade, social science has become much more serious about how caus
 
 In this module, we introduce the counterfactual approach to causal inference and how statements with causal claims can be interpreted. We introduce the potential outcome framework and how random assignment helps us make claims about what would have happened in the absence of the policy, action or program we study. We discuss the three core assumptions for causal inference: random assignment of subjects to treatment, non-interference, and excludability. 
 
-## Core content
+## Core Content
 
  - What do we mean when we say **"cause"**? And why does it matter to be clear about the meaning of causal claims?
 
@@ -64,19 +64,19 @@ You can also see the slides used in previous EGAP Learning Days:
 
 #### Classics {#causalinference-classics}
 
-- [@fisher_design_1935] Fisher, introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
+- [@fisher_design_1935]. Fisher introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
 
-- [@rubin:1974] Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
+- [@rubin:1974]. Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
 
-#### Contemporary overviews
+#### Contemporary Overviews
 
-- [@brady2008causation]
+- [@brady2008causation].
 
-- [@gerber_field_2012, Chapter 1] This book is a great resource for many topics in experimental design.
+- [@gerber_field_2012, Chapter 1]. This book is a great resource for many topics in experimental design.
 
-- [@morgan_counterfactuals_2007, Chapter 1]  This book includes nice examples of thinking through making causal claims from observational data.
+- [@morgan_counterfactuals_2007, Chapter 1].  This book includes nice examples of thinking through making causal claims from observational data.
 
-- [@glennerster_running_2013]  This is a great introduction to running field experiments and discusses many examples.
+- [@glennerster_running_2013].  This is a great introduction to running field experiments and discusses many examples.
 
 ### EGAP Policy Briefs
 

@@ -1,19 +1,19 @@
 # The Research Design Process
 
-This book aims to help you understand and design randomized field experiments.  But before we dive into the details of research design, we need a good research question -- a question that will advance knowledge or help make a policy decision or both.  There is no simple recipe for finding or developing a good scientific or policy question, but our theories play an important role in articulating good questions that underlie to impactful research.  After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.  
+This book aims to help you understand and design randomized field experiments.  But before we dive into the details of research design, we need a good research question -- a question that will advance knowledge or help make a policy decision or both.  There is no simple recipe for finding or developing a good scientific or policy question, but our theories are important for articulating good questions that underlie impactful research.  After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.  
 
 This module introduces the [EGAP Research Design
 Form](https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd), a checklist to guide you through the many stages of the research process.  The Learning Days workshops are organized around the Research Design Form.  We also point you towards the [DeclareDesign](http://declaredesign.org) software package to explore the implications of different choices we could make for our research designs.  Finally, this module discusses pre-analysis plans and pre-registration.  When plan our analyses and make these plans public, we improve our chances of persuading others with our results.
 
 ## Core Content
 
-- What makes a **good research question**? A good research question advances science and/or is a question the answer to which will change a policy decision.
+- A **good research question** advances science and/or is a question the answer to which will inform a policy decision.
 
 - Certain **research designs** are better able to address certain questions. We want to choose the design that best answers our key questions within our constraints.
 
-- The questions we ask arise, often implicitly, from our values and from our understanding about how the world works. These **theories** structure our questions --- make the questions relevant. And the experiments that we execute teach us about the theory --- we hope that the evidence and data arising from these research designs improves our understanding.
+- The questions we ask arise --- often implicitly --- from our values and from our understanding about how the world works. These **theories** make our questions relevant. And the experiments that we execute teach us about the theory.  That is, we hope that the evidence and data arising from these research designs improve our understanding.
 
-- What are the **core components of a research design**?
+- Core components of a research design
 
 - Introduce core components of the [EGAP Research Design Form](https://egap.github.io/learningdays-resources/Exercises/design-form.html). 
 
@@ -21,7 +21,7 @@ Form](https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd), 
 
 - The move in social science towards the **review of designs, rather than outcomes**.
 
- - **Pre-registration**: what is it? why should we do it? how should we do it?
+- **Pre-registration** -- what it is, and why and how we should do it.
 
 
 ## Slides
@@ -44,7 +44,7 @@ You can also see the slides used in previous EGAP Learning Days:
 
 You can also see slides for Design Talks in previous EGAP Learning Days, where presenters focus on issues that come up in designing the research, rather than the results:
 
- - [Design Talk from EGAP Learning Days at African School of Economics, Benin, March 2018](https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-benin.pdf)
+ - [Design Talk from EGAP Learning Days at the African School of Economics, Benin, March 2018](https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-benin.pdf)
 
  - [Design Talk 1 from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018](https://egap.github.io/learningdays-resources/Slides/Examples/research_design_1-montevideo.pdf)
 
@@ -60,7 +60,7 @@ You can also see slides for Design Talks in previous EGAP Learning Days, where p
 
  - [Design Talk from EGAP Learning Days in Guatemala City, Guatemala, August 2017](https://egap.github.io/learningdays-resources/Slides/Examples/research_design-guatemala.pdf)
 
-## Design Form and Pre-Registration
+## Design Form and Pre-registration
 
 - [EGAP Research Design Form](https://egap.github.io/learningdays-resources/Exercises/design-form.html). A checklist we created for the Learning Days to guide you through the stages of the research process.
      - [Docx Version](https://egap.github.io/learningdays-resources/Exercises/design-form.docx)
@@ -94,11 +94,11 @@ You can also see slides for Design Talks in previous EGAP Learning Days, where p
 
 ### Books, Chapters, and Articles
 
-- [Preregistration as a Tool for Strengthening Federal Evaluation](https://oes.gsa.gov/assets/files/preregistration-as-a-tool-in-federal-evaluation.pdf)  A white paper from the US Government's Office of Evaluation Sciences.  You can also see examples of their pre-analysis plans on all of [their field experiment pages](https://oes.gsa.gov/work/).
+- [Preregistration as a Tool for Strengthening Federal Evaluation](https://oes.gsa.gov/assets/files/preregistration-as-a-tool-in-federal-evaluation.pdf).  A white paper from the US Government's Office of Evaluation Sciences.  You can also see examples of their pre-analysis plans on all of [their field experiment pages](https://oes.gsa.gov/work/).
 
-- [@christensen_transparent_2019] The book summarizes new approaches in social science research on transparency and reproducibility.
+- [@christensen_transparent_2019]. The book summarizes new approaches in social science research on transparency and reproducibility.
 
-- [@gerber_field_2012, Chapter 12] Includes some examples of experimental research designs.
+- [@gerber_field_2012].  Chapter 12 includes some examples of experimental research designs.
 
 ### Tools
 

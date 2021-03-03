@@ -23,14 +23,13 @@ R can be freely downloaded from CRAN at the link corresponding to your operating
 
 ### Downloading RStudio
 
-RStudio can be freely downloaded from the RStudio website, [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/). In the table, click the blue `Download` button at the top of the left column, "RStudio Desktop Open Source License" as depicted below in Figure 1. Once you select this button, the page will jump to a list of download options as depicted in Figure 2.
+RStudio can be freely downloaded from the RStudio website, [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/). In the table, click the blue `Download` button at the top of the left column, "RStudio Desktop Open Source License" as depicted below in Figure B.1. Once you select this button, the page will jump to a list of download options as depicted in Figure B.2.
 
 - For **Windows**, select `Windows 10/8/7`.
 - For **Mac OS X**, select `Mac OS X 10.13+`.
 
 
-
-```{r rstudiopng, echo=FALSE, out.width='80%', fig.show='hold', fig.cap='Select **Download** in the "RStudio Desktop Open Source License" column.'}
+```{r rstudiopng, echo=FALSE, out.width='80%', fig.show='hold', fig.cap='Select Download in the "RStudio Desktop Open Source License" column.'}
 knitr::include_graphics(here("Images","new_rstudio.png"))
 ```
 
@@ -40,7 +39,7 @@ knitr::include_graphics("Images/rstudio_download.png")
 
 ## RStudio Interface
 
-When you open RStudio for the first time, there should be three panels visible, as depicted in Figure 3 below.
+When you open RStudio for the first time, there should be three panels visible, as depicted in Figure B.3 below.
 
 - Console (left panel)
 - Accounting (upper right panel): includes Environment and History tabs
@@ -61,31 +60,31 @@ install.packages(c("ggplot2", "dplyr", "AER", "arm", "MASS", "sandwich",
                    "lmtest", "estimatr","coin","randomizr", "DeclareDesign"))
 ```
 
-If successfully downloaded, your Console will resemble Figure 4, except that the urls will differ depending on your location. 
+If successfully downloaded, your Console will resemble Figure B.4, except that the urls will differ depending on your location. 
 ```{r console2, echo=FALSE, out.width='40%', fig.show='hold',fig.cap='An image of the Console after executing the three lines of code listed above.'}
 knitr::include_graphics("Images/console2a.png")
 ```
 
 ### Editor 
 
-In order to write and save reproducible code, we will open a fourth panel, the Editor, by clicking on the icon with a white page with a plus sign on the upper-left corner of the RStudio interface and selecting `R Script`, as depicted in Figure 5.
+In order to write and save reproducible code, we will open a fourth panel, the Editor, by clicking on the icon with a white page with a plus sign on the upper-left corner of the RStudio interface and selecting `R Script`, as depicted in Figure B.5.
 
 ```{r newscript,  echo=FALSE, out.width='60%', fig.show='hold',fig.cap='Create a new R script and open the editor panel by selecting `R Script` from the dropdown menu.'}
 knitr::include_graphics("Images/new_script.png")
 ```
 
-Once the R script is opened, there should be four panels within the RStudio interface, now with the addition of the Editor panel. We can execute simple arithmetic by entering a formula in the editor and pressing `Control + Enter` (Windows) or `Command + Enter` (Mac). The formula and the "answer" will appear in the Console, as depicted in Figure 6, with red boxes added for emphasis.
+Once the R script is opened, there should be four panels within the RStudio interface, now with the addition of the Editor panel. We can execute simple arithmetic by entering a formula in the editor and pressing `Control + Enter` (Windows) or `Command + Enter` (Mac). The formula and the "answer" will appear in the Console, as depicted in Figure B.6, with red boxes added for emphasis.
 
 
 ```{r firstaddition,  echo=FALSE, out.width='60%', fig.show='hold', fig.cap='An arithmetic expression is entered in the editor and evaluated in the console. The red boxes are added for emphasis.'}
 knitr::include_graphics("Images/first_addition.png")
 ```
 
-R can be used for any arithmetic operation, including but not limited to addition (`+`), subtraction (`-`), scalar multiplication (`*`), division (`/`), and exponentiation (`^`). 
+R can be used for any arithmetic operation including, but not limited to, addition (`+`), subtraction (`-`), scalar multiplication (`*`), division (`/`), and exponentiation (`^`). 
 
 ### Accounting 
 
-Beyond basic functions, we can also store values, data, and functions in the global environment. To assign a value to a variable, use the `<-` operator. All stored values, functions, and data will appear in the environment tab in the Accounting panel. In Figure 7, we define the variable `t` to take the value $3 \times \frac{6}{14}$, and can see that it is stored under Values. 
+Beyond basic functions, we can also store values, data, and functions in the global environment. To assign a value to a variable, use the `<-` operator. All stored values, functions, and data will appear in the Environment tab in the Accounting panel. In Figure B.7, we define the variable `t` to take the value $3 \times \frac{6}{14}$, and can see that it is stored under Values. 
 
 We also load a dataset. Here, "ChickWeight" is a dataset built into R; most datasets will be loaded from the web or other files on your computer through an alternate method. We can see that ChickWeight contains 578 observations of 4 variables and is stored in the Environment. By clicking on the name ChickWeight a tab will enter with the dataset in your Editor window.
 
@@ -105,7 +104,7 @@ Unlike other statistical software, R allows users to store multiple datasets, po
 
 ### Miscellaneous 
 
-R provides a suite of tools, ranging from built-in plot functions to packages to graph data, models, estimates, etc. The final Miscellaneous panel allows for the quick viewing of graphs in RStudio. Figure 8 shows a plot in this panel.  Leaning Days will discuss how to plot data; for now, don't worry about the graphing the code in the Editor. 
+R provides a suite of tools, ranging from built-in plot functions to packages to graph data, models, estimates, etc. The final Miscellaneous panel allows for the quick viewing of graphs in RStudio. Figure B.8 shows a plot in this panel.  Leaning Days will discuss how to plot data; for now, don't worry about the graphing the code in the Editor. 
 
 ```{r graph, out.width='60%',  echo=FALSE, fig.show='hold', fig.cap='An example plot of the `ChickWeight` data made in R.'}
 knitr::include_graphics("Images/graph.png")
@@ -137,7 +136,7 @@ getwd()
 ```
 
 ```{r, eval = F}
-setwd("~TaraLyn/Dropbox/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/")   
+setwd("~TaraLyn/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/")   
 ```
 
 You may need to install packages beyond those listed above to execute certain functions. To install packages we use `install.packages("")`, filling in the package name between the "" marks, as follows. You need only install packages once.
@@ -164,8 +163,8 @@ set.seed(2018)  # Optional: Set a seed to make output replicable
 We now explore some basic commands. In order to assign a scalar (single element) to a variable, we use the `<-` command as discussed previously: 
 
 ```{r echo=TRUE}
-(a <- 5)     # "<-"  is the assignment command; it is used to
-             # define things. eg:
+# "<-"  is the assignment command; it is used to define things. eg:
+(a <- 5)     
 ```
 
 We may also want to assign a vector of elements to a variable. Here we use the same `<-` command, but focus on how to create the vector.
@@ -220,7 +219,7 @@ b >= 5                     # Greater than or equal to
 b <= 5 | b / 4 == 2        # | means OR
 b>2 & b<9                  # & means AND
 is.na(b)                   # Indicates if data is missing
-which(b<5)                 # Gives indices of values meeting logical requirement
+which(b<5)       # Gives indices of values meeting logical requirement
 ```
 
 The basic logic of these commands applies to data structures much more complex than scalars and vectors. Understanding of these basic features will help facilitate your understanding of more advanced topics during Learning Days.

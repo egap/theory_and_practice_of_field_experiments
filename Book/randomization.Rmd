@@ -4,7 +4,7 @@ The module on [causal inference](causal-inference.html) discussed the crucial ro
 
 We introduce four common ways to randomize treatment -- simple, complete, block, and clustered -- and when these different types of randomization may be available and appropriate.  We also cover several popular designs including factorial designs and encouragement designs.  The module provides some guidance on implementation, including best practices for checking for balance and ensuring replicability.  
 
-## Core content
+## Core Content
 
 - What is **randomization**? Random assignment is **not** the same as random sampling.
 
@@ -14,9 +14,9 @@ We introduce four common ways to randomize treatment -- simple, complete, block,
 
     - **Complete**: within a list of eligible units, a assign a fixed number to receive a treatment (like drawing from a urn).
 
-    - **Block (or stratified)**: assign treatment within specific strata or blocks (as if you are running an experiment within each block).
+    - **Block (or stratified)**: assign treatment within specific strata or blocks, as if you are running an experiment within each block.
       
-    - **Cluster**: assign groups or clusters of observations to the same treatment condition.
+    - **Cluster**: assign groups (clusters) of observations to the same treatment condition.
     
     
 - Some popular designs:
@@ -72,9 +72,9 @@ You can also see the slides used in previous EGAP Learning Days:
 
 - [Standard operating procedures for Don Green’s lab at Columbia University](https://github.com/acoppock/Green-Lab-SOP). A comprehensive set of procedures and rules of thumb for conducting experimental studies.
 
-- [@glennerster_running_2013, Chapter 2 on randomization]
+- [@glennerster_running_2013]. Chapter 2 on randomization.
 
-- [@gerber_field_2012, Chapter 2: Causal Inference and Experimentation]
+- [@gerber_field_2012]. Chapter 2: Causal Inference and Experimentation
 
 ### EGAP Policy Briefs
 
@@ -105,3 +105,7 @@ You can also see the slides used in previous EGAP Learning Days:
   - [EGAP Policy Brief 56: Reporting Corruption](https://egap.org/resource/reporting-corruption-in-nigeria-testing-the-effects-of-norms-nudges/)
 
   
+### Tools
+
+- [RItools](https://cran.r-project.org/web/packages/RItools/index.html), a set of tools for randomization-based inference including balance testing.
+ 

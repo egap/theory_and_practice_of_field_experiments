@@ -1,8 +1,8 @@
 # Statistical Power and Design Diagnosands {.tabset}
 
-Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists.  It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there is no effect or just that we failed to detect a non-zero effect that exists.  A power analysis can help you improve your design and reallocate your resources; it may even help you decide against conducting the study.
+Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists.  It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there was no effect or just that we failed to detect a non-zero effect that exists.  A power analysis can help you improve your design and allocate your resources better; it may even help you decide against conducting the study.
 
-In this module, we introduce statistical power, core approaches to calculating power through analytical calculations or through simulation, and how design features such as blocking, covariate adjustment, and clustering impact power.
+In this module, we introduce statistical power, core approaches to calculating power through analytical calculations and through simulation, and how design features such as blocking, covariate adjustment, and clustering impact power.
 
 ## Core Content
 
@@ -18,7 +18,7 @@ In this module, we introduce statistical power, core approaches to calculating p
 
  - **Covariate adjustment** and **blocking** can increase power.
 
- - For **clustered designs** you need to take account of the intra-cluster correlation (the within cluster variance relative to the overall variance).
+ - For **clustered designs** you need to take account of the intra-cluster correlation (the within-cluster variance relative to the overall variance).
  
  - Power is closely liked to [study design](the-research-design-process.html), [hypothesis testing](hypothesis-testing.html) and [estimation](estimands-and-estimators.html).
 

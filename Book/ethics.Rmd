@@ -1,13 +1,13 @@
 # Ethical Considerations {.tabset}
 
-*A randomized experiment involves one group of humans changing the lives of another group humans.*  When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced.  Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people.  Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how the intervention might change the lives of those exposed to it, as well as those not exposed.
+*A randomized experiment involves one group of humans changing the lives of another group humans.*  Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people.  Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how their research might change the lives of those exposed to the intervention, as well as those not exposed.  When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced.  
 
-This module discusses the core topics on research ethics, such as privacy and autonomy; the basic principles relating to respect for persons, beneficence and justice; and how informed consent helps communicate these principles to study participants.  
+This module discusses the core topics on research ethics, such as privacy and autonomy; the basic principles relating to respect for persons, beneficence, and justice; and how informed consent helps communicate these principles to study participants.  
 
 
 ## Core content
 
- - Research must weigh the **potential benefits** of the knowledge to be gained from the research against the **potential harms** to human subjects.
+ - Research must weigh the **potential benefits** of the knowledge to be gained from the research against the **potential harms** it may do to human subjects.
    
  - How would you feel if you were a research subject in your study? In the control group? In the treatment group? A relatively high-status member of the community? A relatively low-status member of the community?
 
@@ -15,13 +15,13 @@ This module discusses the core topics on research ethics, such as privacy and au
 
  - Basic principles in the Belmont Report: **respect for persons, beneficence, justice**.
 
- - **Informed consent**: Can you ensure that research subjects have the freedom to refuse to participate and/or drop out of the study if they want to?
+ - **Informed consent**: Can you ensure that research subjects have the freedom to refuse to participate and/or drop out of the study if they want to?  Can you ensure that research subjects can report problems that might arise?  
 
  - Challenges for social science experimental research in general:
 
-    - many more people may benefit (or suffer from) your intervention than directly participate in your study.
+    - Many more people may benefit (or suffer from) your intervention than directly participate in your study.
 
-    - changing election results or corruption can produce large societal changes. Is this beyond the remit of research?
+    - Changing election results or corruption can produce large societal changes. Is this beyond the remit of research?
 
 ## Slides
 
