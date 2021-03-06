@@ -22,7 +22,7 @@ bookdown::gitbook:
         instapaper: yes
         vk: no
         all: ['facebook', 'github', 'twitter', 'linkedin', 'weibo', 'instapaper']
-    edit: https://github.com/egap/theory_and_practice_of_field_experiments
+    edit: https://github.com/egap/theory_and_practice_of_field_experiments/edit/master/Book/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
