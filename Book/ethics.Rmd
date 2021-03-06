@@ -37,6 +37,8 @@ Below are slides with the core content that we cover in this session.
 
 - [EGAP Research Principles and Work on Ethics](https://egap.org/ethics/)
 
+- [APSA Principles and Guidance on Human Subjects Research](https://connect.apsanet.org/hsr/principles-and-guidance/)
+
 - [Belmont Report](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html)
 
 - [Institutional Review Boards in the US](https://www.youtube.com/watch?v=U8fme1boEbE)
