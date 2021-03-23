@@ -3,7 +3,7 @@ title: |
   | The Theory and Practice of Field Experiments: 
   | An Introduction from the EGAP Learning Days
 author: Jake Bowers,^[Author order randomized. https://jakebowers.org] Maarten Voors,^[https://sites.google.com/site/maartenvoors/] and Nahomi Ichino^[https://www.nahomiichino.com/]
-date: '`r format(Sys.Date(), "%B%e, %Y")`'
+date: '`r format(Sys.Date(), "%B %e, %Y")`'
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
