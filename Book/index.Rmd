@@ -2,7 +2,7 @@
 title: |
   | The Theory and Practice of Field Experiments: 
   | An Introduction from the EGAP Learning Days
-author: Jake Bowers,^[Author order randomized. https://jakebowers.org] Maarten Voors,^[https://sites.google.com/site/maartenvoors/] and Nahomi Ichino^[https://www.nahomiichino.com/]
+author: Jake Bowers,^[Author order randomized. https://jakebowers.org] Maarten Voors,^[https://sites.google.com/site/maartenvoors/] and Nahomi Ichino^[https://nahomi.github.io/]
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
@@ -133,7 +133,7 @@ We are happy for anyone to use the materials as long as EGAP is attributed. See 
 
 ## We would love to hear from you!
 
-If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on [Github](https://github.com/egap/theory_and_practice_of_field_experiments/issues) or contact us via email, admin@egap.org.
+If you have any questions, feedback or have organized your own event, please get in touch! Simply post an issue on [Github](https://github.com/egap/theory_and_practice_of_field_experiments/issues) or make comments using hypothes.is in your browser and let us know via email, admin@egap.org.  We'll periodically go through the comments.
 
 ## Acknowledgments
 
