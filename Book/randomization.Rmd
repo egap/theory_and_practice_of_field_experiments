@@ -43,7 +43,7 @@ Below are slides with the core content that we cover in our lecture on randomiza
 
 - [HTML version](https://egap.github.io/learningdays-resources/Slides/randomization-slides.html)
 
-The linked files shows how to [do replicable randomization in R](https://egap.github.io/learningdays-resources/Exercises/randomization-exercises.Rmd). You can also see more examples of randomization in R at  [10 Things You Need to Know About Randomization](https://egap.org/resource/10-things-you-need-know-randomization).
+The linked files shows how to [do replicable randomization in R](https://egap.github.io/learningdays-resources/Exercises/randomization-exercises.Rmd). You can also see more examples of randomization in R at  [10 Things You Need to Know About Randomization](https://egap.org/resource/10-things-to-know-about-randomization/).
 
 You can also see the slides used in previous EGAP Learning Days:
 
