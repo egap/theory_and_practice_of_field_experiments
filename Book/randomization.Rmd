@@ -64,9 +64,9 @@ You can also see the slides used in previous EGAP Learning Days:
 
 ### EGAP Methods Guides
 
-- EGAP Methods Guide [10 Things You Need to Know About Randomization](https://egap.org/resource/10-things-you-need-know-randomization)
+- EGAP Methods Guide [10 Things You Need to Know About Randomization](https://egap.org/resource/10-things-to-know-about-randomization/)
 
-- EGAP Methods Guide [10 Things You Need to Know About Cluster  Randomization](http://egap.org/resource/10-things-you-need-know-about-cluster-randomization)
+- EGAP Methods Guide [10 Things You Need to Know About Cluster Randomization](https://egap.org/resource/10-things-to-know-about-cluster-randomization/)
 
 ### Books, Chapters, and Articles
 
