@@ -4,7 +4,7 @@ language:
   ui:
     chapter_name: "Module "
 delete_merged_file: true
-edit: https://github.com/egap/theory_and_practice_of_field_experiments/edit/master/Book/%s
+edit: https://github.com/egap/theory_and_practice_of_field_experiments/edit/main/Book/%s
 output_dir: "_book"
 clean: ["learningdays-book.bbl"]
 rmd_files:  ["index.Rmd","researchdesignform.Rmd","causalinference.Rmd", "randomization.Rmd", "hypothesistesting.Rmd", "estimation.Rmd", "statisticalpower.Rmd", "measurement.Rmd", "threats.Rmd", "ethics.Rmd", "glossary.Rmd", "intro_to_r.Rmd", "references.Rmd"]
