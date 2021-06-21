@@ -104,8 +104,15 @@ You can also see the slides used in previous EGAP Learning Days:
 
   - [EGAP Policy Brief 56: Reporting Corruption](https://egap.org/resource/reporting-corruption-in-nigeria-testing-the-effects-of-norms-nudges/)
 
-  
+
 ### Tools
 
 - [RItools](https://cran.r-project.org/web/packages/RItools/index.html), a set of tools for randomization-based inference including balance testing.
+
+
+### Short Explainer Videos
+
+ - [Randomization vs. Random Sampling](https://www.youtu.be/02A61b3hxvA)
+ 
+ - [Cluster vs. Block Randomization](https://www.youtu.be/bL2U9z8hX1k)
  
