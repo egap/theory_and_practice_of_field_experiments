@@ -2,6 +2,7 @@
 title: |
   | The Theory and Practice of Field Experiments: 
   | An Introduction from the EGAP Learning Days
+  | ([Spanish translation by Lily Medina](https://egap.github.io/theory_and_practice_of_field_experiments_spanish/))
 author: Jake Bowers,^[Author order randomized. https://jakebowers.org] Maarten Voors,^[https://sites.google.com/site/maartenvoors/] and Nahomi Ichino^[https://nahomi.github.io/]
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 site: bookdown::bookdown_site
