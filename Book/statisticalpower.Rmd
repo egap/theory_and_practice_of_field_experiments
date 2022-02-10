@@ -50,7 +50,7 @@ You can also see the slides used in previous EGAP Learning Days:
 
 ### EGAP Methods Guides
 
- - EGAP Methods Guide [10 Things to Know about Statistical Power](https://egap.org/resource/10-things-you-need-know-about-statistical-power/)
+ - EGAP Methods Guide [10 Things to Know about Statistical Power](https://egap.org/resource/10-things-to-know-about-statistical-power/)
 
  - EGAP Methods Guide [10 Things to Know about Covariate Adjustment](https://egap.org/resource/10-things-to-know-about-covariate-adjustment/)
  
