@@ -54,7 +54,7 @@ You can also see the slides used in previous EGAP Learning Days:
 
 - EGAP Methods Guide [10 Things You Need to Know about Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference/)
 
-- EGAP Methods Guide [10 Strategies for Figuring Out If X Caused Y](https://egap.org/resource/10-strategies-figuring-out-if-x-caused-y/)
+- EGAP Methods Guide [10 Strategies for Figuring Out If X Caused Y](https://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y/)
 
 - EGAP Methods Guide [10 Things You Need to Know about Mechanisms](https://egap.org/resource/10-things-mechanisms/)
 
