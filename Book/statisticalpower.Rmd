@@ -20,7 +20,7 @@ In this module, we introduce statistical power, core approaches to calculating p
 
  - For **clustered designs** you need to take account of the intra-cluster correlation (the within-cluster variance relative to the overall variance).
  
- - Power is closely liked to [study design](the-research-design-process.html), [hypothesis testing](hypothesis-testing.html) and [estimation](estimands-and-estimators.html).
+ - Power is closely linked to [study design](the-research-design-process.html), [hypothesis testing](hypothesis-testing.html) and [estimation](estimands-and-estimators.html).
 
 ## Slides
 Below are slides with the core content that we cover in our lecture on power. You can directly use these slides or make your local copy and edit.
