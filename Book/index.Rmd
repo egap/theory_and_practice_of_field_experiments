@@ -123,6 +123,25 @@ This book is a comprehensive overview of causal inference methods for researcher
 
 The book includes **slides** on the core content, the [EGAP Research Design Form](researchdesignform.html), and **references** to research examples and slides used in previous Learning Days.  This material builds significantly on and links to EGAP's work on methodology, summarized in the [EGAP Methods Guides](https://egap.org/methods-guides/).  We have made significant extensions to the past Learning Days' materials on hypothesis testing, estimation, and statistical power and added new modules on the research design process, measurement, and ethical considerations.  The slides and modules presented here contain too much information to be covered in a single week, the usual length of a Learning Days workshop.  We have chosen to present more rather than less information, however, to help instructors tailor their courses to their specific audiences.
 
+## Suggested Structure of Workshop Sessions
+
+We have had experience with Learning Days workshops with students who have some previous experience with statistics and experiment as well as with students who have little to no previous experience. For the students with more experience and training, we advise following the structure of the book itself (and see LINK to syllabi/workshop agendas from Latin America). For audiences with very little previous exposure and experience we recommend the following structure.
+
++---------------+---------------+--------------------+
+| Design        | Randomization | Estimation | Testing | Power | Threats | Slides |
++===============+===============+====================+
+| Completely Randomized       | `complete_ra`        |   |
++---------------+---------------+--------------------+
+| Block Randomized       | | |
++---------------+---------------+--------------------+
+| Cluster Randomized       | | |
++---------------+---------------+--------------------+
+| Factorial Randomized       | | |
++---------------+---------------+--------------------+
+| Encouragement | | |
++---------------+---------------+--------------------+
+
+
 
 ## How to use the book
 
