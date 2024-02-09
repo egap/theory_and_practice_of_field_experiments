@@ -14,6 +14,8 @@ This is the repository for the online EGAP Learning Days book which includes a m
 
 We would love for anyone to improve this work. Please feel free to post ideas in the [Github Issues](https://github.com/egap/theory_and_practice_of_field_experiments/issues). Also feel free to [Fork](https://guides.github.com/activities/forking/) and modify and make a pull request. If you have a message to send, the best way is to use the [Issues](https://github.com/egap/theory_and_practice_of_field_experiments/issues). You can also send an email to <admin@egap.org>.
 
+Changes to this repository are governed by the [governance model](GOVERNANCE.md): briefly, it the model requires unanimous consensus among the named authors to accept changes.
+
 If you want to work on the slides, you should go to [the Learning Days Resources repository](https://github.com/egap/learningdays-resources/).
 
 ## Tools
