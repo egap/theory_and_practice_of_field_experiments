@@ -6,6 +6,7 @@ author: |
   | Jake Bowers,^[Author order randomized. https://jakebowers.org] Maarten Voors,^[https://sites.google.com/site/maartenvoors/] and Nahomi Ichino^[https://nahomi.github.io/]
   | ([Spanish translation by Lily Medina](https://egap.github.io/theory_and_practice_of_field_experiments_spanish/))
   | ([French translation by Alyssa Heinze](https://egap.github.io/theory_and_practice_of_field_experiments_french/))
+  | ([Portuguese translation by Cedric Antunes, João Hofmeister, Helena Maluf, Umberto Mignozzetti, Júlia Papa and Catarina Roman](https://egap.github.io/theory_and_practice_of_field_experiments_portuguese/))
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
