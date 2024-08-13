@@ -31,6 +31,6 @@ bookdown::pdf_book:
   latex_engine: xelatex
   keep_tex: yes
   citation_package: biblatex
-  lot: false 
-  lof: false 
+  lot: false
+  lof: false
 bookdown::epub_book: default

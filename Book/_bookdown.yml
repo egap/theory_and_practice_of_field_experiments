@@ -1,4 +1,5 @@
 book_filename: "theory_and_practice_of_field_experiments"
+title: "The Theory and Practice of Field Experiments"
 before_chapter_script: ["before_chapter_script.R"]
 language:
   ui:
