@@ -4,26 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Glossary of Terms | theory_and_practice_of_field_experiments.utf8</title>
+  <title>A Glossary of Terms | theory_and_practice_of_field_experiments.knit</title>
   <meta name="description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Glossary of Terms | theory_and_practice_of_field_experiments.utf8" />
+  <meta property="og:title" content="A Glossary of Terms | theory_and_practice_of_field_experiments.knit" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
   <meta name="github-repo" content="egap/theory_and_practice_of_field_experiments" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Glossary of Terms | theory_and_practice_of_field_experiments.utf8" />
+  <meta name="twitter:title" content="A Glossary of Terms | theory_and_practice_of_field_experiments.knit" />
   
   <meta name="twitter:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
   
 
 
 
-<meta name="date" content="2024-07-04" />
+<meta name="date" content="2024-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +31,8 @@
   
 <link rel="prev" href="ethical-considerations.html"/>
 <link rel="next" href="introduction-to-r-and-rstudio.html"/>
-<script src="book_assets/jquery/jquery.min.js"></script>
+<script src="book_assets/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="book_assets/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,7 +48,10 @@
 
 
 
-
+<script src="book_assets/accessible-code-block/empty-anchor.js"></script>
+<link href="book_assets/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections/anchor-sections.js"></script>
 
         <script>
 /* ========================================================================
@@ -396,6 +399,7 @@ $(document).ready(function () {
   window.initializeCodeFolding("show" === "show");
 });
 </script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QN1VN8C67"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-0QN1VN8C67'); </script>
 <script type="application/json" class="js-hypothesis-config">
 
@@ -407,25 +411,26 @@ $(document).ready(function () {
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -434,9 +439,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -469,6 +474,11 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -485,34 +495,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./"><img src="Images/egap-logo.png" alt="EGAP Logo" width=100>EGAP Learning Days</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-the-book"><i class="fa fa-check"></i><b>1.1</b> How to use the book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#we-would-love-to-hear-from-you"><i class="fa fa-check"></i><b>1.2</b> We would love to hear from you!</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="the-research-design-process.html"><a href="the-research-design-process.html"><i class="fa fa-check"></i><b>2</b> The Research Design Process</a><ul>
+<li class="chapter" data-level="2" data-path="the-research-design-process.html"><a href="the-research-design-process.html"><i class="fa fa-check"></i><b>2</b> The Research Design Process</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#core-content"><i class="fa fa-check"></i><b>2.1</b> Core Content</a></li>
 <li class="chapter" data-level="2.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#slides"><i class="fa fa-check"></i><b>2.2</b> Slides</a></li>
 <li class="chapter" data-level="2.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#design-form-and-pre-registration"><i class="fa fa-check"></i><b>2.3</b> Design Form and Pre-registration</a></li>
-<li class="chapter" data-level="2.4" data-path="the-research-design-process.html"><a href="the-research-design-process.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a><ul>
+<li class="chapter" data-level="2.4" data-path="the-research-design-process.html"><a href="the-research-design-process.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="the-research-design-process.html"><a href="the-research-design-process.html#egap-methods-guides"><i class="fa fa-check"></i><b>2.4.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="2.4.2" data-path="the-research-design-process.html"><a href="the-research-design-process.html#books-chapters-and-articles"><i class="fa fa-check"></i><b>2.4.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="2.4.3" data-path="the-research-design-process.html"><a href="the-research-design-process.html#tools"><i class="fa fa-check"></i><b>2.4.3</b> Tools</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>3</b> Causal Inference</a><ul>
+<li class="chapter" data-level="3" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>3</b> Causal Inference</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="causal-inference.html"><a href="causal-inference.html#core-content-1"><i class="fa fa-check"></i><b>3.1</b> Core Content</a></li>
 <li class="chapter" data-level="3.2" data-path="causal-inference.html"><a href="causal-inference.html#slides-1"><i class="fa fa-check"></i><b>3.2</b> Slides</a></li>
-<li class="chapter" data-level="3.3" data-path="causal-inference.html"><a href="causal-inference.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a><ul>
+<li class="chapter" data-level="3.3" data-path="causal-inference.html"><a href="causal-inference.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="causal-inference.html"><a href="causal-inference.html#egap-methods-guides-1"><i class="fa fa-check"></i><b>3.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="3.3.2" data-path="causal-inference.html"><a href="causal-inference.html#causalinference-cites"><i class="fa fa-check"></i><b>3.3.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="3.3.3" data-path="causal-inference.html"><a href="causal-inference.html#egap-policy-briefs"><i class="fa fa-check"></i><b>3.3.3</b> EGAP Policy Briefs</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="randomization.html"><a href="randomization.html"><i class="fa fa-check"></i><b>4</b> Randomization</a><ul>
+<li class="chapter" data-level="4" data-path="randomization.html"><a href="randomization.html"><i class="fa fa-check"></i><b>4</b> Randomization</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="randomization.html"><a href="randomization.html#core-content-2"><i class="fa fa-check"></i><b>4.1</b> Core Content</a></li>
 <li class="chapter" data-level="4.2" data-path="randomization.html"><a href="randomization.html#slides-2"><i class="fa fa-check"></i><b>4.2</b> Slides</a></li>
-<li class="chapter" data-level="4.3" data-path="randomization.html"><a href="randomization.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a><ul>
+<li class="chapter" data-level="4.3" data-path="randomization.html"><a href="randomization.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="randomization.html"><a href="randomization.html#egap-methods-guides-2"><i class="fa fa-check"></i><b>4.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="4.3.2" data-path="randomization.html"><a href="randomization.html#books-chapters-and-articles-1"><i class="fa fa-check"></i><b>4.3.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="4.3.3" data-path="randomization.html"><a href="randomization.html#egap-policy-briefs-1"><i class="fa fa-check"></i><b>4.3.3</b> EGAP Policy Briefs</a></li>
@@ -520,79 +537,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.5" data-path="randomization.html"><a href="randomization.html#short-explainer-videos"><i class="fa fa-check"></i><b>4.3.5</b> Short Explainer Videos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis Testing</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#core-content-3"><i class="fa fa-check"></i><b>5.1</b> Core Content</a></li>
 <li class="chapter" data-level="5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#slides-3"><i class="fa fa-check"></i><b>5.2</b> Slides</a></li>
-<li class="chapter" data-level="5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a><ul>
+<li class="chapter" data-level="5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#egap-methods-guides-3"><i class="fa fa-check"></i><b>5.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="5.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#books-chapters-and-articles-2"><i class="fa fa-check"></i><b>5.3.2</b> Books, Chapters, and Articles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html"><i class="fa fa-check"></i><b>6</b> Estimands and Estimators</a><ul>
+<li class="chapter" data-level="6" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html"><i class="fa fa-check"></i><b>6</b> Estimands and Estimators</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#core-content-4"><i class="fa fa-check"></i><b>6.1</b> Core Content</a></li>
 <li class="chapter" data-level="6.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#slides-4"><i class="fa fa-check"></i><b>6.2</b> Slides</a></li>
-<li class="chapter" data-level="6.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a><ul>
+<li class="chapter" data-level="6.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#egap-methods-guides-4"><i class="fa fa-check"></i><b>6.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="6.3.2" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#books-chapters-and-articles-3"><i class="fa fa-check"></i><b>6.3.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="6.3.3" data-path="estimands-and-estimators.html"><a href="estimands-and-estimators.html#tools-2"><i class="fa fa-check"></i><b>6.3.3</b> Tools</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html"><i class="fa fa-check"></i><b>7</b> Statistical Power and Design Diagnosands</a><ul>
+<li class="chapter" data-level="7" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html"><i class="fa fa-check"></i><b>7</b> Statistical Power and Design Diagnosands</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#core-content-5"><i class="fa fa-check"></i><b>7.1</b> Core Content</a></li>
 <li class="chapter" data-level="7.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#slides-5"><i class="fa fa-check"></i><b>7.2</b> Slides</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a><ul>
+<li class="chapter" data-level="7.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-methods-guides-5"><i class="fa fa-check"></i><b>7.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="7.3.2" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#egap-policy-briefs-and-paps"><i class="fa fa-check"></i><b>7.3.2</b> EGAP Policy Briefs and PAPs</a></li>
 <li class="chapter" data-level="7.3.3" data-path="statistical-power-and-design-diagnosands.html"><a href="statistical-power-and-design-diagnosands.html#tools-3"><i class="fa fa-check"></i><b>7.3.3</b> Tools</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>8</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="measurement.html"><a href="measurement.html#core-content-6"><i class="fa fa-check"></i><b>8.1</b> Core Content</a></li>
 <li class="chapter" data-level="8.2" data-path="measurement.html"><a href="measurement.html#slides-6"><i class="fa fa-check"></i><b>8.2</b> Slides</a></li>
-<li class="chapter" data-level="8.3" data-path="measurement.html"><a href="measurement.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a><ul>
+<li class="chapter" data-level="8.3" data-path="measurement.html"><a href="measurement.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="measurement.html"><a href="measurement.html#egap-methods-guides-6"><i class="fa fa-check"></i><b>8.3.1</b> EGAP Methods Guides</a></li>
 <li class="chapter" data-level="8.3.2" data-path="measurement.html"><a href="measurement.html#books-chapters-and-articles-4"><i class="fa fa-check"></i><b>8.3.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="8.3.3" data-path="measurement.html"><a href="measurement.html#egap-policy-briefs-2"><i class="fa fa-check"></i><b>8.3.3</b> EGAP Policy Briefs</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html"><i class="fa fa-check"></i><b>9</b> Threats to the Internal Validity of Randomized Experiments</a><ul>
+<li class="chapter" data-level="9" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html"><i class="fa fa-check"></i><b>9</b> Threats to the Internal Validity of Randomized Experiments</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#core-content-7"><i class="fa fa-check"></i><b>9.1</b> Core Content</a></li>
 <li class="chapter" data-level="9.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#slides-7"><i class="fa fa-check"></i><b>9.2</b> Slides</a></li>
-<li class="chapter" data-level="9.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a><ul>
+<li class="chapter" data-level="9.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-methods-guide"><i class="fa fa-check"></i><b>9.3.1</b> EGAP Methods Guide</a></li>
 <li class="chapter" data-level="9.3.2" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#books-chapters-and-articles-5"><i class="fa fa-check"></i><b>9.3.2</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="9.3.3" data-path="threats-to-the-internal-validity-of-randomized-experiments.html"><a href="threats-to-the-internal-validity-of-randomized-experiments.html#egap-policy-briefs-3"><i class="fa fa-check"></i><b>9.3.3</b> EGAP Policy Briefs</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>10</b> Ethical Considerations</a><ul>
+<li class="chapter" data-level="10" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>10</b> Ethical Considerations</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#core-content-8"><i class="fa fa-check"></i><b>10.1</b> Core content</a></li>
 <li class="chapter" data-level="10.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#slides-8"><i class="fa fa-check"></i><b>10.2</b> Slides</a></li>
-<li class="chapter" data-level="10.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a><ul>
+<li class="chapter" data-level="10.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#books-chapters-and-articles-6"><i class="fa fa-check"></i><b>10.3.1</b> Books, Chapters, and Articles</a></li>
 <li class="chapter" data-level="10.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#papers-and-pre-analysis-plans"><i class="fa fa-check"></i><b>10.3.2</b> Papers and Pre-Analysis Plans</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html"><i class="fa fa-check"></i><b>A</b> Glossary of Terms</a><ul>
+<li class="chapter" data-level="A" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html"><i class="fa fa-check"></i><b>A</b> Glossary of Terms</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#key-concepts"><i class="fa fa-check"></i><b>A.1</b> Key Concepts</a></li>
 <li class="chapter" data-level="A.2" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#statistical-inference"><i class="fa fa-check"></i><b>A.2</b> Statistical Inference</a></li>
 <li class="chapter" data-level="A.3" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#randomization-strategies"><i class="fa fa-check"></i><b>A.3</b> Randomization Strategies</a></li>
 <li class="chapter" data-level="A.4" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#factorial-designs"><i class="fa fa-check"></i><b>A.4</b> Factorial Designs</a></li>
 <li class="chapter" data-level="A.5" data-path="glossary-of-terms.html"><a href="glossary-of-terms.html#threats"><i class="fa fa-check"></i><b>A.5</b> Threats</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>B</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="B" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>B</b> Introduction to R and RStudio</a>
+<ul>
 <li class="chapter" data-level="B.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-and-rstudio"><i class="fa fa-check"></i><b>B.1</b> R and RStudio</a></li>
-<li class="chapter" data-level="B.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r-and-rstudio"><i class="fa fa-check"></i><b>B.2</b> Downloading R and RStudio</a><ul>
+<li class="chapter" data-level="B.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r-and-rstudio"><i class="fa fa-check"></i><b>B.2</b> Downloading R and RStudio</a>
+<ul>
 <li class="chapter" data-level="B.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-r"><i class="fa fa-check"></i><b>B.2.1</b> Downloading R</a></li>
 <li class="chapter" data-level="B.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#downloading-rstudio"><i class="fa fa-check"></i><b>B.2.2</b> Downloading RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#rstudio-interface"><i class="fa fa-check"></i><b>B.3</b> RStudio Interface</a><ul>
+<li class="chapter" data-level="B.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#rstudio-interface"><i class="fa fa-check"></i><b>B.3</b> RStudio Interface</a>
+<ul>
 <li class="chapter" data-level="B.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#console"><i class="fa fa-check"></i><b>B.3.1</b> Console</a></li>
 <li class="chapter" data-level="B.3.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#editor"><i class="fa fa-check"></i><b>B.3.2</b> Editor</a></li>
 <li class="chapter" data-level="B.3.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#accounting"><i class="fa fa-check"></i><b>B.3.3</b> Accounting</a></li>
 <li class="chapter" data-level="B.3.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#miscellaneous"><i class="fa fa-check"></i><b>B.3.4</b> Miscellaneous</a></li>
 </ul></li>
-<li class="chapter" data-level="B.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#learning-to-use-r"><i class="fa fa-check"></i><b>B.4</b> Learning to Use R</a><ul>
+<li class="chapter" data-level="B.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#learning-to-use-r"><i class="fa fa-check"></i><b>B.4</b> Learning to Use R</a>
+<ul>
 <li class="chapter" data-level="B.4.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#online-resources"><i class="fa fa-check"></i><b>B.4.1</b> Online Resources</a></li>
 <li class="chapter" data-level="B.4.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#basic-practice"><i class="fa fa-check"></i><b>B.4.2</b> Basic Practice</a></li>
 </ul></li>
@@ -619,11 +653,11 @@ An Introduction from the EGAP Learning Days</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="glossary-of-terms" class="section level1 tabset">
-<h1><span class="header-section-number">A</span> Glossary of Terms</h1>
+<div id="glossary-of-terms" class="section level1 tabset hasAnchor" number="11">
+<h1><span class="header-section-number">A</span> Glossary of Terms<a href="glossary-of-terms.html#glossary-of-terms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Below are some core terms frequently used throughout the book and more broadly in discussions of randomized field experiments.</p>
-<div id="key-concepts" class="section level2">
-<h2><span class="header-section-number">A.1</span> Key Concepts</h2>
+<div id="key-concepts" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">A.1</span> Key Concepts<a href="glossary-of-terms.html#key-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See the module on <a href="causal-inference.html">causal inference</a>, <a href="estimands-and-estimators.html">estimands and estimators</a>.</p>
 <ul>
 <li><strong>Potential outcome <span class="math inline">\(Y_i(T)\)</span></strong> The outcome <span class="math inline">\(Y\)</span> that unit <span class="math inline">\(i\)</span> <em>would</em>
@@ -645,8 +679,8 @@ probabilities strictly between 0 and 1.</li>
 <li><strong>External validity</strong> Findings from your study teach you about contexts outside of your sample — in other locations or for other interventions.</li>
 </ul>
 </div>
-<div id="statistical-inference" class="section level2">
-<h2><span class="header-section-number">A.2</span> Statistical Inference</h2>
+<div id="statistical-inference" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">A.2</span> Statistical Inference<a href="glossary-of-terms.html#statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See modules on <a href="hypothesis-testing.html">hypothesis testing</a> and <a href="statistical-power-and-design-diagnosands.html">statistical power</a>.</p>
 <ul>
 <li><strong>Hypothesis</strong> A simple, clear, falsifiable claim about the world. In
@@ -707,8 +741,8 @@ become ever nearer to the true value of the estimand as the sample size increase
 sampling distribution of an estimator. See the module on <a href="estimands-and-estimators.html">estimands and estimators</a>.</li>
 </ul>
 </div>
-<div id="randomization-strategies" class="section level2">
-<h2><span class="header-section-number">A.3</span> Randomization Strategies</h2>
+<div id="randomization-strategies" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">A.3</span> Randomization Strategies<a href="glossary-of-terms.html#randomization-strategies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See the module on <a href="randomization.html">randomization</a>.</p>
 <ul>
 <li><strong>Simple</strong> An independent coin flip for each unit. You are not guaranteed
@@ -726,8 +760,8 @@ randomly assign the clusters to treatment conditions using complete
 randomization.</li>
 </ul>
 </div>
-<div id="factorial-designs" class="section level2">
-<h2><span class="header-section-number">A.4</span> Factorial Designs</h2>
+<div id="factorial-designs" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">A.4</span> Factorial Designs<a href="glossary-of-terms.html#factorial-designs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See the module on <a href="randomization.html">randomization</a>.</p>
 <ul>
 <li><strong>Factorial design</strong> A design with more than one treatment, with each
@@ -749,8 +783,8 @@ effect of the other treatment.</li>
 </ul></li>
 </ul>
 </div>
-<div id="threats" class="section level2">
-<h2><span class="header-section-number">A.5</span> Threats</h2>
+<div id="threats" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">A.5</span> Threats<a href="glossary-of-terms.html#threats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See the module on <a href="threats-to-internal-validity-of-randomized-experiments.html">threats</a>.</p>
 <ul>
 <li><strong>Hawthorne effect</strong> When a subject responds to being observed.</li>
@@ -808,7 +842,6 @@ previous study is the <span class="math inline">\(D\)</span> in the downstream e
     </div>
   </div>
 <script src="book_assets/gitbook/js/app.min.js"></script>
-<script src="book_assets/gitbook/js/lunr.js"></script>
 <script src="book_assets/gitbook/js/clipboard.min.js"></script>
 <script src="book_assets/gitbook/js/plugin-search.js"></script>
 <script src="book_assets/gitbook/js/plugin-sharing.js"></script>
@@ -827,6 +860,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -847,6 +881,10 @@ gitbook.start({
 "text": null
 },
 "download": ["theory_and_practice_of_field_experiments.pdf", "theory_and_practice_of_field_experiments.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "sharing": {
@@ -870,7 +908,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

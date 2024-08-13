@@ -1,43 +1,50 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
-\documentclass[12pt,]{book}
+\documentclass[
+  12pt,
+]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
 \usepackage{xcolor}
-\usepackage{hyperref}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            colorlinks=true,
-            linkcolor=Maroon,
-            filecolor=Maroon,
-            citecolor=Blue,
-            urlcolor=Blue,
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=Blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -80,9 +87,15 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
-\usepackage{graphicx,grffile}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -91,25 +104,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
 \makeatletter
@@ -131,15 +133,23 @@
 %\usepackage[autocite=plain,style=verbose,citetracker=false]{biblatex}
 \usepackage[autocite=plain,citestyle=verbose]{biblatex}
 \usepackage{caption}
+
+
 \usepackage[]{biblatex}
 \addbibresource{learningdays-book.bib}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
 
 \title{The Theory and Practice of Field Experiments:\\
 An Introduction from the EGAP Learning Days}
 \author{Jake Bowers,\footnote{Author order randomized. \url{https://jakebowers.org}} Maarten Voors,\footnote{\url{https://sites.google.com/site/maartenvoors/}} and Nahomi Ichino\footnote{\url{https://nahomi.github.io/}}~\\
 (\href{https://egap.github.io/theory_and_practice_of_field_experiments_spanish/}{Spanish translation by Lily Medina})\\
-(\href{https://egap.github.io/theory_and_practice_of_field_experiments_french/}{French translation by Alyssa Heinze})}
-\date{July 4, 2024}
+(\href{https://egap.github.io/theory_and_practice_of_field_experiments_french/}{French translation by Alyssa Heinze})\\
+(\href{https://egap.github.io/theory_and_practice_of_field_experiments_portuguese/}{Portuguese translation by Cedric Antunes, João Hofmeister, Helena Maluf, Umberto Mignozzetti, Júlia Papa and Catarina Roman})}
+\date{August 13, 2024}
 
 \begin{document}
 \maketitle
@@ -1243,7 +1253,7 @@ Below are slides with the core content that we cover in this session.
 \item
   \autocite{Asieduetal2021ethics}
 \item
-  \autocite{Evans2021ethics} 
+  \autocite{Evans2021ethics}
 \end{itemize}
 
 \hypertarget{papers-and-pre-analysis-plans}{%
@@ -1582,7 +1592,7 @@ RStudio can be freely downloaded from the RStudio website, \url{https://www.rstu
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{/home/runner/work/theory_and_practice_of_field_experiments/theory_and_practice_of_field_experiments/Book/Images/new_rstudio} \caption{Select Download in the "RStudio Desktop Open Source License" column.}\label{fig:rstudiopng}
+\includegraphics[width=0.8\linewidth]{Images/new_rstudio} \caption{Select Download in the "RStudio Desktop Open Source License" column.}\label{fig:rstudiopng}
 \end{figure}
 
 \begin{figure}
@@ -1660,7 +1670,7 @@ The Learning Days workshops use many tools in R to analyze and view data. For no
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(ChickWeight) }\CommentTok{# First 6 observations in dataset}
+\KeywordTok{head}\NormalTok{(ChickWeight) }\CommentTok{\# First 6 observations in dataset}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1676,7 +1686,7 @@ The Learning Days workshops use many tools in R to analyze and view data. For no
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(ChickWeight) }\CommentTok{# Summary of all variables}
+\KeywordTok{summary}\NormalTok{(ChickWeight) }\CommentTok{\# Summary of all variables}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1693,7 +1703,7 @@ The Learning Days workshops use many tools in R to analyze and view data. For no
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dim}\NormalTok{(ChickWeight) }\CommentTok{# Dimensions of the dataset in the order rows, columns}
+\KeywordTok{dim}\NormalTok{(ChickWeight) }\CommentTok{\# Dimensions of the dataset in the order rows, columns}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1759,7 +1769,7 @@ In general, we read other files such as data or functions into R and output resu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"~TaraLyn/EGAP Learning Days Admin/Workshop 2018_2 (Uruguay)/"}\NormalTok{)   }
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"\textasciitilde{}TaraLyn/EGAP Learning Days Admin/Workshop 2018\_2 (Uruguay)/"}\NormalTok{)   }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1784,7 +1794,7 @@ To clear R's memory of the stored data, functions, or values that appear in the 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())                                   }
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2018}\NormalTok{)  }\CommentTok{# Optional: Set a seed to make output replicable}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2018}\NormalTok{)  }\CommentTok{\# Optional: Set a seed to make output replicable}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1795,8 +1805,8 @@ We now explore some basic commands. In order to assign a scalar (single element)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# "<-"  is the assignment command; it is used to define things. eg:}
-\NormalTok{(a <-}\StringTok{ }\DecValTok{5}\NormalTok{)     }
+\CommentTok{\# "\textless{}{-}"  is the assignment command; it is used to define things. eg:}
+\NormalTok{(a \textless{}{-}}\StringTok{ }\DecValTok{5}\NormalTok{)     }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1808,7 +1818,7 @@ We may also want to assign a vector of elements to a variable. Here we use the s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(b <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)              }\CommentTok{# ":"  is used to define a string of integers}
+\NormalTok{(b \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)              }\CommentTok{\# ":"  is used to define a string of integers}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1818,7 +1828,7 @@ We may also want to assign a vector of elements to a variable. Here we use the s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, pi))   }\CommentTok{# use c() to make a vector with anything in it}
+\NormalTok{(v \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, pi))   }\CommentTok{\# use c() to make a vector with anything in it}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1830,8 +1840,8 @@ We can then refer to elements of a vector by denoting their position in a vector
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Extract elements of a vector:}
-\NormalTok{b[}\DecValTok{1}\NormalTok{]                   }\CommentTok{# Returns position 1}
+\CommentTok{\# Extract elements of a vector:}
+\NormalTok{b[}\DecValTok{1}\NormalTok{]                   }\CommentTok{\# Returns position 1}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1841,7 +1851,7 @@ We can then refer to elements of a vector by denoting their position in a vector
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b[}\DecValTok{5}\OperatorTok{:}\DecValTok{4}\NormalTok{]                 }\CommentTok{# Returns positions 5 and 4, in that order}
+\NormalTok{b[}\DecValTok{5}\OperatorTok{:}\DecValTok{4}\NormalTok{]                 }\CommentTok{\# Returns positions 5 and 4, in that order}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1851,7 +1861,7 @@ We can then refer to elements of a vector by denoting their position in a vector
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b[}\OperatorTok{-}\DecValTok{1}\NormalTok{]                  }\CommentTok{# Returns all but the first number  }
+\NormalTok{b[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]                  }\CommentTok{\# Returns all but the first number  }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1861,7 +1871,7 @@ We can then refer to elements of a vector by denoting their position in a vector
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Returns all numbers indicated as "TRUE"}
+\CommentTok{\# Returns all numbers indicated as "TRUE"}
 \NormalTok{b[}\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)]  }
 \end{Highlighting}
 \end{Shaded}
@@ -1872,8 +1882,8 @@ We can then refer to elements of a vector by denoting their position in a vector
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Assign new values to particular elements of a vector}
-\NormalTok{b[}\DecValTok{5}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+\CommentTok{\# Assign new values to particular elements of a vector}
+\NormalTok{b[}\DecValTok{5}\NormalTok{] \textless{}{-}}\StringTok{ }\DecValTok{0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1881,7 +1891,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(b)      }\CommentTok{# Sum of all elements}
+\KeywordTok{sum}\NormalTok{(b)      }\CommentTok{\# Sum of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1891,7 +1901,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(b)     }\CommentTok{# Mean of all elements}
+\KeywordTok{mean}\NormalTok{(b)     }\CommentTok{\# Mean of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1901,7 +1911,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(b)      }\CommentTok{# Maximum of all elements}
+\KeywordTok{max}\NormalTok{(b)      }\CommentTok{\# Maximum of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1911,7 +1921,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{min}\NormalTok{(b)      }\CommentTok{# Minimum of all elements}
+\KeywordTok{min}\NormalTok{(b)      }\CommentTok{\# Minimum of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1921,7 +1931,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sd}\NormalTok{(b)       }\CommentTok{# Standard deviation of all elements}
+\KeywordTok{sd}\NormalTok{(b)       }\CommentTok{\# Standard deviation of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1931,7 +1941,7 @@ There are a set of built-in functions that can be applied to vectors like \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{var}\NormalTok{(b)      }\CommentTok{# Variance of all elements}
+\KeywordTok{var}\NormalTok{(b)      }\CommentTok{\# Variance of all elements}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1943,7 +1953,7 @@ We can also apply arithmetic transformations to all elements of a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b}\OperatorTok{^}\DecValTok{2}               \CommentTok{# Square the variable}
+\NormalTok{b}\OperatorTok{\^{}}\DecValTok{2}               \CommentTok{\# Square the variable}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1953,7 +1963,7 @@ We can also apply arithmetic transformations to all elements of a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b}\OperatorTok{^}\NormalTok{.}\DecValTok{5}              \CommentTok{# Square root of the variable}
+\NormalTok{b}\OperatorTok{\^{}}\NormalTok{.}\DecValTok{5}              \CommentTok{\# Square root of the variable}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1963,7 +1973,7 @@ We can also apply arithmetic transformations to all elements of a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{log}\NormalTok{(b)            }\CommentTok{# Log of variable}
+\KeywordTok{log}\NormalTok{(b)            }\CommentTok{\# Log of variable}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1973,7 +1983,7 @@ We can also apply arithmetic transformations to all elements of a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{exp}\NormalTok{(b)            }\CommentTok{# e to the b}
+\KeywordTok{exp}\NormalTok{(b)            }\CommentTok{\# e to the b}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1981,11 +1991,11 @@ We can also apply arithmetic transformations to all elements of a vector:
  [1]     2.718     7.389    20.086    54.598     1.000   403.429  1096.633  2980.958  8103.084 22026.466
 \end{verbatim}
 
-Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on all elements of a vector:
+Finally, we can evaluate logical statements (i.e.~``is condition X true?'\,') on all elements of a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b }\OperatorTok{==}\StringTok{ }\DecValTok{2}                     \CommentTok{# Is equal to}
+\NormalTok{b }\OperatorTok{==}\StringTok{ }\DecValTok{2}                     \CommentTok{\# Is equal to}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1995,7 +2005,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b }\OperatorTok{<}\StringTok{ }\DecValTok{5}                      \CommentTok{# Less than}
+\NormalTok{b }\OperatorTok{\textless{}}\StringTok{ }\DecValTok{5}                      \CommentTok{\# Less than}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2005,7 +2015,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b }\OperatorTok{>=}\StringTok{ }\DecValTok{5}                     \CommentTok{# Greater than or equal to }
+\NormalTok{b }\OperatorTok{\textgreater{}=}\StringTok{ }\DecValTok{5}                     \CommentTok{\# Greater than or equal to }
 \end{Highlighting}
 \end{Shaded}
 
@@ -2015,7 +2025,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b }\OperatorTok{<=}\StringTok{ }\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{b }\OperatorTok{/}\StringTok{ }\DecValTok{4} \OperatorTok{==}\StringTok{ }\DecValTok{2}        \CommentTok{# | means OR}
+\NormalTok{b }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{5} \OperatorTok{|}\StringTok{ }\NormalTok{b }\OperatorTok{/}\StringTok{ }\DecValTok{4} \OperatorTok{==}\StringTok{ }\DecValTok{2}        \CommentTok{\# | means OR}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2025,7 +2035,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b}\OperatorTok{>}\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{b}\OperatorTok{<}\DecValTok{9}                  \CommentTok{# & means AND}
+\NormalTok{b}\OperatorTok{\textgreater{}}\DecValTok{2} \OperatorTok{\&}\StringTok{ }\NormalTok{b}\OperatorTok{\textless{}}\DecValTok{9}                  \CommentTok{\# \& means AND}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2035,7 +2045,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{is.na}\NormalTok{(b)                   }\CommentTok{# Indicates if data is missing}
+\KeywordTok{is.na}\NormalTok{(b)                   }\CommentTok{\# Indicates if data is missing}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2045,7 +2055,7 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{which}\NormalTok{(b}\OperatorTok{<}\DecValTok{5}\NormalTok{)       }\CommentTok{# Gives indices of values meeting logical requirement}
+\KeywordTok{which}\NormalTok{(b}\OperatorTok{\textless{}}\DecValTok{5}\NormalTok{)       }\CommentTok{\# Gives indices of values meeting logical requirement}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2056,6 +2066,8 @@ Finally, we can evaluate logical statements (i.e.~``is condition X true?'') on a
 The basic logic of these commands applies to data structures much more complex than scalars and vectors. Understanding of these basic features will help facilitate your understanding of more advanced topics during Learning Days.
 
 \hypertarget{refs}{}
+\begin{cslreferences}
+\end{cslreferences}
 
 \printbibliography
 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 4 Randomization | theory_and_practice_of_field_experiments.knit</title>
+  <title>Page not found | theory_and_practice_of_field_experiments.knit</title>
   <meta name="description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 4 Randomization | theory_and_practice_of_field_experiments.knit" />
+  <meta property="og:title" content="Page not found | theory_and_practice_of_field_experiments.knit" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
   <meta name="github-repo" content="egap/theory_and_practice_of_field_experiments" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 4 Randomization | theory_and_practice_of_field_experiments.knit" />
+  <meta name="twitter:title" content="Page not found | theory_and_practice_of_field_experiments.knit" />
   
   <meta name="twitter:description" content="EGAP Learning Days, causal inference, randomized experiments, field experiments, experimental design, research design" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="causal-inference.html"/>
-<link rel="next" href="hypothesis-testing.html"/>
+
+
 <script src="book_assets/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook/css/style.css" rel="stylesheet" />
@@ -653,117 +653,19 @@ An Introduction from the EGAP Learning Days</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="randomization" class="section level1 tabset hasAnchor" number="4">
-<h1><span class="header-section-number">Module 4</span> Randomization<a href="randomization.html#randomization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The module on <a href="causal-inference.html">causal inference</a> discussed the crucial role of randomization for drawing valid inferences from a comparison of treated and untreated groups. In this module, we move from theory to the first of many concrete choices for your research design.</p>
-<p>We introduce four common ways to randomize treatment – simple, complete, block, and clustered – and when these different types of randomization may be available and appropriate. We also cover several popular designs including factorial designs and encouragement designs. The module provides some guidance on implementation, including best practices for checking for balance and ensuring replicability.</p>
-<div id="core-content-2" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Core Content<a href="randomization.html#core-content-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>What is <strong>randomization</strong>? Random assignment is <strong>not</strong> the same as random sampling.</p></li>
-<li><p>Four common ways to randomize treatment:</p>
-<ul>
-<li><p><strong>Simple</strong>: randomly assign units to treatment (like a coin flip).</p></li>
-<li><p><strong>Complete</strong>: within a list of eligible units, a assign a fixed number to receive a treatment (like drawing from a urn).</p></li>
-<li><p><strong>Block (or stratified)</strong>: assign treatment within specific strata or blocks, as if you are running an experiment within each block.</p></li>
-<li><p><strong>Cluster</strong>: assign groups (clusters) of observations to the same treatment condition.</p></li>
-</ul></li>
-<li><p>Some popular designs:</p>
-<ul>
-<li><p>Randomized <strong>access</strong>: randomization to availability of a treatment.</p></li>
-<li><p>Randomized <strong>delayed access</strong>: randomize the timing of access.</p></li>
-<li><p><strong>Factorial</strong>: randomize units to combinations of treatment arms.</p></li>
-<li><p><strong>Encouragement</strong>: randomize the invitation to receive treatment.</p></li>
-</ul></li>
-<li><p>How do you check whether your randomization produced balance on observables? Typically we conduct randomization tests also known as balance tests using the <span class="math inline">\(d^2\)</span> omnibus test from <code>xBalance</code> in the <code>RItools</code> package (because it is randomization inference) or approximate this result with an <span class="math inline">\(F\)</span>-test.</p></li>
-<li><p>There are, of course, <strong>limits to randomization</strong>. We discuss some here and direct you to the module on <a href="threats-to-internal-validity-of-randomized-experiments.html">threats</a> for more.</p></li>
-</ul>
-</div>
-<div id="slides-2" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Slides<a href="randomization.html#slides-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Below are slides with the core content that we cover in our lecture on randomization. You can directly use these slides or make your own local copy and edit.</p>
-<ul>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/randomization-slides.Rmd">R Markdown Source</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/randomization-slides.pdf">PDF version</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/randomization-slides.html">HTML version</a></p></li>
-</ul>
-<p>The linked files shows how to <a href="https://egap.github.io/learningdays-resources/Exercises/randomization-exercises.Rmd">do replicable randomization in R</a>. You can also see more examples of randomization in R at <a href="https://egap.org/resource/10-things-to-know-about-randomization/">10 Things You Need to Know About Randomization</a>.</p>
-<p>You can also see the slides used in previous EGAP Learning Days:</p>
-<ul>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/threats-benin.pdf">The design issues presentation from EGAP Learning Days at the African School of Economics, Abomey-Calavi, June 2019 (first section reviews randomization designs)</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/randomization-bogota.pdf">The randomization presentation from EGAP Learning Days at Universidad de Los Andes, Bogotá, April 2019</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/randomization-montevideo.pdf">The randomization presentation from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/randomization-guatemala.pdf">The randomization presentation from EGAP Learning Days in Guatemala City, Guatemala, August 2017</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/randomization-malawi.pdf">The randomization presentation from EGAP Learning Days in Salima, Malawi, February 2017</a></p></li>
-<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/randomization-santiago.pdf">The randomization presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
-</ul>
-</div>
-<div id="resources-2" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Resources<a href="randomization.html#resources-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="egap-methods-guides-2" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> EGAP Methods Guides<a href="randomization.html#egap-methods-guides-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-to-know-about-randomization/">10 Things You Need to Know About Randomization</a></p></li>
-<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-to-know-about-cluster-randomization/">10 Things You Need to Know About Cluster Randomization</a></p></li>
-</ul>
-</div>
-<div id="books-chapters-and-articles-1" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Books, Chapters, and Articles<a href="randomization.html#books-chapters-and-articles-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><a href="https://github.com/acoppock/Green-Lab-SOP">Standard operating procedures for Don Green’s lab at Columbia University</a>. A comprehensive set of procedures and rules of thumb for conducting experimental studies.</p></li>
-<li><p><span class="citation">Glennerster and Takavarasha, <em>Running Randomized Evaluations</em>.</span> Chapter 2 on randomization.</p></li>
-<li><p><span class="citation">Gerber and Green, <em>Field Experiments</em>.</span> Chapter 2: Causal Inference and Experimentation</p></li>
-</ul>
-</div>
-<div id="egap-policy-briefs-1" class="section level3 hasAnchor" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> EGAP Policy Briefs<a href="randomization.html#egap-policy-briefs-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>Factorial designs</em></p>
-<ul>
-<li><p><a href="https://egap.org/resource/how-media-influence-social-norms-evidence-from-mexico/">EGAP Policy Brief 57: How Media Influence Social Norms: Evidence from Mexico</a></p></li>
-<li><p><a href="https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/">EGAP Policy Brief 58: Does Bottom-Up Accountability Work?</a></p></li>
-</ul>
-<p><em>Randomizing access</em></p>
-<ul>
-<li><a href="https://egap.org/resource/brief-24-reducing-elite-capture-in-the-solomon-islands/">EGAP Policy Brief 24: Reducing Elite Capture in the Solomon Islands</a></li>
-</ul>
-<p><em>Randomizing delayed access</em></p>
-<ul>
-<li><p><a href="https://egap.org/resource/brief-35-reducing-reconvictions-among-released-prisoners/">EGAP Policy Brief 35: Reducing Reconvictions Among Released Prisoners</a></p></li>
-<li><p><a href="https://egap.org/resource/reducing-youth-support-for-violence-through-training-and-cash-transfers-in-afghanistan/">EGAP Policy Brief 60: Reducing Youth Support for Violence through Training and Cash Transfers in Afghanistan</a></p></li>
-</ul>
-<p><em>Cluster randomization</em></p>
-<ul>
-<li><a href="https://egap.org/resource/brief-22-getting-out-the-vote/">EGAP Policy Brief 22: Getting Out the Vote</a></li>
-</ul>
-<p><em>Blocked cluster randomization</em></p>
-<ul>
-<li><p><a href="https://egap.org/resource/evidence-from-mexico-the-effect-of-incumbent-malfeasance-revelations/">EGAP Policy Brief 54: Incumbent Malfeasance Revelations</a></p></li>
-<li><p><a href="https://egap.org/resource/reporting-corruption-in-nigeria-testing-the-effects-of-norms-nudges/">EGAP Policy Brief 56: Reporting Corruption</a></p></li>
-</ul>
-</div>
-<div id="tools-1" class="section level3 hasAnchor" number="4.3.4">
-<h3><span class="header-section-number">4.3.4</span> Tools<a href="randomization.html#tools-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/RItools/index.html">RItools</a>, a set of tools for randomization-based inference including balance testing.</li>
-</ul>
-</div>
-<div id="short-explainer-videos" class="section level3 hasAnchor" number="4.3.5">
-<h3><span class="header-section-number">4.3.5</span> Short Explainer Videos<a href="randomization.html#short-explainer-videos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><a href="https://www.youtu.be/02A61b3hxvA">Randomization vs. Random Sampling</a></p></li>
-<li><p><a href="https://www.youtu.be/bL2U9z8hX1k">Cluster vs. Block Randomization</a></p></li>
-</ul>
-
-</div>
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="causal-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="book_assets/gitbook/js/app.min.js"></script>
@@ -794,7 +696,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/egap/theory_and_practice_of_field_experiments/edit/main/Book/randomization.Rmd",
+"link": "https://github.com/egap/theory_and_practice_of_field_experiments/edit/main/Book/%s",
 "text": "Edit"
 },
 "history": {
